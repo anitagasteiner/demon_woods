@@ -6,6 +6,7 @@ class MovableObject {
     height = 300;
     width = 500;
     imageCache = {}; // kein Array, sondern ein JSON -> daher geschwungene Klammern statt eckige
+    currentImage = 0;
 
     // constructor() {
 
