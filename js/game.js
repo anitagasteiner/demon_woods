@@ -11,21 +11,19 @@ function init() {
 
 window.addEventListener("keydown", (e) => {
     console.log(e);
-    let code = e.code;
-    if (code == 'Space') {
+    if (e.keyCode == 32) {
         keyboard.SPACE = true;
     }
-    if (code == 'ArrowDown') {
+    if (e.keyCode == 40) {
         keyboard.DOWN = true;
     }
-    if (code == 'ArrowUp') {
+    if (e.keyCode == 38) {
         keyboard.UP = true;
     }
-    if (code == 'ArrowLeft') {
+    if (e.keyCode == 37) {
         keyboard.LEFT = true;
     }
-    if (code == 'ArrowRight') {
+    if (e.keyCode == 39) {
         keyboard.RIGHT = true;
     }
-
 });
