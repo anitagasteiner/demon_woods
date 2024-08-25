@@ -3,6 +3,7 @@ class Wraith extends MovableObject {
     y = 370;
     height = 100;
     width = 200;
+    speed = 0.2;
     PATHS_WALKING = ['../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_000.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_001.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_002.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_003.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_004.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_005.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_006.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_007.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_008.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_009.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_010.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_011.png'];
     
     constructor() {
@@ -13,9 +14,7 @@ class Wraith extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
-            this.x -= 0.2; // Von der x-Koordinate werden 5px abgezogen.
-        }, 1000 / 60); // -> wird 60 mal pro Sekunde ausgeführt -> daher stocken die Wolken nicht, wenn sie sich bewegen
+        this.moveLeft();
     }
 
     changePicture() {

@@ -2,6 +2,7 @@ class Clouds extends MovableObject {
     y = 0;
     height = 400;
     width = 700;
+    speed = 0.03;
 
     constructor(imagePath) {
         super().loadImage(imagePath); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
@@ -10,8 +11,7 @@ class Clouds extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
-            this.x -= 0.03; // Von der x-Koordinate werden 5px abgezogen.            
-        }, 1000 / 60); // -> wird 60 mal pro Sekunde ausgeführt -> daher stocken die Wolken nicht, wenn sie sich bewegen
+        this.moveLeft();
     }
+
 }

@@ -30,6 +30,9 @@ class MovableObject {
     }
 
     moveLeft() {
-        console.log('moving left');
+        setInterval(() => {
+            this.x -= this.speed; // Von der x-Koordinate werden soviel px abgezogen, wie in der Variable "speed" angegeben.
+        }, 1000 / 60); // -> wird 60 mal pro Sekunde ausgeführt -> Daher stocken die Wolken nicht, wenn sie sich bewegen.
     }
+
 }
