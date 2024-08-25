@@ -1,4 +1,5 @@
 class BgObject extends MovableObject {
+
     height = 480;
     width = 720;
 
@@ -7,4 +8,5 @@ class BgObject extends MovableObject {
         this.x = x;
         this.y = this.canvasHeight - this.height; // Gesamthöhe vom Canvas: 480
     }
+    
 }

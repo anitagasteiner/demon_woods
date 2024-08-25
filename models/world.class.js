@@ -1,5 +1,6 @@
 class World {
     character = new Character();
+
     enemies = [
         new Wraith(),
         new Wraith(),
@@ -56,4 +57,5 @@ class World {
     addToMap(movableObject) {
         this.ctx.drawImage(movableObject.img, movableObject.x, movableObject.y, movableObject.width, movableObject.height);
     }
+    
 }

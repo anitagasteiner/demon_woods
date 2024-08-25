@@ -1,4 +1,5 @@
 class Plant extends MovableObject {
+
     x = 250;
     y = -25;
     height = 500;
@@ -7,4 +8,5 @@ class Plant extends MovableObject {
     constructor() {
         super().loadImage('../img/bg/layers/plant.png'); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
     }
+    
 }
