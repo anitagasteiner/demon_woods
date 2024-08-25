@@ -4,12 +4,12 @@ let keyboard = new Keyboard();
 
 function init() {
     canvas = document.getElementById('canvas');
-    world = new World(canvas); // Bei der Erstellung einer neuen "World" kann ich schon eine Variable mitgeben. -> "canvas"    
+    world = new World(canvas, keyboard); // Bei der Erstellung einer neuen "World" kann ich schon eine Variable mitgeben: "canvas". // Das "keyboard"-Objekt wird auch an die Welt übergeben. -> Wird beides dort in den Constructor aufgenommen. 
 
     console.log('My character is ', world.character);    
 }
 
-window.addEventListener("keydown", (e) => {
+window.addEventListener("keydown", (e) => { // Wenn die jeweilige Taste gedrückt wird, wird die entsprechende Variable auf "true" gesetzt.
     console.log(e);
     if (e.keyCode == 32) {
         keyboard.SPACE = true;
@@ -28,7 +28,7 @@ window.addEventListener("keydown", (e) => {
     }
 });
 
-window.addEventListener("keyup", (e) => {
+window.addEventListener("keyup", (e) => { // Wenn die jeweilige Taste losgelassen wird, wird die entsprechende Variable auf "false" gesetzt.
     if (e.keyCode == 32) {
         keyboard.SPACE = false;
     }

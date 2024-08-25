@@ -1,5 +1,5 @@
 class MovableObject {
-    
+
     canvasHeight = 480;
     x = -150;
     y = 215;
@@ -24,10 +24,6 @@ class MovableObject {
             img.src = path; // Das Bild wird in das Image-Objekt hineingeladen.
             this.imageCache[path] = img; // Wir können "path" als Schlüssel benutzen, weil "imageCache" ein JSON ist. -> An der Stelle [path] wird "path" eingefügt. Später können wir mit diesem Schlüssel das Bild wieder herausladen.
         });        
-    }
-
-    moveRight() {
-        console.log('moving right');
     }
 
     moveLeft() {
