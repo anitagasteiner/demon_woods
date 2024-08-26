@@ -16,9 +16,16 @@ class Character extends MovableObject {
         this.walkLeft();
     }
 
-    animate() {
-        this.changePicture(this.PATHS_IDLE, this.interval_idle);
-        setInterval(() => {
+    animate() {        
+        setInterval(() => { // idle
+            if(this.world.keyboard.SPACE == false && this.world.keyboard.DOWN == false && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
+                let i = this.currentImage % this.PATHS_IDLE.length;
+                let path = this.PATHS_IDLE[i];
+                this.img = this.imageCache[path]; // Wir greifen auf den Eintrag "path" in unserem Array zu.
+                this.currentImage++;
+            }
+        }, this.interval_idle);   
+        setInterval(() => { // walk right
             if(this.world.keyboard.RIGHT) {
                 this.loadImages(this.PATHS_WALK);
                 let i = this.currentImage % this.PATHS_WALK.length;
@@ -27,7 +34,7 @@ class Character extends MovableObject {
                 this.currentImage++;
             }
         }, this.interval_walk);
-        setInterval(() => {
+        setInterval(() => { // walk left
             if(this.world.keyboard.LEFT) {
                 this.loadImages(this.PATHS_WALK_LEFT);
                 let i = this.currentImage % this.PATHS_WALK.length;
@@ -37,8 +44,6 @@ class Character extends MovableObject {
             }
         }, this.interval_walk); 
     }
-
-
 
     walkRight() {
         setInterval(() => {
@@ -55,12 +60,6 @@ class Character extends MovableObject {
             }
         }, 1000 / 60); // 60 mal pro Sekunde   
     }
-
-
-
-
-
-
 
     jump() {
 
