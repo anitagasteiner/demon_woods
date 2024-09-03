@@ -12,19 +12,40 @@ class World {
         new Clouds('../img/bg/layers/clouds_2.png')
     ];
     bgObjects = [
+        new BgObject('../img/bg/layers/sky.png', -720),
+        new BgObject('../img/bg/layers/rocks.png', -720),
         new BgObject('../img/bg/layers/sky.png', 0),
-        new BgObject('../img/bg/layers/rocks.png', 0)
+        new BgObject('../img/bg/layers/rocks.png', 0),
+        new BgObject('../img/bg/layers/sky.png', 720),
+        new BgObject('../img/bg/layers/rocks.png', 720),
+        new BgObject('../img/bg/layers/sky.png', 720*2),
+        new BgObject('../img/bg/layers/rocks.png', 720*2),
+        new BgObject('../img/bg/layers/sky.png', 720*3),
+        new BgObject('../img/bg/layers/rocks.png', 720*3)
 
     ];
     grounds = [
+        new BgObject('../img/bg/layers/ground_1.png', -720),
+        new BgObject('../img/bg/layers/ground_2.png', -720),
+        new BgObject('../img/bg/layers/ground_3.png', -720),
         new BgObject('../img/bg/layers/ground_1.png', 0),
         new BgObject('../img/bg/layers/ground_2.png', 0),
-        new BgObject('../img/bg/layers/ground_3.png', 0)
+        new BgObject('../img/bg/layers/ground_3.png', 0),
+        new BgObject('../img/bg/layers/ground_1.png', 720),
+        new BgObject('../img/bg/layers/ground_2.png', 720),
+        new BgObject('../img/bg/layers/ground_3.png', 720),
+        new BgObject('../img/bg/layers/ground_1.png', 720*2),
+        new BgObject('../img/bg/layers/ground_2.png', 720*2),
+        new BgObject('../img/bg/layers/ground_3.png', 720*2),
+        new BgObject('../img/bg/layers/ground_1.png', 720*3),
+        new BgObject('../img/bg/layers/ground_2.png', 720*3),
+        new BgObject('../img/bg/layers/ground_3.png', 720*3)
     ];
     plant = new Plant();
     canvas;
     ctx; // Abkürzung für Context
     keyboard;
+    camera_x = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d'); // Wir können nicht direkt in unser Canvas malen, sondern brauchen dafür "Context"!
@@ -37,6 +58,8 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Dadurch wird das Bild gelöscht, bevor ein neues gezeichnet wird.
 
+        this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
+
         this.addObjectsToMap(this.bgObjects);
         this.addObjectsToMap(this.clouds);
         this.addObjectsToMap(this.grounds);
@@ -45,7 +68,9 @@ class World {
         this.addObjectsToMap(this.enemies);        
         this.addToMap(this.plant);
 
-        self = this;
+        this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben.
+
+        let self = this;
         requestAnimationFrame(function() {
             self.draw();
         }); // -> In dieser Methode wird die "draw"-Methode so oft aufgerufen, wie es die Grafikkarte hergibt. Die Funktion in "requestAnimationFrame" wird ausgeführt, sobald das darüber alles fertig gezeichnet wurde, also asynchron, ein wenig später. Das Wort "this" ist innerhalb dieser Funktion nicht mehr bekannt, daher brauchen wir eine Variable (hier: "self").

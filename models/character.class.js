@@ -41,6 +41,7 @@ class Character extends MovableObject {
                 this.x += this.speed;
                 this.otherDirection = false;
             }
+            this.world.camera_x = -this.x; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
         }, 1000 / 60); // 60 mal pro Sekunde
     }
 
@@ -50,7 +51,8 @@ class Character extends MovableObject {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
-        }, 1000 / 60); // 60 mal pro Sekunde   
+            this.world.camera_x = -this.x;
+        }, 1000 / 60); // 60 mal pro Sekunde
     }
 
     jump() {
