@@ -41,8 +41,8 @@ class World {
         this.addObjectsToMap(this.clouds);
         this.addObjectsToMap(this.grounds);
         // this.addToMap(this.demon);
-        this.addObjectsToMap(this.enemies);
         this.addToMap(this.character);
+        this.addObjectsToMap(this.enemies);        
         this.addToMap(this.plant);
 
         self = this;
@@ -62,7 +62,25 @@ class World {
     }
 
     addToMap(movableObject) {
+        if (movableObject.otherDirection) {
+            this.flipImage(movableObject);
+        }
         this.ctx.drawImage(movableObject.img, movableObject.x, movableObject.y, movableObject.width, movableObject.height);
+        if (movableObject.otherDirection) { // Wenn oben eine Änderung gemacht wurde, wird diese hier rückgängig gemacht.
+            this.flipImageBack(movableObject);
+        }
+    }
+
+    flipImage(movableObject) {
+        this.ctx.save(); // Aktuelle Einstellungen vom ctx werden gespeichert, denn später sollen die Bilder wieder gerade eingefügt werden.
+        this.ctx.translate(movableObject.width, 0); // Damit das Bild nicht einen Sprung nach links macht, muss das Canvas um die Breite des "movableObject" nach rechts geschoben werden.
+        this.ctx.scale(-1, 1); // Spiegelung an der y-Achse. Dadurch beginnt die x-Achse jetzt rechts, nicht mehr links.
+        movableObject.x = movableObject.x * -1; // Die x-Koordinate wird umgedreht. -> Bild wird an der richtigen Stelle eingefügt.
+    }
+
+    flipImageBack(movableObject) {
+        movableObject.x = movableObject.x * -1; // Die x-Koordinate wird wieder umgedreht.
+        this.ctx.restore(); // Reset zur gespeicherten Version. -> So können alle anderen Elemente, zB die Wolken, ohne Spiegeln eingefügt werden.
     }
 
 }
