@@ -1,5 +1,7 @@
 class Character extends MovableObject {
 
+    height = 300;
+    width = 500;
     interval_idle = 170;
     interval_walk = 50; // 50 ms = 20 mal pro Sekunde
     speed = 5;
@@ -9,30 +11,22 @@ class Character extends MovableObject {
     sound_walking = new Audio('audio/character_walking.mp4');
 
     constructor() {
-        super().loadImage('../img/character/Fairy_03__IDLE_000.png'); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
+        super().loadImage(this.PATHS_IDLE [0]); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
         this.loadImages(this.PATHS_IDLE);
         this.animate();
         this.walk();
-        // this.walkRight();
-        // this.walkLeft();
     }
 
-    animate() {        
+    animate() {
         setInterval(() => { // idle
             if(this.world.keyboard.SPACE == false && this.world.keyboard.DOWN == false && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
-                let i = this.currentImage % this.PATHS_IDLE.length;
-                let path = this.PATHS_IDLE[i];
-                this.img = this.imageCache[path]; // Wir greifen auf den Eintrag "path" in unserem Array zu.
-                this.currentImage++;
+                this.changePicture(this.PATHS_IDLE);
             }
         }, this.interval_idle);   
-        setInterval(() => { // walk
+        setInterval(() => { // while walking
             if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.loadImages(this.PATHS_WALK);
-                let i = this.currentImage % this.PATHS_WALK.length;
-                let path = this.PATHS_WALK[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+                this.changePicture(this.PATHS_WALK);
             }
         }, this.interval_walk);
     }
@@ -53,31 +47,6 @@ class Character extends MovableObject {
             this.world.camera_x = -this.x - 100; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
         }, 1000 / 60); // 60 mal pro Sekunde
     }
-
-
-    // walkRight() {
-    //     setInterval(() => {
-    //         this.sound_walking.pause();
-    //         if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-    //             this.x += this.speed;
-    //             this.otherDirection = false;
-    //             this.sound_walking.play();
-    //         }
-    //         this.world.camera_x = -this.x - 100; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
-    //     }, 1000 / 60); // 60 mal pro Sekunde
-    // }
-
-    // walkLeft() {
-    //     setInterval(() => {
-    //         this.sound_walking.pause();
-    //         if(this.world.keyboard.LEFT && this.x > -820) {
-    //             this.x -= this.speed;
-    //             this.otherDirection = true;
-    //             this.sound_walking.play();
-    //         }
-    //         this.world.camera_x = -this.x - 100;
-    //     }, 1000 / 60); // 60 mal pro Sekunde
-    // }
 
     jump() {
 

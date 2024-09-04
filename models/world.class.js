@@ -1,8 +1,7 @@
 class World {
+
     character = new Character();
-
     level = level1;
-
     canvas;
     ctx; // Abkürzung für Context
     keyboard;

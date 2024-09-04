@@ -9,14 +9,11 @@ class Wraith extends MovableObject {
     PATHS_WALKING = ['../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_000.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_001.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_002.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_003.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_004.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_005.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_006.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_007.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_008.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_009.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_010.png', '../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_011.png'];
     
     constructor() {
-        super().loadImage('../img/wraith/png/Walking/Wraith_02_Moving_Forward_left_000.png'); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.        
-        this.animate();
+        super().loadImage(this.PATHS_WALKING[0]); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
         this.loadImages(this.PATHS_WALKING);
-    }
-
-    animate() {
         this.moveLeft();
-        this.changePicture(this.PATHS_WALKING, this.interval);
+        this.animate(this.PATHS_WALKING, this.interval);
+        
     }
 
 }
