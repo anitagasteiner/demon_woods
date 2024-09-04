@@ -5,6 +5,7 @@ class Level {
     bgObjects;
     grounds;
     plant;
+    level_end_x = 2059;
 
     constructor(enemies, clouds, bgObjects, grounds, plant) {
         this.enemies = enemies;

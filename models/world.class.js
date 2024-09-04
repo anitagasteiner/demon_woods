@@ -1,11 +1,7 @@
 class World {
     character = new Character();
 
-    enemies = level1.enemies;
-    clouds = level1.clouds;
-    bgObjects = level1.bgObjects;
-    grounds = level1.grounds;
-    plant = level1.plant;
+    level = level1;
 
     // demon = new Demon();
 
@@ -27,13 +23,13 @@ class World {
 
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
 
-        this.addObjectsToMap(this.bgObjects);
-        this.addObjectsToMap(this.clouds);
-        this.addObjectsToMap(this.grounds);
+        this.addObjectsToMap(this.level.bgObjects);
+        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.grounds);
         // this.addToMap(this.demon);
         this.addToMap(this.character);
-        this.addObjectsToMap(this.enemies);        
-        this.addToMap(this.plant);
+        this.addObjectsToMap(this.level.enemies);        
+        this.addToMap(this.level.plant);
 
         this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben.
 
