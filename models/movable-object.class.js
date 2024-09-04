@@ -10,10 +10,6 @@ class MovableObject {
     currentImage = 0;
     otherDirection = false;
 
-    // constructor() {
-
-    // }
-
     loadImage(path) {
         this.img = new Image(); // Das Objekt "Image" existiert bereits in JavaScript. -> this.img = document.getElementById('image') <img id="image">
         this.img.src = path;

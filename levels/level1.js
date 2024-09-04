@@ -2,7 +2,8 @@ const level1 = new Level(
     [
         new Wraith(),
         new Wraith(),
-        new Wraith()
+        new Wraith(),
+        new Demon()
     ],
     [
         new Clouds('../img/bg/layers/clouds_1.png'),

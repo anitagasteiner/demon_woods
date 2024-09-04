@@ -3,8 +3,6 @@ class World {
 
     level = level1;
 
-    // demon = new Demon();
-
     canvas;
     ctx; // Abkürzung für Context
     keyboard;
@@ -25,10 +23,9 @@ class World {
 
         this.addObjectsToMap(this.level.bgObjects);
         this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.grounds);
-        // this.addToMap(this.demon);
+        this.addObjectsToMap(this.level.grounds);        
         this.addToMap(this.character);
-        this.addObjectsToMap(this.level.enemies);        
+        this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.level.plant);
 
         this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben.
