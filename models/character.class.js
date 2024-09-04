@@ -2,7 +2,7 @@ class Character extends MovableObject {
 
     height = 300;
     width = 500;
-    y = 80;
+    // y = 80;
     interval_idle = 170;
     interval_walk = 50; // 50 ms = 20 mal pro Sekunde
     interval_fly = 10;
@@ -35,6 +35,11 @@ class Character extends MovableObject {
                 this.changePicture(this.PATHS_WALK);
             }
         }, this.interval_walk);
+        setInterval(() => { // while flying
+            if(this.isAboveGround()) {
+                this.changePicture(this.PATHS_FLY);
+            }
+        }, this.interval_fly);
     }
 
     walk() {
@@ -56,10 +61,12 @@ class Character extends MovableObject {
 
     fly() {
         setInterval(() => {
-            if(this.isAboveGround()) {
-                this.changePicture(this.PATHS_FLY);
-            }
-        }, this.interval_fly);
+            if(this.world.keyboard.UP) {
+                this.speedY = -20;
+                this.y += this.speedY;
+                this.speedY += this.acceleration;
+            }            
+        }, 1000 / 25); // 25 mal pro Sekunde        
     }
 
 }

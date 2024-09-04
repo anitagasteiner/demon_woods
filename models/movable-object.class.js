@@ -46,10 +46,10 @@ class MovableObject {
 
     applyGravity() { // Die y-Achse wird regelmäßig verringert.
         setInterval(() => {
-            if(this.isAboveGround()) {
+            if(this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration; // negative Geschwindigkeit, damit das Objekt nach unten fällt
-            }            
+            }
         }, 1000 / 25); // 25-mal pro Sekunde
     }
 
