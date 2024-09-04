@@ -9,6 +9,8 @@ class MovableObject {
     imageCache = {}; // kein Array, sondern ein JSON -> daher geschwungene Klammern statt eckige
     currentImage = 0;
     otherDirection = false;
+    speedY = 0; // Geschwindigkeit auf der y-Achse
+    acceleration = 2.5; // Beschleunigung
 
     loadImage(path) {
         this.img = new Image(); // Das Objekt "Image" existiert bereits in JavaScript. -> this.img = document.getElementById('image') <img id="image">
@@ -40,6 +42,19 @@ class MovableObject {
         let path = paths[i];
         this.img = this.imageCache[path]; // Wir greifen auf den Eintrag "path" in unserem Array zu.
         this.currentImage++;
+    }
+
+    applyGravity() { // Die y-Achse wird regelmäßig verringert.
+        setInterval(() => {
+            if(this.isAboveGround()) {
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration; // negative Geschwindigkeit, damit das Objekt nach unten fällt
+            }            
+        }, 1000 / 25); // 25-mal pro Sekunde
+    }
+
+    isAboveGround() { // returnt, ob das Objekt in der Luft ist
+        return this.y < 215;
     }
 
 }

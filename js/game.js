@@ -10,7 +10,6 @@ function init() {
 }
 
 window.addEventListener("keydown", (e) => { // Wenn die jeweilige Taste gedrückt wird, wird die entsprechende Variable auf "true" gesetzt.
-    console.log(e);
     if (e.keyCode == 32) {
         keyboard.SPACE = true;
     }
@@ -44,5 +43,4 @@ window.addEventListener("keyup", (e) => { // Wenn die jeweilige Taste losgelasse
     if (e.keyCode == 39) {
         keyboard.RIGHT = false;
     }
-
 });

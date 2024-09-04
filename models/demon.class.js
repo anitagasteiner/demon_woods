@@ -1,7 +1,6 @@
 class Demon extends MovableObject {
 
-    // x = 2700; -> für später
-    x = 500; // -> für jetzt, damit ich sie gleich sehe
+    x = 2700;
     y = 155;
     height = 310;
     width = 130;
