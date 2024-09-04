@@ -6,13 +6,15 @@ class Character extends MovableObject {
     world;
     PATHS_IDLE = ['../img/character/Fairy_03__IDLE_000.png', '../img/character/Fairy_03__IDLE_001.png', '../img/character/Fairy_03__IDLE_002.png', '../img/character/Fairy_03__IDLE_003.png', '../img/character/Fairy_03__IDLE_004.png', '../img/character/Fairy_03__IDLE_005.png', '../img/character/Fairy_03__IDLE_006.png', '../img/character/Fairy_03__IDLE_007.png', '../img/character/Fairy_03__IDLE_008.png', '../img/character/Fairy_03__IDLE_009.png'];
     PATHS_WALK = ['img/character/Fairy_03__WALK_000.png', 'img/character/Fairy_03__WALK_001.png', 'img/character/Fairy_03__WALK_002.png', 'img/character/Fairy_03__WALK_003.png', 'img/character/Fairy_03__WALK_004.png', 'img/character/Fairy_03__WALK_005.png', 'img/character/Fairy_03__WALK_006.png', 'img/character/Fairy_03__WALK_007.png', 'img/character/Fairy_03__WALK_008.png', 'img/character/Fairy_03__WALK_009.png'];
+    sound_walking = new Audio('audio/character_walking.mp4');
 
     constructor() {
         super().loadImage('../img/character/Fairy_03__IDLE_000.png'); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
         this.loadImages(this.PATHS_IDLE);
         this.animate();
-        this.walkRight();
-        this.walkLeft();
+        this.walk();
+        // this.walkRight();
+        // this.walkLeft();
     }
 
     animate() {        
@@ -35,25 +37,47 @@ class Character extends MovableObject {
         }, this.interval_walk);
     }
 
-    walkRight() {
+    walk() {
         setInterval(() => {
+            this.sound_walking.pause();
             if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.x += this.speed;
                 this.otherDirection = false;
+                this.sound_walking.play();
+            }
+            if(this.world.keyboard.LEFT && this.x > -820) {
+                this.x -= this.speed;
+                this.otherDirection = true;
+                this.sound_walking.play();
             }
             this.world.camera_x = -this.x - 100; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
         }, 1000 / 60); // 60 mal pro Sekunde
     }
 
-    walkLeft() {
-        setInterval(() => {
-            if(this.world.keyboard.LEFT && this.x > -820) {
-                this.x -= this.speed;
-                this.otherDirection = true;
-            }
-            this.world.camera_x = -this.x - 100;
-        }, 1000 / 60); // 60 mal pro Sekunde
-    }
+
+    // walkRight() {
+    //     setInterval(() => {
+    //         this.sound_walking.pause();
+    //         if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+    //             this.x += this.speed;
+    //             this.otherDirection = false;
+    //             this.sound_walking.play();
+    //         }
+    //         this.world.camera_x = -this.x - 100; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
+    //     }, 1000 / 60); // 60 mal pro Sekunde
+    // }
+
+    // walkLeft() {
+    //     setInterval(() => {
+    //         this.sound_walking.pause();
+    //         if(this.world.keyboard.LEFT && this.x > -820) {
+    //             this.x -= this.speed;
+    //             this.otherDirection = true;
+    //             this.sound_walking.play();
+    //         }
+    //         this.world.camera_x = -this.x - 100;
+    //     }, 1000 / 60); // 60 mal pro Sekunde
+    // }
 
     jump() {
 
