@@ -1,47 +1,14 @@
 class World {
     character = new Character();
 
-    enemies = [
-        new Wraith(),
-        new Wraith(),
-        new Wraith()
-    ];
-    // demon = new Demon();
-    clouds = [
-        new Clouds('../img/bg/layers/clouds_1.png'),
-        new Clouds('../img/bg/layers/clouds_2.png')
-    ];
-    bgObjects = [
-        new BgObject('../img/bg/layers/sky.png', -720),
-        new BgObject('../img/bg/layers/rocks.png', -720),
-        new BgObject('../img/bg/layers/sky.png', 0),
-        new BgObject('../img/bg/layers/rocks.png', 0),
-        new BgObject('../img/bg/layers/sky.png', 720),
-        new BgObject('../img/bg/layers/rocks.png', 720),
-        new BgObject('../img/bg/layers/sky.png', 720*2),
-        new BgObject('../img/bg/layers/rocks.png', 720*2),
-        new BgObject('../img/bg/layers/sky.png', 720*3),
-        new BgObject('../img/bg/layers/rocks.png', 720*3)
+    enemies = level1.enemies;
+    clouds = level1.clouds;
+    bgObjects = level1.bgObjects;
+    grounds = level1.grounds;
+    plant = level1.plant;
 
-    ];
-    grounds = [
-        new BgObject('../img/bg/layers/ground_1.png', -720),
-        new BgObject('../img/bg/layers/ground_2.png', -720),
-        new BgObject('../img/bg/layers/ground_3.png', -720),
-        new BgObject('../img/bg/layers/ground_1.png', 0),
-        new BgObject('../img/bg/layers/ground_2.png', 0),
-        new BgObject('../img/bg/layers/ground_3.png', 0),
-        new BgObject('../img/bg/layers/ground_1.png', 720),
-        new BgObject('../img/bg/layers/ground_2.png', 720),
-        new BgObject('../img/bg/layers/ground_3.png', 720),
-        new BgObject('../img/bg/layers/ground_1.png', 720*2),
-        new BgObject('../img/bg/layers/ground_2.png', 720*2),
-        new BgObject('../img/bg/layers/ground_3.png', 720*2),
-        new BgObject('../img/bg/layers/ground_1.png', 720*3),
-        new BgObject('../img/bg/layers/ground_2.png', 720*3),
-        new BgObject('../img/bg/layers/ground_3.png', 720*3)
-    ];
-    plant = new Plant();
+    // demon = new Demon();
+
     canvas;
     ctx; // Abkürzung für Context
     keyboard;
