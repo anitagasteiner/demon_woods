@@ -55,6 +55,9 @@ class Character extends MovableObject {
                 this.otherDirection = true;
                 this.sound_walking.play();
             }
+            if(this.world.keyboard.LEFT && this.world.keyboard.UP || this.world.keyboard.RIGHT && this.world.keyboard.UP) {
+                this.sound_walking.pause();
+            }
             this.world.camera_x = -this.x - 100; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
         }, 1000 / 60); // 60 mal pro Sekunde
     }
