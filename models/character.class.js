@@ -94,10 +94,8 @@ class Character extends MovableObject {
 
     fly() {
         setInterval(() => {
-            if (this.world.keyboard.UP) {
-                this.speedY = -20;
-                this.y += this.speedY;
-                this.speedY += this.acceleration;
+            if (this.world.keyboard.UP && !this.isAboveGround()) {
+                this.speedY = 30;
             }
         }, 1000 / 25); // 25 mal pro Sekunde        
     }
