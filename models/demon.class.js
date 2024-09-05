@@ -6,7 +6,10 @@ class Demon extends MovableObject {
     width = 130;
     interval = 1000;
     speed = 0.15;
-    PATHS_IDLE = ['../img/demon/Character7_face4_left.png', '../img/demon/Character7_face2_left.png'];
+    PATHS_IDLE = [
+        '../img/demon/Character7_face4_left.png',
+        '../img/demon/Character7_face2_left.png'
+    ];
 
     constructor() {
         super().loadImage(this.PATHS_IDLE[0]); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.

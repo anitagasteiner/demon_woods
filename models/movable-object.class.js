@@ -33,11 +33,11 @@ class MovableObject {
 
     animate(paths, interval) {
         setInterval(() => {
-            this.changePicture(paths);            
+            this.changePictures(paths);            
         }, interval);
     }
 
-    changePicture(paths) {
+    changePictures(paths) {
         let i = this.currentImage % paths.length; // % -> Modulo-Operator -> let i = 0 % 12 // Modulo ist der mathematische Rest. -> Wenn ich 0 durch 12 teile, ist das Ergebnis 0, Rest 0. Wenn ich 1 durch 12 teile, ist das Ergebnis 0, Rest 12. ... Wenn ich 11 durch 12 teile, ist das Ergebnis 0, Rest 11. Bei 12 ist das Ergebnis 1, Rest 0. Im nächsten Schritt hat "currentImage" den Wert 13. Das Ergebnis ist dann 1, Rest 1. -> Modulo hebt nur diesen Rest auf. Dadurch hat i jetzt den Wert 1.
         let path = paths[i];
         this.img = this.imageCache[path]; // Wir greifen auf den Eintrag "path" in unserem Array zu.
@@ -46,7 +46,7 @@ class MovableObject {
 
     applyGravity() { // Die y-Achse wird regelmäßig verringert.
         setInterval(() => {
-            if(this.isAboveGround() || this.speedY > 0) {
+            if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration; // negative Geschwindigkeit, damit das Objekt nach unten fällt
             }
