@@ -50,6 +50,9 @@ class MovableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration; // negative Geschwindigkeit, damit das Objekt nach unten fällt
             }
+            if (this.y > 215) { // Damit Objekt nicht weiter unten landet als es ursprünglich war.
+                this.y = 215;
+            }
         }, 1000 / 25); // 25-mal pro Sekunde
     }
 
