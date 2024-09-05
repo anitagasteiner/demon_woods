@@ -25,10 +25,14 @@ class MovableObject {
         });
     }
 
-    moveLeft() {
-        setInterval(() => {
-            this.x -= this.speed; // Von der x-Koordinate werden soviel px abgezogen, wie in der Variable "speed" angegeben.
-        }, 1000 / 60); // -> wird 60 mal pro Sekunde ausgeführt -> Daher stocken die Wolken nicht, wenn sie sich bewegen.
+    moveLeft(speed) {
+        this.x -= speed;  // Von der x-Koordinate werden soviel px abgezogen, wie in der Variable "speed" angegeben.
+        this.otherDirection = true;
+    }
+
+    moveRight(speed) {
+        this.x += speed;
+        this.otherDirection = false;
     }
 
     animate(paths, interval) {
@@ -42,6 +46,10 @@ class MovableObject {
         let path = paths[i];
         this.img = this.imageCache[path]; // Wir greifen auf den Eintrag "path" in unserem Array zu.
         this.currentImage++;
+    }
+
+    fly() {
+        this.speedY = 30;        
     }
 
     applyGravity() { // Die y-Achse wird regelmäßig verringert.

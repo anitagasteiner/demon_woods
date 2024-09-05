@@ -49,8 +49,7 @@ class Character extends MovableObject {
         this.loadImages(this.PATHS_WALK);
         this.loadImages(this.PATHS_FLY);
         this.animate();
-        this.walk();
-        this.fly();
+        this.moveForward();
         this.applyGravity();
     }
 
@@ -61,7 +60,7 @@ class Character extends MovableObject {
             }
         }, this.interval_idle);   
         setInterval(() => { // while walking
-            if (this.world.keyboard.RIGHT && this.isAboveGround() == false || this.world.keyboard.LEFT && this.isAboveGround() == false) {
+            if (this.world.keyboard.RIGHT && !this.isAboveGround() || this.world.keyboard.LEFT && !this.isAboveGround()) {
                 this.changePictures(this.PATHS_WALK);
             }
         }, this.interval_walk);
@@ -70,34 +69,29 @@ class Character extends MovableObject {
                 this.changePictures(this.PATHS_FLY);
             }
         }, this.interval_fly);
+        setInterval(() => {
+            if (this.world.keyboard.UP && !this.isAboveGround()) {
+                this.fly();                
+            }
+        }, 1000 / 25); // 25 mal pro Sekunde        
     }
 
-    walk() {
+    moveForward() {
         setInterval(() => {
             this.sound_walking.pause();            
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.x += this.speed;
-                this.otherDirection = false;
+                this.moveRight(this.speed);
                 this.sound_walking.play();
             }
             if (this.world.keyboard.LEFT && this.x > -820) {
-                this.x -= this.speed;
-                this.otherDirection = true;
+                this.moveLeft(this.speed);                
                 this.sound_walking.play();
             }
-            if (this.world.keyboard.UP) {
+            if (this.isAboveGround()) {
                 this.sound_walking.pause();
             }
             this.world.camera_x = -this.x - 100; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
         }, 1000 / 60); // 60 mal pro Sekunde
-    }
-
-    fly() {
-        setInterval(() => {
-            if (this.world.keyboard.UP && !this.isAboveGround()) {
-                this.speedY = 30;
-            }
-        }, 1000 / 25); // 25 mal pro Sekunde        
     }
 
 }

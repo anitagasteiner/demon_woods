@@ -11,8 +11,10 @@ class Clouds extends MovableObject {
         this.animate();
     }
 
-    animate() {
-        this.moveLeft();
+    animate() {        
+        setInterval(() => {
+            this.x -= this.speed;
+        }, 1000 / 60); // -> wird 60 mal pro Sekunde ausgeführt -> Daher stocken die Wolken nicht, wenn sie sich bewegen.
     }
 
 }
