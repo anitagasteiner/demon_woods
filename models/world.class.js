@@ -25,7 +25,7 @@ class World {
         this.addObjectsToMap(this.level.grounds);        
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
-        this.addToMap(this.level.plant);
+        this.addObjectsToMap(this.level.plants);
 
         this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben.
 

@@ -38,5 +38,17 @@ const level1 = new Level(
         new BgObject('../img/bg/layers/ground_2.png', 720*3),
         new BgObject('../img/bg/layers/ground_3.png', 720*3)
     ],
-    new Plant()
+    [
+        new Plant(),
+        new Plant(),
+        new Plant(),
+        new Plant(),
+        new Plant(),
+        new Plant(),
+        new Plant(),
+        new Plant(),
+        new Plant(),
+        new Plant()
+    ]
+    
 );
