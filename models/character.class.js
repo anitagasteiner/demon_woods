@@ -1,8 +1,9 @@
 class Character extends MovableObject {
 
     height = 300;
-    width = 500;
-    // y = 80;
+    width = 180;
+    x = 500;
+    y = 205;
     interval_idle = 170;
     interval_walk = 50; // 50 ms = 20 mal pro Sekunde
     interval_fly = 10;

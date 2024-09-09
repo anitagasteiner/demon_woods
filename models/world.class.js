@@ -53,6 +53,7 @@ class World {
         if (movableObject.otherDirection) { // Wenn oben eine Änderung gemacht wurde, wird diese hier rückgängig gemacht.
             this.flipImageBack(movableObject);
         }
+        this.drawRectangle(movableObject);
     }
 
     flipImage(movableObject) {
@@ -65,6 +66,14 @@ class World {
     flipImageBack(movableObject) {
         movableObject.x = movableObject.x * -1; // Die x-Koordinate wird wieder umgedreht.
         this.ctx.restore(); // Reset zur gespeicherten Version. -> So können alle anderen Elemente, zB die Wolken, ohne Spiegeln eingefügt werden.
+    }
+
+    drawRectangle(movableObject) {
+        this.ctx.beginPath();
+        this.ctx.lineWidth = "5";
+        this.ctx.strokeStyle = "blue";
+        this.ctx.rect(movableObject.x, movableObject.y, movableObject.width, movableObject.height);
+        this.ctx.stroke();
     }
 
 }
