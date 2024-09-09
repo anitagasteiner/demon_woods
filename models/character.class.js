@@ -80,11 +80,11 @@ class Character extends MovableObject {
         setInterval(() => {
             this.sound_walking.pause();            
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight(this.speed);
+                this.moveRight();
                 this.sound_walking.play();
             }
             if (this.world.keyboard.LEFT && this.x > -820) {
-                this.moveLeft(this.speed);                
+                this.moveLeft();                
                 this.sound_walking.play();
             }
             if (this.isAboveGround()) {

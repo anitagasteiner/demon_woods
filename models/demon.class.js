@@ -21,7 +21,7 @@ class Demon extends MovableObject {
 
     move() {
         setInterval(() => {
-            this.moveLeft(this.speed);            
+            this.moveLeft();            
         }, this.interval_move);
     }
     

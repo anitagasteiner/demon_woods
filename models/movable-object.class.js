@@ -25,13 +25,13 @@ class MovableObject {
         });
     }
 
-    moveLeft(speed) {
-        this.x -= speed;  // Von der x-Koordinate werden soviel px abgezogen, wie in der Variable "speed" angegeben.
+    moveLeft() {
+        this.x -= this.speed;  // Von der x-Koordinate werden soviel px abgezogen, wie in der Variable "speed" angegeben.
         this.otherDirection = true;
     }
 
-    moveRight(speed) {
-        this.x += speed;
+    moveRight() {
+        this.x += this.speed;
         this.otherDirection = false;
     }
 
