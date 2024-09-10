@@ -2,7 +2,7 @@ class Character extends MovableObject {
 
     height = 300;
     width = 180;
-    x = 500;
+    x = 150;
     y = 205;
     interval_idle = 170;
     interval_walk = 50; // 50 ms = 20 mal pro Sekunde
@@ -84,14 +84,14 @@ class Character extends MovableObject {
                 this.moveRight();
                 this.sound_walking.play();
             }
-            if (this.world.keyboard.LEFT && this.x > -820) {
+            if (this.world.keyboard.LEFT && this.x > -670) {
                 this.moveLeft();                
                 this.sound_walking.play();
             }
             if (this.isAboveGround()) {
                 this.sound_walking.pause();
             }
-            this.world.camera_x = -this.x - 100; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
+            this.world.camera_x = -this.x +50; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
         }, 1000 / 60); // 60 mal pro Sekunde
     }
 

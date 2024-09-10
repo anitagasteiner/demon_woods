@@ -5,7 +5,7 @@ class World {
     canvas;
     ctx; // Abkürzung für Context
     keyboard;
-    camera_x = 0;
+    camera_x = -150;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d'); // Wir können nicht direkt in unser Canvas malen, sondern brauchen dafür "Context"!

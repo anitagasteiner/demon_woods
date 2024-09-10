@@ -1,11 +1,7 @@
 class MovableObject {
 
     canvasHeight = 480;
-    x = -150;
-    y = 215;
     img;
-    height;
-    width;
     imageCache = {}; // kein Array, sondern ein JSON -> daher geschwungene Klammern statt eckige
     currentImage = 0;
     otherDirection = false;
