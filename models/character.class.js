@@ -43,48 +43,74 @@ class Character extends MovableObject {
         '../img/character/Fairy_03__FLY_005.png',
         '../img/character/Fairy_03__FLY_006.png'
     ];
+    PATHS_DIE = [
+        '../img/character/Fairy_03__DIE_000.png',
+        '../img/character/Fairy_03__DIE_001.png',
+        '../img/character/Fairy_03__DIE_002.png',
+        '../img/character/Fairy_03__DIE_003.png',
+        '../img/character/Fairy_03__DIE_004.png',
+        '../img/character/Fairy_03__DIE_005.png',
+        '../img/character/Fairy_03__DIE_006.png',
+        '../img/character/Fairy_03__DIE_007.png',
+        '../img/character/Fairy_03__DIE_008.png',
+        '../img/character/Fairy_03__DIE_009.png'
+    ];
+    paths_die_index = 0; // Zähler für die Bildfolge
+    paths_die_total = this.PATHS_DIE.length;
 
     constructor() {
         super().loadImage(this.PATHS_IDLE[0]); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
         this.loadImages(this.PATHS_IDLE);
         this.loadImages(this.PATHS_WALK);
         this.loadImages(this.PATHS_FLY);
+        this.loadImages(this.PATHS_DIE);
         this.animate();
         this.moveForward();
         this.applyGravity();
     }
 
     animate() {
+        const intervalId = setInterval(() => {  // dying
+            if (this.isDead()) {
+                if (this.paths_die_index < this.paths_die_total) {
+                    this.loadImage(this.PATHS_DIE[this.paths_die_index]);
+                    this.paths_die_index++;
+                } else {
+                    clearInterval(intervalId);
+                    this.loadImage(this.PATHS_DIE[this.paths_die_total - 1]);
+                }                
+            }
+        }, 50);
         setInterval(() => { // idle
-            if (this.world.keyboard.SPACE == false && this.world.keyboard.DOWN == false && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
+            if (!this.isDead() && this.world.keyboard.SPACE == false && this.world.keyboard.DOWN == false && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
                 this.changePictures(this.PATHS_IDLE);
             }
         }, this.interval_idle);   
         setInterval(() => { // while walking
-            if (this.world.keyboard.RIGHT && !this.isAboveGround() || this.world.keyboard.LEFT && !this.isAboveGround()) {
+            if (!this.isDead() && this.world.keyboard.RIGHT && !this.isAboveGround() || !this.isDead() && this.world.keyboard.LEFT && !this.isAboveGround()) {
                 this.changePictures(this.PATHS_WALK);
             }
         }, this.interval_walk);
         setInterval(() => { // while flying
-            if (this.isAboveGround()) {
+            if (!this.isDead() && this.isAboveGround()) {
                 this.changePictures(this.PATHS_FLY);
             }
         }, this.interval_fly);
         setInterval(() => {
-            if (this.world.keyboard.UP && !this.isAboveGround()) {
+            if (!this.isDead() && this.world.keyboard.UP && !this.isAboveGround()) {
                 this.fly();                
             }
-        }, 1000 / 25); // 25 mal pro Sekunde        
+        }, 1000 / 25); // 25 mal pro Sekunde
     }
 
     moveForward() {
         setInterval(() => {
             this.sound_walking.pause();            
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            if (!this.isDead() && this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.sound_walking.play();
             }
-            if (this.world.keyboard.LEFT && this.x > -670) {
+            if (!this.isDead() && this.world.keyboard.LEFT && this.x > -670) {
                 this.moveLeft();                
                 this.sound_walking.play();
             }
