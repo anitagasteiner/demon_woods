@@ -7,6 +7,7 @@ class MovableObject {
     otherDirection = false;
     speedY = 0; // Geschwindigkeit auf der y-Achse
     acceleration = 2.5; // Beschleunigung
+    energy = 100;
 
     loadImage(path) {
         this.img = new Image(); // Das Objekt "Image" existiert bereits in JavaScript. -> this.img = document.getElementById('image') <img id="image">
