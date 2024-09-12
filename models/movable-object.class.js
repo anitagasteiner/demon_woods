@@ -78,4 +78,9 @@ class MovableObject {
         return this.y < 205;
     }
 
+    // character.isColliding(wraith);
+    isColliding(movableObject) { // Kollisionsberechnung
+        return  this.x + this.width > movableObject.x && this.y + this.height > movableObject.y && this.x < movableObject.x && this.y < movableObject.y + movableObject.height;
+    }
+
 }

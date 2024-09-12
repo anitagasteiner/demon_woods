@@ -13,6 +13,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollisions();
     }    
 
     draw() {
@@ -66,6 +67,17 @@ class World {
     flipImageBack(movableObject) {
         movableObject.x = movableObject.x * -1; // Die x-Koordinate wird wieder umgedreht.
         this.ctx.restore(); // Reset zur gespeicherten Version. -> So können alle anderen Elemente, zB die Wolken, ohne Spiegeln eingefügt werden.
+    }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    console.log('Collision with', enemy);
+                };
+            });            
+        }, 200);
+
     }
 
 }
