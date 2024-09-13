@@ -8,6 +8,7 @@ class MovableObject {
     speedY = 0; // Geschwindigkeit auf der y-Achse
     acceleration = 2.5; // Beschleunigung
     energy = 100;
+    lastHit = 0;
 
     loadImage(path) {
         this.img = new Image(); // Das Objekt "Image" existiert bereits in JavaScript. -> this.img = document.getElementById('image') <img id="image">
@@ -88,7 +89,15 @@ class MovableObject {
         this.energy -= 5;
         if (this.energy < 0) {
             this.energy = 0;
-        }   
+        } else {
+            this.lastHit = new Date().getTime(); // So kann Zeit in Zahlenform gespeichert werden. -> Millisekunden, die seit dem 1.1.1970 vergangen sind
+        }
+    }
+
+    isHurt() {
+        let timePassed = new Date().getTime() - this.lastHit; // Welche Zeitspanne ist vergangen? -> in Millisekunden
+        timePassed = timePassed / 1000; // -> in Sekunden
+        return timePassed < 0.5; // Wenn die vergangene Zeit unter 1/2 Sekunde liegt, wir also innerhalb der letzten 1/2 Sekunde getroffen wurden, dann returnt diese Funktion den Wert "true".
     }
 
     isDead() {
