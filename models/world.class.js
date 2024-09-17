@@ -6,7 +6,7 @@ class World {
     ctx; // Abkürzung für Context
     keyboard;
     camera_x = -150;
-    statusBar = new StatusBar();
+    statusBars = newStatusBars;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d'); // Wir können nicht direkt in unser Canvas malen, sondern brauchen dafür "Context"!
@@ -25,7 +25,7 @@ class World {
         this.addObjectsToMap(this.level.bgObjects);        
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.grounds);
-        this.addToMap(this.statusBar);
+        this.addObjectsToMap(this.statusBars);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.plants);
