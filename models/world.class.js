@@ -1,11 +1,12 @@
 class World {
 
     character = new Character();
-    level = level1;
+    level = level1;    
     canvas;
     ctx; // Abkürzung für Context
     keyboard;
     camera_x = -150;
+    statusBar = new StatusBar();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d'); // Wir können nicht direkt in unser Canvas malen, sondern brauchen dafür "Context"!
@@ -21,9 +22,10 @@ class World {
 
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
 
-        this.addObjectsToMap(this.level.bgObjects);
+        this.addObjectsToMap(this.level.bgObjects);        
         this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.grounds);        
+        this.addObjectsToMap(this.level.grounds);
+        this.addToMap(this.statusBar);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.plants);
@@ -78,7 +80,6 @@ class World {
                 };
             });            
         }, 200);
-
     }
     
 }

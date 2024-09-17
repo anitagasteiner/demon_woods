@@ -53,6 +53,5 @@ const level1 = new Level(
         new Plant(),
         new Plant(),
         new Plant()
-    ]
-    
+    ]   
 );
