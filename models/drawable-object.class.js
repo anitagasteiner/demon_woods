@@ -3,7 +3,7 @@ class DrawableObject {
     img;
     imageCache = {}; // kein Array, sondern ein JSON -> daher geschwungene Klammern statt eckige
     currentImage = 0;
-    x = 110;
+    x = 15;
     y;
     height;
     width;

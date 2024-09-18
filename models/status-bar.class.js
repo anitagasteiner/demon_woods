@@ -8,6 +8,7 @@ class StatusBar extends DrawableObject {
         this.loadImages(paths);
         this.y = y;
         this.setPercentage(percentage, paths);
+        
     }
 
     setPercentage(percentage, paths) { // Man kann damit von außen zB angeben "setPercentage(50);", dann wird die Percentage auf 50 gesetzt.

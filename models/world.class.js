@@ -21,12 +21,16 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Dadurch wird das Bild gelöscht, bevor ein neues gezeichnet wird.
 
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
-
-        this.addObjectsToMap(this.level.bgObjects);        
-        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.bgObjects);
         this.addObjectsToMap(this.level.grounds);
+        this.addObjectsToMap(this.level.clouds);
+
+        this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben.
         this.addObjectsToMap(this.statusBars);
+        this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
+
         this.addToMap(this.character);
+                
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.plants);
 
