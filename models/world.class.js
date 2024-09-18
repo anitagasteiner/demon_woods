@@ -85,7 +85,13 @@ class World {
                     this.character.hit();                    
                     this.statusBars[1].setPercentage(this.statusBars[1].paths, this.character.energy);
                 };
-            });            
+            });
+            this.level.crystals.forEach((crystal) => {
+                if (this.character.isColliding(crystal) && this.statusBars[2].percentage < 100) {
+                    this.statusBars[2].percentage += 5;
+                    this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
+                };
+            }); 
         }, 200);
     }
     

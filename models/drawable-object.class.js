@@ -33,7 +33,7 @@ class DrawableObject {
     }
 
     drawRectangle(ctx) {
-        if (this instanceof Character || this instanceof Wraith || this instanceof Demon) {
+        if (this instanceof Character || this instanceof Wraith || this instanceof Demon || this instanceof Crystal) {
             ctx.beginPath();
             ctx.lineWidth = "5";
             ctx.strokeStyle = "blue";
