@@ -30,6 +30,7 @@ class World {
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
 
         this.addObjectsToMap(this.level.crystals);
+        this.addObjectsToMap(this.level.coins);
 
         this.addToMap(this.character);
                 
