@@ -25,7 +25,7 @@ class World {
         this.addObjectsToMap(this.level.grounds);
         this.addObjectsToMap(this.level.clouds);
 
-        this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben.
+        this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben. -> SPACE FOR FIXED OBJECTS:
         this.addObjectsToMap(this.statusBars);
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
 
@@ -79,8 +79,8 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
-                    this.character.hit();
-                    console.log('Collision with ', enemy, 'Energy: ', this.character.energy);
+                    this.character.hit();                    
+                    this.statusBars[1].setPercentage(this.statusBars[1].paths, this.character.energy);
                 };
             });            
         }, 200);
