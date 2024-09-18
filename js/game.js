@@ -25,6 +25,9 @@ window.addEventListener("keydown", (e) => { // Wenn die jeweilige Taste gedrück
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;
     }
+    if (e.keyCode == 84) {
+        keyboard.T = true;
+    }
 });
 
 window.addEventListener("keyup", (e) => { // Wenn die jeweilige Taste losgelassen wird, wird die entsprechende Variable auf "false" gesetzt.
@@ -42,5 +45,8 @@ window.addEventListener("keyup", (e) => { // Wenn die jeweilige Taste losgelasse
     }
     if (e.keyCode == 39) {
         keyboard.RIGHT = false;
+    }
+    if (e.keyCode == 84) {
+        keyboard.T = false;
     }
 });

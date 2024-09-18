@@ -7,6 +7,7 @@ class World {
     keyboard;
     camera_x = -150;
     statusBars = newStatusBars;
+    throwableObjects = [new ThrowableObject()];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d'); // Wir können nicht direkt in unser Canvas malen, sondern brauchen dafür "Context"!
@@ -33,8 +34,9 @@ class World {
         this.addObjectsToMap(this.level.coins);
 
         this.addToMap(this.character);
-                
+
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.plants);
         
 
@@ -48,6 +50,7 @@ class World {
 
     setWorld() { // Das Objekt "keyboard" (damit die Keyboard-Funktionen) wird durch diese Funktion an zB den Character übergeben.
         this.character.world = this; // Der "character" hat eine Variable "world", durch die nun auf die Variablen der "world" hier zugegriffen werden kann, u.a. auch auf "keyboard".
+        this.throwableObjects[0].world = this;
     }
 
     addObjectsToMap(objects) {
