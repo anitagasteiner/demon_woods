@@ -5,14 +5,16 @@ class Level {
     bgObjects;
     grounds;
     plants;
+    crystals;
     level_end_x = 2210;
 
-    constructor(enemies, clouds, bgObjects, grounds, plants, statusbars) {
+    constructor(enemies, clouds, bgObjects, grounds, plants, crystals) {
         this.enemies = enemies;
         this.clouds = clouds;
         this.bgObjects = bgObjects;
         this.grounds = grounds;
         this.plants = plants;
+        this.crystals = crystals;
     }
 
 }

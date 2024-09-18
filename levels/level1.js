@@ -53,5 +53,17 @@ const level1 = new Level(
         new Plant(),
         new Plant(),
         new Plant()
-    ]   
+    ],
+    [
+        new Crystal(),
+        new Crystal(),
+        new Crystal(),
+        new Crystal(),
+        new Crystal(),
+        new Crystal(),
+        new Crystal(),
+        new Crystal(),
+        new Crystal(),
+        new Crystal()
+    ]
 );

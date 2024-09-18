@@ -29,10 +29,13 @@ class World {
         this.addObjectsToMap(this.statusBars);
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
 
+        this.addObjectsToMap(this.level.crystals);
+
         this.addToMap(this.character);
                 
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.plants);
+        
 
         this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben.
 
