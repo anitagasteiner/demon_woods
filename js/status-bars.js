@@ -1,29 +1,29 @@
 const PATHS_STATUS_COINS = [
-    '../img/7_statusbars/1_statusbar/1_statusbar_coin/green/0.png',
-    '../img/7_statusbars/1_statusbar/1_statusbar_coin/green/20.png',
-    '../img/7_statusbars/1_statusbar/1_statusbar_coin/green/40.png',
-    '../img/7_statusbars/1_statusbar/1_statusbar_coin/green/60.png',
-    '../img/7_statusbars/1_statusbar/1_statusbar_coin/green/80.png',
-    '../img/7_statusbars/1_statusbar/1_statusbar_coin/green/100.png'
+    '../img/statusbars/coins/0.png',
+    '../img/statusbars/coins/20.png',
+    '../img/statusbars/coins/40.png',
+    '../img/statusbars/coins/60.png',
+    '../img/statusbars/coins/80.png',
+    '../img/statusbars/coins/100.png'
 ];
 const PATHS_STATUS_HEALTH = [
-    '../img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png',
-    '../img/7_statusbars/1_statusbar/2_statusbar_health/green/20.png',
-    '../img/7_statusbars/1_statusbar/2_statusbar_health/green/40.png',
-    '../img/7_statusbars/1_statusbar/2_statusbar_health/green/60.png',
-    '../img/7_statusbars/1_statusbar/2_statusbar_health/green/80.png',
-    '../img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png'
+    '../img/statusbars/health/0.png',
+    '../img/statusbars/health/20.png',
+    '../img/statusbars/health/40.png',
+    '../img/statusbars/health/60.png',
+    '../img/statusbars/health/80.png',
+    '../img/statusbars/health/100.png'
 ];
-const PATHS_STATUS_BOTTLES = [
-    '../img/7_statusbars/1_statusbar/3_statusbar_bottle/green/0.png',
-    '../img/7_statusbars/1_statusbar/3_statusbar_bottle/green/20.png',
-    '../img/7_statusbars/1_statusbar/3_statusbar_bottle/green/40.png',
-    '../img/7_statusbars/1_statusbar/3_statusbar_bottle/green/60.png',
-    '../img/7_statusbars/1_statusbar/3_statusbar_bottle/green/80.png',
-    '../img/7_statusbars/1_statusbar/3_statusbar_bottle/green/100.png'
+const PATHS_STATUS_CRYSTALS = [
+    '../img/statusbars/crystals/0.png',
+    '../img/statusbars/crystals/20.png',
+    '../img/statusbars/crystals/40.png',
+    '../img/statusbars/crystals/60.png',
+    '../img/statusbars/crystals/80.png',
+    '../img/statusbars/crystals/100.png'
 ];
 const newStatusBars = [
     new StatusBar(PATHS_STATUS_COINS, 5, 0),
     new StatusBar(PATHS_STATUS_HEALTH, 45, 100),
-    new StatusBar(PATHS_STATUS_BOTTLES, 85, 0)
+    new StatusBar(PATHS_STATUS_CRYSTALS, 85, 0)
 ];
