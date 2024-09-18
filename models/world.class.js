@@ -92,7 +92,13 @@ class World {
                     this.statusBars[2].percentage += 5;
                     this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
                 };
-            }); 
+            });
+            this.level.coins.forEach((coin) => {
+                if (this.character.isColliding(coin) && this.statusBars[0].percentage < 100) {
+                    this.statusBars[0].percentage += 5;
+                    this.statusBars[0].setPercentage(this.statusBars[0].paths, this.statusBars[0].percentage);
+                };
+            });
         }, 200);
     }
     
