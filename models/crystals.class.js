@@ -1,7 +1,7 @@
 class Crystal extends MovableObject {
     
     y = 400;
-    x = -400 + Math.random() * 3000; // -> Zufallszahl mal 3000, damit Verteilung passt; -400 fix, damit Startpunkt nicht weiter links
+    x = 100 + Math.random() * 3000; // -> Zufallszahl mal 3000, damit Verteilung passt; 100 fix, damit Startpunkt nicht weiter links
     height = 65;
     width = 65;
 

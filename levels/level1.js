@@ -61,15 +61,9 @@ const level1 = new Level(
         new Crystal(),
         new Crystal(),
         new Crystal(),
-        new Crystal(),
-        new Crystal(),
-        new Crystal(),
         new Crystal()
     ],
     [
-        new Coin(),
-        new Coin(),
-        new Coin(),
         new Coin(),
         new Coin(),
         new Coin(),
