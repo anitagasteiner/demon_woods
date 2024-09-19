@@ -8,6 +8,10 @@ class World {
     camera_x = -150;
     statusBars = newStatusBars;
     throwableObjects = [new ThrowableObject()];
+    coin;
+    crystal;
+    sound_pickup_coin = new Audio('../audio/coin-pickup.flac');
+    sound_pickup_crystal = new Audio('../audio/crystal_pickup.wav');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d'); // Wir können nicht direkt in unser Canvas malen, sondern brauchen dafür "Context"!
@@ -94,12 +98,22 @@ class World {
                 if (this.character.isColliding(crystal) && this.statusBars[2].percentage < 100) {
                     this.statusBars[2].percentage += 5;
                     this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
+                    this.sound_pickup_crystal.play();
+                    setTimeout(() => {
+                        this.crystal = crystal;
+                        this.crystal.y = -100;
+                    }, 500);
                 };
             });
             this.level.coins.forEach((coin) => {
                 if (this.character.isColliding(coin) && this.statusBars[0].percentage < 100) {
                     this.statusBars[0].percentage += 5;
                     this.statusBars[0].setPercentage(this.statusBars[0].paths, this.statusBars[0].percentage);
+                    this.sound_pickup_coin.play();
+                    setTimeout(() => {
+                        this.coin = coin;
+                        this.coin.y = -100;
+                    }, 500);
                 };
             });
         }, 200);
