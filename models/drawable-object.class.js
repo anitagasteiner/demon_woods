@@ -33,13 +33,27 @@ class DrawableObject {
     }
 
     drawRectangle(ctx) {
-        if (this instanceof Character || this instanceof Wraith || this instanceof Demon || this instanceof Crystal || this instanceof Apple) {
+        if (this instanceof Demon || this instanceof Crystal || this instanceof Apple) {
             ctx.beginPath();
             ctx.lineWidth = "5";
             ctx.strokeStyle = "blue";
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
-        }        
+        }
+        if (this instanceof Character) {
+            ctx.beginPath();
+            ctx.lineWidth = "5";
+            ctx.strokeStyle = "green";
+            ctx.rect(this.x + 185, this.y + 120, this.width - 380, this.height - 190);
+            ctx.stroke();
+        }
+        if (this instanceof Wraith) {
+            ctx.beginPath();
+            ctx.lineWidth = "5";
+            ctx.strokeStyle = "red";
+            ctx.rect(this.x + 60, this.y + 10, this.width - 120, this.height - 30);
+            ctx.stroke();
+        }
     }
 
 }

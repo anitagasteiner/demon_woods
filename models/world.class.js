@@ -5,7 +5,7 @@ class World {
     canvas;
     ctx; // Abkürzung für Context
     keyboard;
-    camera_x = -150;
+    camera_x = -100;
     statusBars = newStatusBars;
     throwableObjects = [];
     apple;
@@ -93,8 +93,12 @@ class World {
     }
 
     checkThrowObjects() {
+        let positionX = this.character.x + 300;
+        if (this.character.otherDirection == true) {
+            positionX -= 100;
+        }
         if (this.keyboard.T) {
-            let crystal = new ThrowableObject(this.character.x + 90, this.character.y + 145);
+            let crystal = new ThrowableObject(positionX, this.character.y + 200, this.character.otherDirection);
             this.throwableObjects.push(crystal);
         }
     }

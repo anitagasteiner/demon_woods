@@ -1,9 +1,9 @@
 class Character extends MovableObject {
 
-    height = 300;
-    width = 180;
-    x = 150;
-    y = 205;
+    height = 400;
+    width = 550;
+    x = -100;
+    y = 125;
     interval_idle = 170;
     interval_walk = 50; // 50 ms = 20 mal pro Sekunde
     interval_fly = 10;
@@ -141,7 +141,7 @@ class Character extends MovableObject {
             if (this.isAboveGround()) {
                 this.sound_walking.pause();
             }
-            this.world.camera_x = -this.x +50; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
+            this.world.camera_x = -this.x -100; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
         }, 1000 / 60); // 60 mal pro Sekunde
     }
 

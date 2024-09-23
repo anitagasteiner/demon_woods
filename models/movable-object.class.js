@@ -40,7 +40,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) { // -> damit die ThrowableObjects immer ganz nach unten fallen
             return true;
         } else {
-            return this.y < 205;
+            return this.y < 125;
         }
     }
 
