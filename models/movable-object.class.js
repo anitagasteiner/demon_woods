@@ -45,12 +45,16 @@ class MovableObject extends DrawableObject {
     }
 
     // character.isColliding(wraith);
+    // isColliding(movableObject) { // Kollisionsberechnung
+    //     return  this.x + this.width > movableObject.x && this.y + this.height > movableObject.y && this.x < movableObject.x && this.y < movableObject.y + movableObject.height;
+    // }
+
     isColliding(movableObject) { // Kollisionsberechnung
-        return  this.x + this.width > movableObject.x && this.y + this.height > movableObject.y && this.x < movableObject.x && this.y < movableObject.y + movableObject.height;
+        return  this.collX + this.collWidth > movableObject.collX && this.collY + this.collHeight > movableObject.collY && this.collX < movableObject.collX && this.collY < movableObject.collY + movableObject.collHeight;
     }
 
     hit() {
-        this.energy -= 5;
+        this.energy -= 10;
         if (this.energy < 0) {
             this.energy = 0;
         } else {

@@ -110,20 +110,9 @@ class World {
                 this.statusBars[0].setPercentage(this.statusBars[0].paths, this.character.energy);
             };
         });
-        this.level.crystals.forEach((crystal) => {
-            if (this.character.isColliding(crystal) && this.statusBars[2].percentage < 100) {
-                this.statusBars[2].percentage += 5;
-                this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
-                this.sound_pickup_crystal.play();
-                setTimeout(() => {
-                    this.crystal = crystal;
-                    this.crystal.y = -100;
-                }, 500);
-            };
-        });
         this.level.apples.forEach((apple) => {
             if (this.character.isColliding(apple) && this.statusBars[1].percentage < 100) {
-                this.statusBars[1].percentage += 5;
+                this.statusBars[1].percentage += 10;
                 this.statusBars[1].setPercentage(this.statusBars[1].paths, this.statusBars[1].percentage);
                 this.sound_pickup_apple.play();
                 setTimeout(() => {
@@ -132,6 +121,17 @@ class World {
                 }, 500);
             };
         });
+        this.level.crystals.forEach((crystal) => {
+            if (this.character.isColliding(crystal) && this.statusBars[2].percentage < 100) {
+                this.statusBars[2].percentage += 10;
+                this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
+                this.sound_pickup_crystal.play();
+                setTimeout(() => {
+                    this.crystal = crystal;
+                    this.crystal.y = -100;
+                }, 500);
+            };
+        });        
     }
     
 }
