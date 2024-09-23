@@ -64,12 +64,12 @@ const level1 = new Level(
         new Crystal()
     ],
     [
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin()
+        new Apple(),
+        new Apple(),
+        new Apple(),
+        new Apple(),
+        new Apple(),
+        new Apple(),
+        new Apple()
     ]
 );

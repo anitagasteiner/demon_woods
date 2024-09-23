@@ -8,9 +8,9 @@ class World {
     camera_x = -150;
     statusBars = newStatusBars;
     throwableObjects = [];
-    coin;
+    apple;
     crystal;
-    sound_pickup_coin = new Audio('../audio/coin-pickup.flac');
+    sound_pickup_apple = new Audio('../audio/apple-pickup.flac');
     sound_pickup_crystal = new Audio('../audio/crystal_pickup.wav');
 
     constructor(canvas, keyboard) {
@@ -35,7 +35,7 @@ class World {
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
 
         this.addObjectsToMap(this.level.crystals);
-        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.apples);
 
         this.addToMap(this.character);
 
@@ -117,14 +117,14 @@ class World {
                 }, 500);
             };
         });
-        this.level.coins.forEach((coin) => {
-            if (this.character.isColliding(coin) && this.statusBars[0].percentage < 100) {
+        this.level.apples.forEach((apple) => {
+            if (this.character.isColliding(apple) && this.statusBars[0].percentage < 100) {
                 this.statusBars[0].percentage += 5;
                 this.statusBars[0].setPercentage(this.statusBars[0].paths, this.statusBars[0].percentage);
-                this.sound_pickup_coin.play();
+                this.sound_pickup_apple.play();
                 setTimeout(() => {
-                    this.coin = coin;
-                    this.coin.y = -100;
+                    this.apple = apple;
+                    this.apple.y = -100;
                 }, 500);
             };
         });
