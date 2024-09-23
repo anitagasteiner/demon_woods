@@ -103,7 +103,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();                    
-                this.statusBars[1].setPercentage(this.statusBars[1].paths, this.character.energy);
+                this.statusBars[0].setPercentage(this.statusBars[0].paths, this.character.energy);
             };
         });
         this.level.crystals.forEach((crystal) => {
@@ -118,9 +118,9 @@ class World {
             };
         });
         this.level.apples.forEach((apple) => {
-            if (this.character.isColliding(apple) && this.statusBars[0].percentage < 100) {
-                this.statusBars[0].percentage += 5;
-                this.statusBars[0].setPercentage(this.statusBars[0].paths, this.statusBars[0].percentage);
+            if (this.character.isColliding(apple) && this.statusBars[1].percentage < 100) {
+                this.statusBars[1].percentage += 5;
+                this.statusBars[1].setPercentage(this.statusBars[1].paths, this.statusBars[1].percentage);
                 this.sound_pickup_apple.play();
                 setTimeout(() => {
                     this.apple = apple;
