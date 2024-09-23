@@ -33,14 +33,15 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration; // negative Geschwindigkeit, damit das Objekt nach unten fällt
             }
-            if (this.y > 205) { // Damit Objekt nicht weiter unten landet als es ursprünglich war.
-                this.y = 205;
-            }
         }, 1000 / 25); // 25-mal pro Sekunde
     }
 
     isAboveGround() { // returnt, ob das Objekt in der Luft ist
-        return this.y < 205;
+        if (this instanceof ThrowableObject) { // -> damit die ThrowableObjects immer ganz nach unten fallen
+            return true;
+        } else {
+            return this.y < 205;
+        }
     }
 
     // character.isColliding(wraith);

@@ -7,7 +7,7 @@ class World {
     keyboard;
     camera_x = -150;
     statusBars = newStatusBars;
-    throwableObjects = [new ThrowableObject()];
+    throwableObjects = [];
     coin;
     crystal;
     sound_pickup_coin = new Audio('../audio/coin-pickup.flac');
@@ -19,7 +19,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
     }    
 
     draw() {
@@ -54,7 +54,6 @@ class World {
 
     setWorld() { // Das Objekt "keyboard" (damit die Keyboard-Funktionen) wird durch diese Funktion an zB den Character übergeben.
         this.character.world = this; // Der "character" hat eine Variable "world", durch die nun auf die Variablen der "world" hier zugegriffen werden kann, u.a. auch auf "keyboard".
-        this.throwableObjects[0].world = this;
     }
 
     addObjectsToMap(objects) {
@@ -86,37 +85,49 @@ class World {
         this.ctx.restore(); // Reset zur gespeicherten Version. -> So können alle anderen Elemente, zB die Wolken, ohne Spiegeln eingefügt werden.
     }
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit();                    
-                    this.statusBars[1].setPercentage(this.statusBars[1].paths, this.character.energy);
-                };
-            });
-            this.level.crystals.forEach((crystal) => {
-                if (this.character.isColliding(crystal) && this.statusBars[2].percentage < 100) {
-                    this.statusBars[2].percentage += 5;
-                    this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
-                    this.sound_pickup_crystal.play();
-                    setTimeout(() => {
-                        this.crystal = crystal;
-                        this.crystal.y = -100;
-                    }, 500);
-                };
-            });
-            this.level.coins.forEach((coin) => {
-                if (this.character.isColliding(coin) && this.statusBars[0].percentage < 100) {
-                    this.statusBars[0].percentage += 5;
-                    this.statusBars[0].setPercentage(this.statusBars[0].paths, this.statusBars[0].percentage);
-                    this.sound_pickup_coin.play();
-                    setTimeout(() => {
-                        this.coin = coin;
-                        this.coin.y = -100;
-                    }, 500);
-                };
-            });
-        }, 200);
+            this.checkCollisions();
+            this.checkThrowObjects();
+        }, 200);        
+    }
+
+    checkThrowObjects() {
+        if (this.keyboard.T) {
+            let crystal = new ThrowableObject(this.character.x + 90, this.character.y + 145);
+            this.throwableObjects.push(crystal);
+        }
+    }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();                    
+                this.statusBars[1].setPercentage(this.statusBars[1].paths, this.character.energy);
+            };
+        });
+        this.level.crystals.forEach((crystal) => {
+            if (this.character.isColliding(crystal) && this.statusBars[2].percentage < 100) {
+                this.statusBars[2].percentage += 5;
+                this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
+                this.sound_pickup_crystal.play();
+                setTimeout(() => {
+                    this.crystal = crystal;
+                    this.crystal.y = -100;
+                }, 500);
+            };
+        });
+        this.level.coins.forEach((coin) => {
+            if (this.character.isColliding(coin) && this.statusBars[0].percentage < 100) {
+                this.statusBars[0].percentage += 5;
+                this.statusBars[0].setPercentage(this.statusBars[0].paths, this.statusBars[0].percentage);
+                this.sound_pickup_coin.play();
+                setTimeout(() => {
+                    this.coin = coin;
+                    this.coin.y = -100;
+                }, 500);
+            };
+        });
     }
     
 }
