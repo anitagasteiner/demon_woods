@@ -1,7 +1,21 @@
+@font-face {
+    font-family: 'SofadiOne-Regular';
+    src: url('font/SofadiOne-Regular.ttf');
+}
+
 body {
+    font-family: 'SofadiOne-Regular', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url('img/background.png');
+    background-position: center;
+}
+
+h1 {
+    color: #62457C;
+    font-size: 45px;
+    letter-spacing: -2.5px;
 }
 
 canvas {

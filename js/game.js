@@ -6,7 +6,7 @@ function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard); // Bei der Erstellung einer neuen "World" kann ich schon eine Variable mitgeben: "canvas". // Das "keyboard"-Objekt wird auch an die Welt übergeben. -> Wird beides dort in den Constructor aufgenommen. 
 
-    console.log('My character is ', world.character);    
+    console.log('My character is ', world.character);
 }
 
 window.addEventListener("keydown", (e) => { // Wenn die jeweilige Taste gedrückt wird, wird die entsprechende Variable auf "true" gesetzt.

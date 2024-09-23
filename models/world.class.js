@@ -20,7 +20,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-    }    
+    }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Dadurch wird das Bild gelöscht, bevor ein neues gezeichnet wird.
