@@ -1,12 +1,12 @@
-class Apple extends MovableObject {
+class Apple extends CollectableObject {
     
     y = 350;
-    x = 300 + Math.random() * 3000; // -> Zufallszahl mal 3000, damit Verteilung passt; 300 fix, damit Startpunkt nicht weiter links
     height = 50;
     width = 50;
+    path = '../img/apple/apple.png';
 
     constructor() {
-        super().loadImage('../img/apple/apple.png');
+        super().loadImage(this.path);
     }
-    
+
 }

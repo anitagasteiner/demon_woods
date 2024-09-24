@@ -1,12 +1,12 @@
-class Crystal extends MovableObject {
+class Crystal extends CollectableObject {
     
     y = 400;
-    x = 300 + Math.random() * 3000; // -> Zufallszahl mal 3000, damit Verteilung passt; 300 fix, damit Startpunkt nicht weiter links
     height = 65;
     width = 65;
+    path = '../img/crystal/crystal.png';
 
     constructor() {
-        super().loadImage('../img/crystal/crystal.png');
+        super().loadImage(this.path);
     }
     
 }
