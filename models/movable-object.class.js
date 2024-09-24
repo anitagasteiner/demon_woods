@@ -9,7 +9,7 @@ class MovableObject extends DrawableObject {
 
     moveLeft() {
         this.x -= this.speed;  // Von der x-Koordinate werden soviel px abgezogen, wie in der Variable "speed" angegeben.
-        this.otherDirection = true;
+        this.otherDirection = true;        
     }
 
     moveRight() {
@@ -44,8 +44,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    // character.isColliding(wraith);
-    isColliding(movableObject) { // Kollisionsberechnung
+    isColliding(movableObject) {
         return this.collX + this.collWidth > movableObject.collX && this.collY + this.collHeight > movableObject.collY && this.collX < movableObject.collX && this.collY < movableObject.collY + movableObject.collHeight;
     }
 

@@ -97,16 +97,17 @@ class World {
         if (this.character.otherDirection == true) {
             positionX -= 100;
         }
-        if (this.keyboard.T) {
+        if (this.keyboard.T && this.statusBars[2].percentage > 0) {
             let crystal = new ThrowableObject(positionX, this.character.y + 200, this.character.otherDirection);
             this.throwableObjects.push(crystal);
+            this.statusBars[2].percentage -= 10;
+            this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
         }
     }
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                console.log('is colliding');
                 this.character.hit();                    
                 this.statusBars[0].setPercentage(this.statusBars[0].paths, this.character.energy);
             };

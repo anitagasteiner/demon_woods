@@ -38,27 +38,33 @@ class DrawableObject {
     }
 
     drawRectangle(ctx) {
-        if (this instanceof Demon || this instanceof Crystal || this instanceof Apple) {
+        if (this instanceof Crystal || this instanceof Apple) {
             this.collX = this.x;
             this.collY = this.y;
             this.collWidth = this.width;
             this.collHeight = this.height;
         }
         if (this instanceof Character) {
-            this.collX = this.x +185;
-            this.collY = this.y +120;
-            this.collWidth = this.width -380;
-            this.collHeight = this.height -190;
+            this.collX = this.x +240;
+            this.collY = this.y +110;
+            this.collWidth = this.width -480;
+            this.collHeight = this.height -170;
         }
         if (this instanceof Wraith) {
-            this.collX = this.x +60;
+            this.collX = this.x +75;
             this.collY = this.y +10;
-            this.collWidth = this.width -120;
+            this.collWidth = this.width -150;
             this.collHeight = this.height -30;
+        }
+        if (this instanceof Demon) {
+            this.collX = this.x -50;
+            this.collY = this.y;
+            this.collWidth = this.width +100;
+            this.collHeight = this.height;
         }
         ctx.beginPath();
         ctx.lineWidth = "5";
-        ctx.strokeStyle = "pink";
+        ctx.strokeStyle = "grey";
         ctx.rect(this.collX, this.collY, this.collWidth, this.collHeight);
         ctx.stroke();
     }

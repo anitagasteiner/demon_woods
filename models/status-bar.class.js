@@ -13,7 +13,7 @@ class StatusBar extends DrawableObject {
         this.setPercentage(paths, percentage);
     }
 
-    setPercentage(paths, percentage) { // Man kann damit von außen zB angeben "setPercentage(50);", dann wird die Percentage auf 50 gesetzt.
+    setPercentage(paths, percentage) {
         this.percentage = percentage; // Zahl zw. 0 und 5, um zu wissen, welches Bild aus dem Array angezeigt werden soll
         let path = paths[this.resolveImageIndex()];
         this.img = this.imageCache[path];      
