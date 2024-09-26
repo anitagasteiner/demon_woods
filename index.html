@@ -32,13 +32,57 @@
 
 </head>
 
-<body onload="init()">
+<body>
 
     <h1>Demon Woods</h1>
 
     <canvas id="canvas" width="720" height="480">
 
     </canvas>
+
+    <div id="startScreen">        
+        <div class="start-screen-bg">
+            <div class="start-screen-content">
+                <h2>Demon Woods</h2>
+                <div class="choices-container">
+                    <div onclick="startGame()" class="start-screen-mouseover">
+                        <img class="start-screen-image" src="img/start/fairy.png"><br>
+                        <span>Start Game</span>
+                    </div>
+                    <div onclick="handleDescription()" class="start-screen-mouseover">
+                        <img class="start-screen-image" src="img/start/box.png"><br>
+                        <span>How to Play</span>
+                    </div>
+                </div>
+                <div id="description" class="hide description" onclick="handleDescription()">
+                    <h3>How to Play</h3>
+                    <p class="description-text">Use the following keys:</p>
+                    <table>
+                        <tr>
+                            <td>Right</td>
+                            <td>Move right</td>
+                        </tr>
+                        <tr>
+                            <td>Left</td>
+                            <td>Move left</td>
+                        </tr>
+                        <tr>
+                            <td>Up</td>
+                            <td>Fly</td>
+                        </tr>
+                        <tr>
+                            <td>T</td>
+                            <td>Throw</td>
+                        </tr>
+                    </table>
+                    <p class="description-text">Collect crystals to throw them on your enemies.<br><br>
+                    Collect heart-shaped apples to gain back lifes.<br><br>
+                    Be aware of the wraiths: Move out of their way or use your crystals.<br><br>
+                    After having survived all wraiths, you will come to the big demon. Make sure to have enough crystals left to fight her.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     
 </body>
 

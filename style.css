@@ -14,10 +14,119 @@ body {
 
 h1 {
     color: #62457C;
-    font-size: 45px;
+    font-size: 48px;
     letter-spacing: -2.5px;
+}
+
+h2 {
+    color: white;
+    font-size: 44px;
+    text-align: center;
+    margin: 50px;
+}
+
+h3 {
+    color: white;
+    font-size: 24px;
+    margin: 30px;
+    text-align: center;
+    letter-spacing: 0.5px;
 }
 
 canvas {
     background-color: black;
+}
+
+.hide {
+    display: none;
+}
+
+.start-screen-bg {
+    background-image: url('img/background.png');
+    background-position: center;
+    z-index: 2;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-screen-content {
+    position: relative;
+    background-color: #62457C;
+    color: white;
+    text-align: center;
+    font-size: 26px;
+    border-radius: 10px;
+}
+
+.choices-container {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin: 0 80px 50px 80px;
+}
+
+.start-screen-image {
+    height: 150px;
+}
+
+.start-screen-mouseover:hover {
+    cursor: pointer;
+    filter: brightness(120%);
+    color: #210145;
+}
+
+.description {
+    z-index: 3;
+    position: absolute;
+    top: 110px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    overflow: auto;
+    background-color: #796183;
+    border-radius: 10px;
+    color: white;
+    scroll-behavior: smooth;
+}
+
+.description:hover {
+    cursor: pointer;
+}
+
+.description-text {
+    margin: 0 30px 15px 30px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.description table {
+    margin: 0 30px 30px 30px;
+    padding: 0;
+    border-spacing: 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.description td:first-child {
+    padding-right: 15px;
+}
+
+::-webkit-scrollbar {
+    width: 7px;    
+}
+  
+::-webkit-scrollbar-track {
+    background: #F3AA6E;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #E08546;
+    border-radius: 10px;
 }
