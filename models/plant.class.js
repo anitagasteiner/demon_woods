@@ -6,7 +6,7 @@ class Plant extends MovableObject {
     width = 750;
 
     constructor() {
-        super().loadImage('../img/bg/layers/plant.png'); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
+        super().loadImage('img/bg/layers/plant.png'); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
     }
     
 }

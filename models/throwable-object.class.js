@@ -5,10 +5,10 @@ class ThrowableObject extends MovableObject {
     acceleration = 2.5; // Beschleunigung
     height = 65;
     width = 65;
-    sound_throwing = new Audio('../audio/throw.wav');
+    sound_throwing = new Audio('audio/throw.wav');
 
     constructor(x, y, otherDirection) {
-        super().loadImage('../img/crystal/crystal.png');
+        super().loadImage('img/crystal/crystal.png');
         this.x = x;
         this.y = y;
         this.throw(otherDirection);

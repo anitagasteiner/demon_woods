@@ -11,65 +11,65 @@ class Character extends MovableObject {
     interval_hurt = 400;
     speed = 5;
     world;
-    sound_walking = new Audio('../audio/character_walking.mp4');
-    sound_dying = new Audio('../audio/character_dying.wav');
-    sound_hurt = new Audio('../audio/character_hurt.wav');
+    sound_walking = new Audio('audio/character_walking.mp4');
+    sound_dying = new Audio('audio/character_dying.wav');
+    sound_hurt = new Audio('audio/character_hurt.wav');
     PATHS_IDLE = [
-        '../img/character/Fairy_03__IDLE_000.png',
-        '../img/character/Fairy_03__IDLE_001.png',
-        '../img/character/Fairy_03__IDLE_002.png',
-        '../img/character/Fairy_03__IDLE_003.png',
-        '../img/character/Fairy_03__IDLE_004.png',
-        '../img/character/Fairy_03__IDLE_005.png',
-        '../img/character/Fairy_03__IDLE_006.png',
-        '../img/character/Fairy_03__IDLE_007.png',
-        '../img/character/Fairy_03__IDLE_008.png',
-        '../img/character/Fairy_03__IDLE_009.png'
+        'img/character/Fairy_03__IDLE_000.png',
+        'img/character/Fairy_03__IDLE_001.png',
+        'img/character/Fairy_03__IDLE_002.png',
+        'img/character/Fairy_03__IDLE_003.png',
+        'img/character/Fairy_03__IDLE_004.png',
+        'img/character/Fairy_03__IDLE_005.png',
+        'img/character/Fairy_03__IDLE_006.png',
+        'img/character/Fairy_03__IDLE_007.png',
+        'img/character/Fairy_03__IDLE_008.png',
+        'img/character/Fairy_03__IDLE_009.png'
     ];
     PATHS_WALK = [
-        '../img/character/Fairy_03__WALK_000.png',
-        '../img/character/Fairy_03__WALK_001.png',
-        '../img/character/Fairy_03__WALK_002.png',
-        '../img/character/Fairy_03__WALK_003.png',
-        '../img/character/Fairy_03__WALK_004.png',
-        '../img/character/Fairy_03__WALK_005.png',
-        '../img/character/Fairy_03__WALK_006.png',
-        '../img/character/Fairy_03__WALK_007.png',
-        '../img/character/Fairy_03__WALK_008.png',
-        '../img/character/Fairy_03__WALK_009.png'
+        'img/character/Fairy_03__WALK_000.png',
+        'img/character/Fairy_03__WALK_001.png',
+        'img/character/Fairy_03__WALK_002.png',
+        'img/character/Fairy_03__WALK_003.png',
+        'img/character/Fairy_03__WALK_004.png',
+        'img/character/Fairy_03__WALK_005.png',
+        'img/character/Fairy_03__WALK_006.png',
+        'img/character/Fairy_03__WALK_007.png',
+        'img/character/Fairy_03__WALK_008.png',
+        'img/character/Fairy_03__WALK_009.png'
     ];
     PATHS_FLY = [
-        '../img/character/Fairy_03__FLY_000.png',
-        '../img/character/Fairy_03__FLY_001.png',
-        '../img/character/Fairy_03__FLY_002.png',
-        '../img/character/Fairy_03__FLY_003.png',
-        '../img/character/Fairy_03__FLY_004.png',
-        '../img/character/Fairy_03__FLY_005.png',
-        '../img/character/Fairy_03__FLY_006.png'
+        'img/character/Fairy_03__FLY_000.png',
+        'img/character/Fairy_03__FLY_001.png',
+        'img/character/Fairy_03__FLY_002.png',
+        'img/character/Fairy_03__FLY_003.png',
+        'img/character/Fairy_03__FLY_004.png',
+        'img/character/Fairy_03__FLY_005.png',
+        'img/character/Fairy_03__FLY_006.png'
     ];
     PATHS_DIE = [
-        '../img/character/Fairy_03__DIE_000.png',
-        '../img/character/Fairy_03__DIE_001.png',
-        '../img/character/Fairy_03__DIE_002.png',
-        '../img/character/Fairy_03__DIE_003.png',
-        '../img/character/Fairy_03__DIE_004.png',
-        '../img/character/Fairy_03__DIE_005.png',
-        '../img/character/Fairy_03__DIE_006.png',
-        '../img/character/Fairy_03__DIE_007.png',
-        '../img/character/Fairy_03__DIE_008.png',
-        '../img/character/Fairy_03__DIE_009.png'
+        'img/character/Fairy_03__DIE_000.png',
+        'img/character/Fairy_03__DIE_001.png',
+        'img/character/Fairy_03__DIE_002.png',
+        'img/character/Fairy_03__DIE_003.png',
+        'img/character/Fairy_03__DIE_004.png',
+        'img/character/Fairy_03__DIE_005.png',
+        'img/character/Fairy_03__DIE_006.png',
+        'img/character/Fairy_03__DIE_007.png',
+        'img/character/Fairy_03__DIE_008.png',
+        'img/character/Fairy_03__DIE_009.png'
     ];
     PATHS_HURT = [
-        '../img/character/Fairy_03__HURT_000.png',
-        '../img/character/Fairy_03__HURT_001.png',
-        '../img/character/Fairy_03__HURT_002.png',
-        '../img/character/Fairy_03__HURT_003.png',
-        '../img/character/Fairy_03__HURT_004.png',
-        '../img/character/Fairy_03__HURT_005.png',
-        '../img/character/Fairy_03__HURT_006.png',
-        '../img/character/Fairy_03__HURT_007.png',
-        '../img/character/Fairy_03__HURT_008.png',
-        '../img/character/Fairy_03__HURT_009.png'        
+        'img/character/Fairy_03__HURT_000.png',
+        'img/character/Fairy_03__HURT_001.png',
+        'img/character/Fairy_03__HURT_002.png',
+        'img/character/Fairy_03__HURT_003.png',
+        'img/character/Fairy_03__HURT_004.png',
+        'img/character/Fairy_03__HURT_005.png',
+        'img/character/Fairy_03__HURT_006.png',
+        'img/character/Fairy_03__HURT_007.png',
+        'img/character/Fairy_03__HURT_008.png',
+        'img/character/Fairy_03__HURT_009.png'        
     ];
     paths_index = 0; // Zähler für die Bildfolge
     paths_die_total = this.PATHS_DIE.length;

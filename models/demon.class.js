@@ -8,8 +8,8 @@ class Demon extends MovableObject {
     interval_move = 40;
     speed = 0.15;
     PATHS_IDLE = [
-        '../img/demon/Character7_face4.png',
-        '../img/demon/Character7_face2.png'
+        'img/demon/Character7_face4.png',
+        'img/demon/Character7_face2.png'
     ];
 
     constructor() {

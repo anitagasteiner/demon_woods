@@ -10,8 +10,8 @@ class World {
     throwableObjects = [];
     apple;
     crystal;
-    sound_pickup_apple = new Audio('../audio/apple-pickup.flac');
-    sound_pickup_crystal = new Audio('../audio/crystal_pickup.wav');
+    sound_pickup_apple = new Audio('audio/apple-pickup.flac');
+    sound_pickup_crystal = new Audio('audio/crystal_pickup.wav');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d'); // Wir können nicht direkt in unser Canvas malen, sondern brauchen dafür "Context"!

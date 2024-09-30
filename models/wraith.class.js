@@ -8,18 +8,18 @@ class Wraith extends MovableObject {
     interval = 100;
     interval_move = 30;
     PATHS_MOVING_FORWARD = [
-        '../img/wraith/png/Walking/Wraith_02_Moving_Forward_000.png',
-        '../img/wraith/png/Walking/Wraith_02_Moving_Forward_001.png',
-        '../img/wraith/png/Walking/Wraith_02_Moving_Forward_002.png',
-        '../img/wraith/png/Walking/Wraith_02_Moving_Forward_003.png',
-        '../img/wraith/png/Walking/Wraith_02_Moving_Forward_004.png',
-        '../img/wraith/png/Walking/Wraith_02_Moving_Forward_005.png',
-        '../img/wraith/png/Walking/Wraith_02_Moving_Forward_006.png',
-        '../img/wraith/png/Walking/Wraith_02_Moving_Forward_007.png',
-        '../img/wraith/png/Walking/Wraith_02_Moving_Forward_008.png',
-        '../img/wraith/png/Walking/Wraith_02_Moving_Forward_009.png',
-        '../img/wraith/png/Walking/Wraith_02_Moving_Forward_010.png',
-        '../img/wraith/png/Walking/Wraith_02_Moving_Forward_011.png'
+        'img/wraith/png/Walking/Wraith_02_Moving_Forward_000.png',
+        'img/wraith/png/Walking/Wraith_02_Moving_Forward_001.png',
+        'img/wraith/png/Walking/Wraith_02_Moving_Forward_002.png',
+        'img/wraith/png/Walking/Wraith_02_Moving_Forward_003.png',
+        'img/wraith/png/Walking/Wraith_02_Moving_Forward_004.png',
+        'img/wraith/png/Walking/Wraith_02_Moving_Forward_005.png',
+        'img/wraith/png/Walking/Wraith_02_Moving_Forward_006.png',
+        'img/wraith/png/Walking/Wraith_02_Moving_Forward_007.png',
+        'img/wraith/png/Walking/Wraith_02_Moving_Forward_008.png',
+        'img/wraith/png/Walking/Wraith_02_Moving_Forward_009.png',
+        'img/wraith/png/Walking/Wraith_02_Moving_Forward_010.png',
+        'img/wraith/png/Walking/Wraith_02_Moving_Forward_011.png'
     ];
     
     constructor() {
