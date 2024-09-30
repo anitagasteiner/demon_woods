@@ -88,7 +88,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-            this.checkIfFull();
+            this.checkBonusLife();
         }, 200);        
     }
 
@@ -136,10 +136,18 @@ class World {
         });        
     }
     
-    checkIfFull() {
+    checkBonusLife() {
         if (this.statusBars[1].percentage == 100 && this.statusBars[0].percentage < 100) {
-            this.statusBars[0].percentage += 20;
+            this.character.energy += 20;
+            this.statusBars[0].setPercentage(this.statusBars[0].paths, this.character.energy);
             this.statusBars[1].percentage = 0;
+            this.statusBars[1].setPercentage(this.statusBars[1].paths, this.statusBars[1].percentage);
+            this.statusBars[0].height = 60;
+            this.statusBars[0].width = 210;
+            setTimeout(() => {
+                this.statusBars[0].height = 50;
+                this.statusBars[0].width = 190;
+            }, 100);
         }
     }
     

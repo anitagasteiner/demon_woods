@@ -49,7 +49,7 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.energy -= 10;
+        this.energy -= 20;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
