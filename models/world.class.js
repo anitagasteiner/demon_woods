@@ -88,6 +88,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
+            this.checkIfFull();
         }, 200);        
     }
 
@@ -99,7 +100,7 @@ class World {
         if (!this.character.isDead() && this.keyboard.T && this.statusBars[2].percentage > 0) {
             let crystal = new ThrowableObject(positionX, this.character.y + 200, this.character.otherDirection);
             this.throwableObjects.push(crystal);
-            this.statusBars[2].percentage -= 10;
+            this.statusBars[2].percentage -= 20;
             this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
         }
     }
@@ -113,26 +114,33 @@ class World {
         });
         this.level.apples.forEach((apple) => {
             if (this.character.isColliding(apple) && this.statusBars[1].percentage < 100) {
-                this.statusBars[1].percentage += 10;
+                this.statusBars[1].percentage += 20;
                 this.statusBars[1].setPercentage(this.statusBars[1].paths, this.statusBars[1].percentage);
                 this.sound_pickup_apple.play();
                 setTimeout(() => {
                     this.apple = apple;
                     this.apple.y = -100;
-                }, 500);
+                }, 100);
             };
         });
         this.level.crystals.forEach((crystal) => {
             if (this.character.isColliding(crystal) && this.statusBars[2].percentage < 100) {
-                this.statusBars[2].percentage += 10;
+                this.statusBars[2].percentage += 20;
                 this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
                 this.sound_pickup_crystal.play();
                 setTimeout(() => {
                     this.crystal = crystal;
                     this.crystal.y = -100;
-                }, 500);
+                }, 100);
             };
         });        
+    }
+    
+    checkIfFull() {
+        if (this.statusBars[1].percentage == 100 && this.statusBars[0].percentage < 100) {
+            this.statusBars[0].percentage += 20;
+            this.statusBars[1].percentage = 0;
+        }
     }
     
 }

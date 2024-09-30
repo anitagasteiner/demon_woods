@@ -19,7 +19,7 @@ function initLevel() {
         [
             new BgObject('img/bg/layers/sky.png', -570),
             new BgObject('img/bg/layers/rocks.png', -570),
-            new BgObject('/img/bg/layers/sky.png', 150),
+            new BgObject('img/bg/layers/sky.png', 150),
             new BgObject('img/bg/layers/rocks.png', 150),
             new BgObject('img/bg/layers/sky.png', 720 + 150),
             new BgObject('img/bg/layers/rocks.png', 720 + 150),
