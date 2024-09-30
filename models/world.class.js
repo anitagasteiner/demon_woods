@@ -96,7 +96,7 @@ class World {
         if (this.character.otherDirection == true) {
             positionX -= 100;
         }
-        if (this.keyboard.T && this.statusBars[2].percentage > 0) {
+        if (!this.character.isDead() && this.keyboard.T && this.statusBars[2].percentage > 0) {
             let crystal = new ThrowableObject(positionX, this.character.y + 200, this.character.otherDirection);
             this.throwableObjects.push(crystal);
             this.statusBars[2].percentage -= 10;

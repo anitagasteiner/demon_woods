@@ -2,7 +2,9 @@ let canvas;
 let keyboard = new Keyboard();
 let world;
 
-function init() {
+function init() {    
+    initLevel();
+    initStatusBars();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard); // Bei der Erstellung einer neuen "World" kann ich schon eine Variable mitgeben: "canvas". // Das "keyboard"-Objekt wird auch an die Welt übergeben. -> Wird beides dort in den Constructor aufgenommen. 
     // console.log('My character is ', world.character);
@@ -10,9 +12,14 @@ function init() {
 
 function startNewGame() {
     hideStartScreen();
-    initLevel();
-    initStatusBars();
-    init();    
+    init();
+    resetVariables();
+}
+
+function resetVariables() {
+    console.log(world);
+    world.character.energy = 100;
+    world.character.lastHit = 0;
 }
 
 function handleDescription() {
