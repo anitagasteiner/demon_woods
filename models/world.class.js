@@ -16,7 +16,7 @@ class World {
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d'); // Wir können nicht direkt in unser Canvas malen, sondern brauchen dafür "Context"!
         this.canvas = canvas; // Das "canvas", das in den Constructor übergeben wurde, wird hierdurch an die Variable "canvas" oben übergeben und ist somit zB auch für die Funktion "draw" unten verfügbar.
-        this.keyboard = keyboard;
+        this.keyboard = keyboard;        
         this.draw();
         this.setWorld();
         this.run();
@@ -41,8 +41,7 @@ class World {
 
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
-        this.addObjectsToMap(this.level.plants);
-        
+        this.addObjectsToMap(this.level.plants);        
 
         this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben.
 

@@ -22,8 +22,12 @@ const PATHS_STATUS_CRYSTALS = [
     '../img/statusbars/crystals/80.png',
     '../img/statusbars/crystals/100.png'
 ];
-const newStatusBars = [
-    new StatusBar(PATHS_STATUS_HEALTH, 10, 100),
-    new StatusBar(PATHS_STATUS_APPLES, 60, 0),    
-    new StatusBar(PATHS_STATUS_CRYSTALS, 105, 0)
-];
+let newStatusBars;
+
+function initStatusBars() {
+    newStatusBars = [
+        new StatusBar(PATHS_STATUS_HEALTH, 10, 100),
+        new StatusBar(PATHS_STATUS_APPLES, 60, 0),    
+        new StatusBar(PATHS_STATUS_CRYSTALS, 105, 0)
+    ];
+}

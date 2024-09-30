@@ -8,9 +8,11 @@ function init() {
     // console.log('My character is ', world.character);
 }
 
-function startGame() {
+function startNewGame() {
     hideStartScreen();
-    init();
+    initLevel();
+    initStatusBars();
+    init();    
 }
 
 function handleDescription() {
