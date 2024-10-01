@@ -45,10 +45,11 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(movableObject) {
-        return this.x + this.width - this.offset.right > movableObject.x + movableObject.offset.left;
-        // || this.x + this.offset.left > movableObject.x + movableObject.width - movableObject.offset.right;
-        // && this.y + this.offset.top < movableObject.y + movableObject.height - movableObject.offset.bottom;
-        // && this.y + this.height - this.offset.bottom > movableObject.y + movableObject.offset.top
+        return this.x + this.width - this.offset.right > movableObject.x + movableObject.offset.left && this.x + this.offset.left < movableObject.x + movableObject.width - movableObject.offset.right && this.y + this.offset.top < movableObject.y + movableObject.height - movableObject.offset.bottom && this.y + this.height - this.offset.bottom > movableObject.y + movableObject.offset.top;
+    }
+
+    isJumpingOn(wraith) {
+        return this.x + this.width - this.offset.right > wraith.x + wraith.offset.left && this.x + this.offset.left < wraith.x + wraith.width - wraith.offset.right && this.y + this.height - this.offset.bottom == wraith.y + wraith.offset.top;
     }
 
     hit() {
@@ -69,5 +70,7 @@ class MovableObject extends DrawableObject {
     isDead() {
         return this.energy == 0; // Wenn die "energy" "0" ist, dann kommt aus dieser Funktion der Wert "0" raus. (true/false)
     }
+
+
 
 }

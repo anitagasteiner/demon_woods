@@ -143,6 +143,11 @@ class World {
                 }, 100);
             };
         });
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isJumpingOn(enemy)) {
+                defeated(enemy);
+            };
+        });
     }
     
     checkBonusLife() {

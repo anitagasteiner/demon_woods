@@ -12,7 +12,7 @@ class Character extends MovableObject {
     };
     interval_idle = 170;
     interval_walk = 50; // 50 ms = 20 mal pro Sekunde
-    interval_fly = 10;
+    interval_fly = 40;
     interval_die = 300;
     interval_hurt = 400;
     speed = 5;
