@@ -4,6 +4,12 @@ class Character extends MovableObject {
     width = 600;
     x = -100;
     y = 150;
+    offset = {
+        top: 115,
+        bottom: 180,
+        left: 270,
+        right: 540
+    };
     interval_idle = 170;
     interval_walk = 50; // 50 ms = 20 mal pro Sekunde
     interval_fly = 10;

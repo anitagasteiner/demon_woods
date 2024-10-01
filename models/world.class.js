@@ -89,6 +89,7 @@ class World {
             this.checkCollisions();
             this.checkThrowObjects();
             this.checkBonusLife();
+            // this.checkHitEnemy(); // TODO !!!
         }, 200);        
     }
 
@@ -104,6 +105,14 @@ class World {
             this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
         }
     }
+
+    // checkHitEnemy() {  // TODO !!!
+    //     this.level.enemies.forEach((enemy) => {
+    //         if (this.crystal.isColliding(enemy)) {
+    //             console.log('enemy hit');
+    //         };
+    //     });
+    // }
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
@@ -133,7 +142,7 @@ class World {
                     this.crystal.y = -100;
                 }, 100);
             };
-        });        
+        });
     }
     
     checkBonusLife() {

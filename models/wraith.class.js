@@ -4,6 +4,12 @@ class Wraith extends MovableObject {
     y = 370;
     height = 100;
     width = 200;
+    offset = {
+        top: 10,
+        bottom: 35,
+        left: 75,
+        right: 150
+    };
     speed = 0.15 + Math.random() * 0.25; // Mindestgeschwindigkeit 0.15, max. 0.25; "Math.random" ist immer eine zufällige Zahl zw. 0 und 1.
     interval = 100;
     interval_move = 30;

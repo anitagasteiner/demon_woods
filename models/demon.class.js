@@ -4,6 +4,12 @@ class Demon extends MovableObject {
     y = 155;
     height = 310;
     width = 130;
+    offset = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
+    };
     interval = 1000;
     interval_move = 40;
     speed = 0.15;

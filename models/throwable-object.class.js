@@ -6,6 +6,12 @@ class ThrowableObject extends MovableObject {
     height = 65;
     width = 65;
     sound_throwing = new Audio('audio/throw.wav');
+    offset = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
+    };
 
     constructor(x, y, otherDirection) {
         super().loadImage('img/crystal/crystal.png');

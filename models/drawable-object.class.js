@@ -7,11 +7,6 @@ class DrawableObject {
     y;
     height;
     width;
-    // Variablen für Kollisions-Check:
-    collX;
-    collY;
-    collWidth;
-    collHeight;
 
     loadImage(path) {
         this.img = new Image(); // Das Objekt "Image" existiert bereits in JavaScript. -> this.img = document.getElementById('image') <img id="image">
@@ -38,35 +33,13 @@ class DrawableObject {
     }
 
     drawRectangle(ctx) {
-        if (this instanceof Crystal || this instanceof Apple) {
-            this.collX = this.x;
-            this.collY = this.y;
-            this.collWidth = this.width;
-            this.collHeight = this.height;
+        if (this instanceof Character || this instanceof Crystal || this instanceof Apple || this instanceof Wraith || this instanceof Demon) {
+            ctx.beginPath();
+            ctx.lineWidth = "5";
+            ctx.strokeStyle = "grey";
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
+            ctx.stroke();
         }
-        if (this instanceof Character) {
-            this.collX = this.x +240;
-            this.collY = this.y +110;
-            this.collWidth = this.width -480;
-            this.collHeight = this.height -170;
-        }
-        if (this instanceof Wraith) {
-            this.collX = this.x +75;
-            this.collY = this.y +10;
-            this.collWidth = this.width -150;
-            this.collHeight = this.height -30;
-        }
-        if (this instanceof Demon) {
-            this.collX = this.x -50;
-            this.collY = this.y;
-            this.collWidth = this.width +100;
-            this.collHeight = this.height;
-        }
-        ctx.beginPath();
-        ctx.lineWidth = "5";
-        ctx.strokeStyle = "grey";
-        ctx.rect(this.collX, this.collY, this.collWidth, this.collHeight);
-        ctx.stroke();
     }
 
 }
