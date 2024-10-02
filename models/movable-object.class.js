@@ -44,17 +44,13 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    // isColliding(movableObject) {
-    //     return this.x + this.width - this.offset.right > movableObject.x + movableObject.offset.left && this.x + this.offset.left < movableObject.x + movableObject.width - movableObject.offset.right && this.y + this.offset.top < movableObject.y + movableObject.height - movableObject.offset.bottom && this.y + this.height - this.offset.bottom > movableObject.y + movableObject.offset.top;
-    // }
-
     isColliding(movableObject) {
         return this.x + this.width - this.offset.right > movableObject.x + movableObject.offset.left && this.x + this.offset.left < movableObject.x + movableObject.width - movableObject.offset.right && this.y < movableObject.y + movableObject.height - movableObject.offset.bottom && this.y + this.height > movableObject.y + movableObject.offset.top;
     }
 
-    isJumpingOn(wraith) {
-        return this.x + this.width - this.offset.right > wraith.x + wraith.offset.left && this.x + this.offset.left < wraith.x + wraith.width - wraith.offset.right && this.y + this.height - this.offset.bottom == wraith.y + wraith.offset.top;
-    }
+    // isJumpingOn(wraith) {
+    //     return this.x + this.width - this.offset.right > wraith.x + wraith.offset.left && this.x + this.offset.left < wraith.x + wraith.width - wraith.offset.right && this.y + this.height - this.offset.bottom == wraith.y + wraith.offset.top;
+    // }
 
     hit() {
         this.energy -= 20;

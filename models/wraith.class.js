@@ -61,14 +61,14 @@ class Wraith extends MovableObject {
         }, this.interval_move);
     }
 
-    defeated(wraith) {
+    defeated() {
         const intervalIdDefeated = setInterval(() => {
-            if (wraith.paths_index < wraith.paths_defeated_total) {
-                this.loadImage(wraith.PATHS_DYING[wraith.paths_index]);
-                wraith.paths_index++;
+            if (this.paths_index < this.paths_defeated_total) {
+                this.loadImage(this.PATHS_DYING[this.paths_index]);
+                this.paths_index++;
             } else {
                 clearInterval(intervalIdDefeated);
-                this.loadImage(wraith.PATHS_DYING[wraith.paths_defeated_total - 1]);
+                this.y = -100;
             }
         }, 300);
     }

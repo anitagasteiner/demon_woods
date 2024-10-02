@@ -50,10 +50,6 @@ canvas {
     right: 30px;
 }
 
-.symbol-restart:hover {
-    cursor: pointer;
-}
-
 .start-screen-bg {
     background-image: url('img/background.png');
     background-position: center;
@@ -89,7 +85,6 @@ canvas {
 }
 
 .start-screen-mouseover:hover {
-    cursor: pointer;
     filter: brightness(120%);
     color: #210145;
 }
@@ -106,10 +101,6 @@ canvas {
     border-radius: 10px;
     color: white;
     scroll-behavior: smooth;
-}
-
-.description:hover {
-    cursor: pointer;
 }
 
 .description-text {

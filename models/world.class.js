@@ -89,8 +89,7 @@ class World {
             this.checkCollisions();
             this.checkThrowObjects();
             this.checkBonusLife();
-            // this.checkHitEnemy(); // TODO !!!
-        }, 200);        
+        }, 200);
     }
 
     checkThrowObjects() {
@@ -103,16 +102,20 @@ class World {
             this.throwableObjects.push(crystal);
             this.statusBars[2].percentage -= 20;
             this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
+            this.checkHitEnemy(crystal);
         }
     }
 
-    // checkHitEnemy() {  // TODO !!!
-    //     this.level.enemies.forEach((enemy) => {
-    //         if (this.crystal.isColliding(enemy)) {
-    //             console.log('enemy hit');
-    //         };
-    //     });
-    // }
+    checkHitEnemy(crystal) {  // TODO !!!
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if (crystal.isColliding(enemy)) {
+                    console.log('enemy hit');
+                    enemy.defeated();
+                };
+            });
+        }, 200);
+    }
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
@@ -143,11 +146,12 @@ class World {
                 }, 100);
             };
         });
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isJumpingOn(enemy)) {
-                defeated(enemy);
-            };
-        });
+        // this.level.enemies.forEach((enemy) => {
+        //     if (this.character.isJumpingOn(enemy)) {
+        //         console.log('jumped on wraith');
+        //         // defeated(enemy);
+        //     };
+        // });
     }
     
     checkBonusLife() {
