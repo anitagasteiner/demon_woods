@@ -8,10 +8,11 @@ class World {
     camera_x = -100;
     statusBars = newStatusBars;
     throwableObjects = [];
-    apple;
-    crystal;
+    // apple;
+    // crystal;
     sound_pickup_apple = new Audio('audio/apple-pickup.flac');
     sound_pickup_crystal = new Audio('audio/crystal_pickup.wav');
+    sound_wraith_hit = new Audio('audio/wraith_hit.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d'); // Wir können nicht direkt in unser Canvas malen, sondern brauchen dafür "Context"!
@@ -110,8 +111,9 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (crystal.isColliding(enemy)) {
-                    console.log('enemy hit');
-                    enemy.defeated();
+                    this.sound_wraith_hit.play();
+                    enemy.energy = 0;
+                    enemy.isDead();
                 };
             });
         }, 200);
@@ -130,8 +132,9 @@ class World {
                 this.statusBars[1].setPercentage(this.statusBars[1].paths, this.statusBars[1].percentage);
                 this.sound_pickup_apple.play();
                 setTimeout(() => {
-                    this.apple = apple;
-                    this.apple.y = -100;
+                    // this.apple = apple;
+                    // this.apple.y = -100;
+                    apple.y = -100;
                 }, 100);
             };
         });
@@ -141,8 +144,9 @@ class World {
                 this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
                 this.sound_pickup_crystal.play();
                 setTimeout(() => {
-                    this.crystal = crystal;
-                    this.crystal.y = -100;
+                    // this.crystal = crystal;
+                    // this.crystal.y = -100;
+                    crystal.y = -100;
                 }, 100);
             };
         });

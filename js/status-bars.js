@@ -28,6 +28,6 @@ function initStatusBars() {
     newStatusBars = [
         new StatusBar(PATHS_STATUS_HEALTH, 10, 100),
         new StatusBar(PATHS_STATUS_APPLES, 60, 0),    
-        new StatusBar(PATHS_STATUS_CRYSTALS, 105, 0)
+        new StatusBar(PATHS_STATUS_CRYSTALS, 105, 60)
     ];
 }

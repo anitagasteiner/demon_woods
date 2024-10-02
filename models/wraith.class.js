@@ -13,6 +13,7 @@ class Wraith extends MovableObject {
     speed = 0.15 + Math.random() * 0.25; // Mindestgeschwindigkeit 0.15, max. 0.25; "Math.random" ist immer eine zufällige Zahl zw. 0 und 1.
     interval = 100;
     interval_move = 30;
+    sound_disappearing = new Audio('audio/wraith_disappearing.mp3');
     PATHS_MOVING_FORWARD = [
         'img/wraith/png/Walking/Wraith_02_Moving_Forward_000.png',
         'img/wraith/png/Walking/Wraith_02_Moving_Forward_001.png',
@@ -52,25 +53,30 @@ class Wraith extends MovableObject {
         this.loadImages(this.PATHS_MOVING_FORWARD);
         this.loadImages(this.PATHS_DYING);
         this.animate(this.PATHS_MOVING_FORWARD, this.interval);
-        this.move();
+        this.animate();
     }
 
-    move() {
-        setInterval(() => {
-            this.moveLeft();            
-        }, this.interval_move);
-    }
-
-    defeated() {
+    animate() {
         const intervalIdDefeated = setInterval(() => {
-            if (this.paths_index < this.paths_defeated_total) {
-                this.loadImage(this.PATHS_DYING[this.paths_index]);
-                this.paths_index++;
-            } else {
-                clearInterval(intervalIdDefeated);
-                this.y = -100;
-            }
+            if (this.isDead()) {
+                if (this.paths_index < this.paths_defeated_total) {
+                    this.loadImage(this.PATHS_DYING[this.paths_index]);
+                    this.paths_index++;
+                } else {
+                    clearInterval(intervalIdDefeated);
+                    this.loadImage(this.PATHS_DYING[this.paths_defeated_total - 1]);
+                    setTimeout(() => {
+                        this.sound_disappearing.play();
+                        this.y = -100;
+                    }, 100);
+                }
+            }            
         }, 300);
+        setInterval(() => {
+            if (!this.isDead()) {
+                this.moveLeft();
+            }
+        }, this.interval_move);
     }
 
 }

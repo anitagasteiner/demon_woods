@@ -109,6 +109,22 @@ canvas {
     font-size: 16px;
 }
 
+.description-crystal {
+    height: 50px;
+}
+
+.description-apple {
+    height: 30px;
+}
+
+.description-wraith {
+    height: 70px;
+}
+
+.table-keys td:first-child {
+    padding-right: 15px;
+}
+
 .description table {
     margin: 0 30px 30px 30px;
     padding: 0;
@@ -117,8 +133,12 @@ canvas {
     text-align: left;
 }
 
-.description td:first-child {
-    padding-right: 15px;
+.table-description td:first-child {
+    text-align: center;
+}
+
+.table-description tr td {
+    padding-bottom: 10px;
 }
 
 ::-webkit-scrollbar {
