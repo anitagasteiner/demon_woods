@@ -5,9 +5,9 @@ class Crystal extends CollectableObject {
     width = 65;
     offset = {
         top: 10,
-        bottom: 17,
+        bottom: 10,
         left: 10,
-        right: 17
+        right: 10
     };
     path = 'img/crystal/crystal.png';
 
