@@ -11,9 +11,11 @@ class Demon extends MovableObject {
         right: 0
     };
     interval = 1000;
-    interval_move = 40;
+    interval_move = 20;
     speed = 0.15;
     demon = true;
+    sound_demon_dead = new Audio('audio/demon_dead.wav');
+    sound_demon_hit = new Audio('audio/demon_hit.ogg');
     PATHS_IDLE = [
         'img/demon/Character7_face1.png',        
         'img/demon/Character7_face3.png',
@@ -39,7 +41,7 @@ class Demon extends MovableObject {
     ];
     paths_index = 0; // Zähler für die Bildfolge
     paths_hurt_total = this.PATHS_HURT.length;
-    paths_explosion_total = this.PATHS_EXPLOSION.length;
+    death_sound_index = 20;
 
     constructor() {
         super().loadImage(this.PATHS_IDLE[0]); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
@@ -51,12 +53,19 @@ class Demon extends MovableObject {
 
     affect() { // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
         setInterval(() => { // dead
-            if (this.isDead()) {
+            if (this.isDead()) {                
                 this.changePictures(this.PATHS_EXPLOSION);
                 this.y = 15;
-                this.x += 5;
+                this.x += 3;
                 this.height = 445;
                 this.width = 186;
+                if (this.death_sound_index > 0) {
+                    this.sound_demon_dead.play();
+                    this.death_sound_index--;
+                }
+                setTimeout(() => {
+                    this.x = 3150;
+                }, 5500);
             }
         }, 100);
         setInterval(() => { // idle
@@ -71,6 +80,7 @@ class Demon extends MovableObject {
         }, 500);
         const intervalIdHurt1 = setInterval(() => { // hurt first time
             if (!this.isDead() && this.energy == 75) {
+                this.sound_demon_hit.play();
                 if (this.paths_index < this.paths_hurt_total) {
                     this.loadImage(this.PATHS_HURT[this.paths_index]);
                     this.paths_index++;
@@ -86,6 +96,7 @@ class Demon extends MovableObject {
         }, 200);
         const intervalIdHurt2 = setInterval(() => { // hurt second time
             if (!this.isDead() && this.energy == 50) {
+                this.sound_demon_hit.play();
                 if (this.paths_index < this.paths_hurt_total) {
                     this.loadImage(this.PATHS_HURT[this.paths_index]);
                     this.paths_index++;
@@ -101,6 +112,7 @@ class Demon extends MovableObject {
         }, 200);
         const intervalIdHurt3 = setInterval(() => { // hurt third time
             if (!this.isDead() && this.energy == 25) {
+                this.sound_demon_hit.play();
                 if (this.paths_index < this.paths_hurt_total) {
                     this.loadImage(this.PATHS_HURT[this.paths_index]);
                     this.paths_index++;
