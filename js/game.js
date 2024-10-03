@@ -31,7 +31,7 @@ function hideStartScreen() {
 }
 
 window.addEventListener("keydown", (e) => { // Wenn die jeweilige Taste gedrückt wird, wird die entsprechende Variable auf "true" gesetzt.
-    if (e.keyCode == 32) {
+    if (e.keyCode == 32) { // TODO DOWN und SPACE werden nicht verwendet -> entfernen!!!
         keyboard.SPACE = true;
     }
     if (e.keyCode == 40) {

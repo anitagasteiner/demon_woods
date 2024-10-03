@@ -11,7 +11,7 @@ class Demon extends MovableObject {
         right: 0
     };
     interval = 1000;
-    interval_move = 20;
+    interval_move = 40;
     speed = 0.15;
     demon = true;
     sound_demon_dead = new Audio('audio/demon_dead.wav');
@@ -55,8 +55,8 @@ class Demon extends MovableObject {
         setInterval(() => { // dead
             if (this.isDead()) {                
                 this.changePictures(this.PATHS_EXPLOSION);
-                this.y = 15;
-                this.x += 3;
+                this.y = 35;
+                this.x += 5;
                 this.height = 445;
                 this.width = 186;
                 if (this.death_sound_index > 0) {
@@ -65,7 +65,7 @@ class Demon extends MovableObject {
                 }
                 setTimeout(() => {
                     this.x = 3150;
-                }, 5500);
+                }, 6000);
             }
         }, 100);
         setInterval(() => { // idle

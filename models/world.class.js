@@ -1,7 +1,7 @@
 class World {
 
     character = new Character();
-    level = level1;    
+    level = level1;
     canvas;
     ctx; // Abkürzung für Context
     keyboard;
@@ -123,7 +123,7 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && !this.character.isJumpingOn(enemy)) {
                 this.character.hit();
                 this.statusBars[0].setPercentage(this.statusBars[0].paths, this.character.energy);
             };
@@ -148,12 +148,11 @@ class World {
                 }, 100);
             };
         });
-        // this.level.enemies.forEach((enemy) => {
-        //     if (this.character.isJumpingOn(enemy)) {
-        //         console.log('jumped on wraith');
-        //         // defeated(enemy);
-        //     };
-        // });
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isJumpingOn(enemy) && !enemy.demon) {
+                console.log('Jumped on: ', enemy);
+            };
+        });
     }
     
     checkBonusLife() {

@@ -3,10 +3,10 @@ let level1;
 function initLevel() {
     level1 = new Level(
         [
-            // new Wraith(),
-            // new Wraith(),
-            // new Wraith(),
-            // new Wraith(),
+            new Wraith(),
+            new Wraith(),
+            new Wraith(),
+            new Wraith(),
             new Demon()
         ],
         [
@@ -43,7 +43,8 @@ function initLevel() {
             new BgObject('img/bg/layers/ground_3.png', 720*2 + 150),
             new BgObject('img/bg/layers/ground_1.png', 720*3 + 150),
             new BgObject('img/bg/layers/ground_2.png', 720*3 + 150),
-            new BgObject('img/bg/layers/ground_3.png', 720*3 + 150)
+            new BgObject('img/bg/layers/ground_3.png', 720*3 + 150),
+            new BgObject('img/bg/layers/final.png', 720*3 + 150)
         ],
         [
             new Plant(),
@@ -58,6 +59,8 @@ function initLevel() {
             new Plant()
         ],
         [
+            new Crystal(),
+            new Crystal(),
             new Crystal(),
             new Crystal(),
             new Crystal(),
