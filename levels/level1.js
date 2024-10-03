@@ -3,10 +3,10 @@ let level1;
 function initLevel() {
     level1 = new Level(
         [
-            new Wraith(),
-            new Wraith(),
-            new Wraith(),
-            new Wraith(),
+            // new Wraith(),
+            // new Wraith(),
+            // new Wraith(),
+            // new Wraith(),
             new Demon()
         ],
         [

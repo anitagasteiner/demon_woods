@@ -53,11 +53,19 @@ class MovableObject extends DrawableObject {
     // }
 
     hit() {
-        this.energy -= 20;
+        this.looseEnergy();
         if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime(); // So kann Zeit in Zahlenform gespeichert werden. -> Millisekunden, die seit dem 1.1.1970 vergangen sind
+        }
+    }
+
+    looseEnergy() {
+        if (this.demon) {
+            this.energy -= 25;
+        } else if (!this.demon) {
+            this.energy -= 20;
         }
     }
 

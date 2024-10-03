@@ -8,8 +8,6 @@ class World {
     camera_x = -100;
     statusBars = newStatusBars;
     throwableObjects = [];
-    // apple;
-    // crystal;
     sound_pickup_apple = new Audio('audio/apple-pickup.flac');
     sound_pickup_crystal = new Audio('audio/crystal_pickup.wav');
     sound_wraith_hit = new Audio('audio/wraith_hit.mp3');
@@ -67,7 +65,7 @@ class World {
             this.flipImage(movableObject);
         }
         movableObject.draw(this.ctx);
-        movableObject.drawRectangle(this.ctx);
+        // movableObject.drawRectangle(this.ctx);
         if (movableObject.otherDirection) { // Wenn oben eine Änderung gemacht wurde, wird diese hier rückgängig gemacht.
             this.flipImageBack(movableObject);
         }        
@@ -107,22 +105,26 @@ class World {
         }
     }
 
-    checkHitEnemy(crystal) {  // TODO !!!
+    checkHitEnemy(crystal) {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (crystal.isColliding(enemy)) {
-                    this.sound_wraith_hit.play();
-                    enemy.energy = 0;
-                    enemy.isDead();
+                    if (!enemy.demon) {
+                        this.sound_wraith_hit.play();
+                        enemy.energy = 0;
+                        enemy.isDead();
+                    } else if (enemy.demon) {
+                        enemy.hit();
+                    }                    
                 };
             });
-        }, 200);
+        }, 500);
     }
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                this.character.hit();                    
+                this.character.hit();
                 this.statusBars[0].setPercentage(this.statusBars[0].paths, this.character.energy);
             };
         });
@@ -132,8 +134,6 @@ class World {
                 this.statusBars[1].setPercentage(this.statusBars[1].paths, this.statusBars[1].percentage);
                 this.sound_pickup_apple.play();
                 setTimeout(() => {
-                    // this.apple = apple;
-                    // this.apple.y = -100;
                     apple.y = -100;
                 }, 100);
             };
@@ -144,8 +144,6 @@ class World {
                 this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
                 this.sound_pickup_crystal.play();
                 setTimeout(() => {
-                    // this.crystal = crystal;
-                    // this.crystal.y = -100;
                     crystal.y = -100;
                 }, 100);
             };

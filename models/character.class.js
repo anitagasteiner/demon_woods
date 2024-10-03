@@ -17,6 +17,7 @@ class Character extends MovableObject {
     interval_hurt = 400;
     speed = 5;
     world;
+    demon = false;
     sound_walking = new Audio('audio/character_walking.mp4');
     sound_dying = new Audio('audio/character_dying.wav');
     sound_hurt = new Audio('audio/character_hurt.wav');
@@ -87,12 +88,12 @@ class Character extends MovableObject {
         this.loadImages(this.PATHS_FLY);
         this.loadImages(this.PATHS_DIE);
         this.loadImages(this.PATHS_HURT);
-        this.animate();
+        this.affect();
         this.moveForward();
         this.applyGravity();
     }
 
-    animate() { // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
+    affect() { // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
         const intervalIdDie = setInterval(() => {  // dying
             if (this.isDead()) {
                 this.sound_dying.play();
