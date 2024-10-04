@@ -12,7 +12,7 @@ class Demon extends MovableObject {
     };
     interval = 1000;
     interval_move = 40;
-    speed = 0.15;
+    speed = 0.7;
     demon = true;
     sound_demon_dead = new Audio('audio/demon_dead.wav');
     sound_demon_hit = new Audio('audio/demon_hit.ogg');
@@ -53,16 +53,18 @@ class Demon extends MovableObject {
 
     affect() { // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
         setInterval(() => { // dead
-            if (this.isDead()) {                
-                this.changePictures(this.PATHS_EXPLOSION);
-                this.y = 35;
-                this.x += 5;
-                this.height = 445;
-                this.width = 186;
+            if (this.isDead()) {
                 if (this.death_sound_index > 0) {
                     this.sound_demon_dead.play();
                     this.death_sound_index--;
                 }
+                setTimeout(() => {
+                    this.changePictures(this.PATHS_EXPLOSION);
+                    this.y = 35;
+                    this.x += 10;
+                    this.height = 445;
+                    this.width = 186;
+                }, 800);
                 setTimeout(() => {
                     this.x = 3150;
                 }, 6000);

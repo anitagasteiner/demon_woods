@@ -1,7 +1,7 @@
 class Wraith extends MovableObject {
 
-    x = 430 + Math.random() * 500; // -> Zufallszahl mal 500, damit sie hoch genug ist, um ausreichend px zu erhalten; 430 fix -> Startpunkt nicht weiter links
-    y = 370;
+    x = 430 + Math.random() * 1000; // -> Zufallszahl mal 1000, damit sie hoch genug ist, um ausreichend px zu erhalten; 430 fix -> Startpunkt nicht weiter links
+    y = 370 - Math.random() * 100;
     height = 100;
     width = 200;
     offset = {
@@ -10,7 +10,7 @@ class Wraith extends MovableObject {
         left: 65,
         right: 60
     };
-    speed = 0.15 + Math.random() * 0.25; // Mindestgeschwindigkeit 0.15, max. 0.25; "Math.random" ist immer eine zufällige Zahl zw. 0 und 1.
+    speed = 0.15 + Math.random() * 1.5; // Mindestgeschwindigkeit 0.15, max. 0.25; "Math.random" ist immer eine zufällige Zahl zw. 0 und 1.
     interval = 100;
     interval_move = 30;
     demon = false;

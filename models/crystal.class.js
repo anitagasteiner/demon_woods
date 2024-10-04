@@ -13,6 +13,9 @@ class Crystal extends CollectableObject {
 
     constructor() {
         super().loadImage(this.path);
+        this.corrPlace();
     }
+
+    
     
 }
