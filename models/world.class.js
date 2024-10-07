@@ -3,8 +3,6 @@ class World {
     character = new Character();
     level = level1;
     canvas;
-    canvas_left = canvas.offsetLeft + canvas.clientLeft;
-    canvas_top = canvas.offsetTop + canvas.clientTop;
     ctx; // Abkürzung für Context
     keyboard;
     camera_x = -100;

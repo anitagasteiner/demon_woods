@@ -9,6 +9,7 @@ function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard); // Bei der Erstellung einer neuen "World" kann ich schon eine Variable mitgeben: "canvas". // Das "keyboard"-Objekt wird auch an die Welt übergeben. -> Wird beides dort in den Constructor aufgenommen. 
     // console.log('My character is ', world.character);
+    addCanvasEventListener();
 }
 
 function startNewGame() {
@@ -29,6 +30,10 @@ function handleDescription() {
 
 function hideStartScreen() {
     document.getElementById('startScreen').classList.add('hide');
+}
+
+function handleInfoboxContainer() {
+    document.getElementById('infoboxContainer').classList.toggle('hide');
 }
 
 window.addEventListener("keydown", (e) => { // Wenn die jeweilige Taste gedrückt wird, wird die entsprechende Variable auf "true" gesetzt.
@@ -73,14 +78,25 @@ window.addEventListener("keyup", (e) => { // Wenn die jeweilige Taste losgelasse
     }
 });
 
-canvas.addEventListener('click', function(event) {
-    var x = event.pageX - world.canvas_left,
-        y = event.pageY - world.canvas_top;
-    // Collision detection between clicked offset and element.
-    world.buttons.forEach(function(button) {
-        if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
-            alert('clicked an element');
-        }
-    });
+function addCanvasEventListener() {
+    canvas.addEventListener('click', function(event) {
+        let canvas_left = canvas.offsetLeft + canvas.clientLeft;
+        let canvas_top = canvas.offsetTop + canvas.clientTop;
+        let x = event.pageX - canvas_left;
+        let y = event.pageY - canvas_top;
+        // Collision detection between clicked offset and element.
+        world.buttons.forEach((button) => {
+            if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
+                if (button.content == 'info') {
+                    handleInfoboxContainer();
+                    console.log('info');
+                } else if (button.content == 'sound') {
+                    console.log('sound');
+                } else if (button.content == 'restart') {
+                    startNewGame();
+                }
+            }
+        });
 
-}, false);
+    }, false);
+}

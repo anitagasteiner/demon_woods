@@ -40,9 +40,50 @@
 
     <img class="symbol-restart" src="img/symbols/restart.png" onclick="startNewGame()">
 
-    <canvas id="canvas" width="720" height="480">
+    <canvas id="canvas" width="720" height="480"></canvas>
 
-    </canvas>
+    <div id="infoboxContainer" class="hide" onclick="handleInfoboxContainer()">
+        <div class="infobox-bg">
+            <div class="infobox">
+                <h3>How to Play</h3>
+                <p class="description-text">Use the following keys:</p>
+                <table class="table-keys">
+                    <tr>
+                        <td>Right</td>
+                        <td>Move right</td>
+                    </tr>
+                    <tr>
+                        <td>Left</td>
+                        <td>Move left</td>
+                    </tr>
+                    <tr>
+                        <td>Up</td>
+                        <td>Fly</td>
+                    </tr>
+                    <tr>
+                        <td>T</td>
+                        <td>Throw</td>
+                    </tr>
+                </table>
+                <table class="table-description description-text">
+                    <tr>
+                        <td><img class="description-crystal" src="img/crystal/crystal.png"></td>
+                        <td>You start with three crystals in your pocket - throw them on your enemies! Collect new crystals and keep on defending yourself.</td>
+                    </tr>
+                    <tr>
+                        <td><img class="description-apple" src="img/apple/apple.png"></td>
+                        <td>Collect heart-shaped apples to gain back lifes. Five of them give you back one life.</td>
+                    </tr>
+                    <tr>
+                        <td><img class="description-wraith" src="img/wraith/png/Idle/Wraith_02_Idle_000.png"></td>
+                        <td>Be aware of the wraiths: Move out of their way or use your crystals.</td>
+                    </tr>
+                </table>
+                <p class="description-text">After having survived all wraiths, you will come to the big demon. Make sure to have enough crystals left to fight her!<br>
+                And pay attention to be not hit by her fire or you will both die ...</p>
+            </div>
+        </div>
+    </div>   
 
     <div id="startScreen">        
         <div class="start-screen-bg">

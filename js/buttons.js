@@ -7,8 +7,8 @@ let newButtons;
 
 function initButtons() {
     newButtons = [
-        new Button(INFO, 590), // 20
-        new Button(SOUND_ON, 630), // 60
-        new Button(RESTART, 670) // 100
+        new Button(INFO, 590, 'info'),
+        new Button(SOUND_ON, 630, 'sound'),
+        new Button(RESTART, 670, 'restart')
     ];
 }
