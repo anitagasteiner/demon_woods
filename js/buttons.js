@@ -1,5 +1,4 @@
 const SOUND_ON = 'img/symbols/sound_on_orange.png';
-const SOUND_OFF = 'img/symbols/sound_off_orange.png';
 const INFO = 'img/symbols/info_orange.png';
 const RESTART = 'img/symbols/restart_orange.png';
 

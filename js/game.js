@@ -84,19 +84,21 @@ function addCanvasEventListener() {
         let canvas_top = canvas.offsetTop + canvas.clientTop;
         let x = event.pageX - canvas_left;
         let y = event.pageY - canvas_top;
-        // Collision detection between clicked offset and element.
         world.buttons.forEach((button) => {
             if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
                 if (button.content == 'info') {
                     handleInfoboxContainer();
-                    console.log('info');
-                } else if (button.content == 'sound') {
-                    console.log('sound');
+                } else if (button.content == 'sound') {                
+                    world.sound_background.muted = !world.sound_background.muted;
+                    if (world.sound_background.muted) {
+                        button.loadImage('img/symbols/sound_off_orange.png');
+                    } else if (!world.sound_background.muted) {
+                        button.loadImage('img/symbols/sound_on_orange.png');
+                    }                    
                 } else if (button.content == 'restart') {
                     startNewGame();
                 }
             }
         });
-
     }, false);
 }
