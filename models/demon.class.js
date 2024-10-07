@@ -37,10 +37,11 @@ class Demon extends MovableObject {
         'img/demon/explosion/2/Explosion_1_3.png',
         'img/demon/explosion/2/Explosion_1_4.png',
         'img/demon/explosion/2/Explosion_1_5.png',
-        'img/demon/explosion/2/Explosion_1_6.png',
+        'img/demon/explosion/2/Explosion_1_6.png'
     ];
     paths_index = 0; // Zähler für die Bildfolge
     paths_hurt_total = this.PATHS_HURT.length;
+    paths_explosion_total = this.PATHS_EXPLOSION.length * 4;
     death_sound_index = 20;
 
     constructor() {
@@ -52,22 +53,29 @@ class Demon extends MovableObject {
     }
 
     affect() { // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
-        setInterval(() => { // dead
+        const intervalIdDead = setInterval(() => { // dead
             if (this.isDead()) {
                 if (this.death_sound_index > 0) {
                     this.sound_demon_dead.play();
                     this.death_sound_index--;
                 }
                 setTimeout(() => {
-                    this.changePictures(this.PATHS_EXPLOSION);
-                    this.y = 35;
-                    this.x += 10;
-                    this.height = 445;
-                    this.width = 186;
-                }, 800);
-                setTimeout(() => {
-                    this.x = 3150;
-                }, 6000);
+                    if (this.paths_index < this.paths_explosion_total) {
+                        this.changePictures(this.PATHS_EXPLOSION);
+                        this.y = 35;
+                        this.x += 10;
+                        this.height = 445;
+                        this.width = 186;
+                        this.paths_index++;
+                    } else {
+                        clearInterval(intervalIdDead);
+                        this.x = 3150;
+                        this.paths_index = 0;
+                        world.keyboard = 0;                        
+                        this.handleBannerContainer();
+                        this.showBannerWin();
+                    }
+                }, 500);                
             }
         }, 100);
         setInterval(() => { // idle

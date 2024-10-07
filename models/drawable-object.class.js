@@ -42,4 +42,20 @@ class DrawableObject {
         }
     }
 
+    handleBannerContainer() {
+        document.getElementById('bannerContainer').classList.toggle('hide');
+    }
+    
+    showBannerLose() {
+        document.getElementById('bannerLose').classList.remove('hide');
+    }
+    
+    showBannerWin() {
+        document.getElementById('bannerWin').classList.remove('hide');
+    }
+
+    handleRestartContainer() {
+        document.getElementById('restartContainer').classList.toggle('hide');
+    }
+
 }

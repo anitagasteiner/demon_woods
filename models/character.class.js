@@ -103,6 +103,14 @@ class Character extends MovableObject {
                 } else {
                     clearInterval(intervalIdDie);
                     this.loadImage(this.PATHS_DIE[this.paths_die_total - 1]);
+                    world.keyboard = 0;
+                    this.handleBannerContainer();
+                    this.showBannerLose();
+                    this.world.sound_background.muted = !this.world.sound_background.muted;
+                    setTimeout(() => {
+                        this.handleBannerContainer();
+                        this.handleRestartContainer();
+                    }, 5000);
                 }                
             }
         }, this.interval_die);

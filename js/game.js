@@ -22,6 +22,7 @@ function resetVariables() {
     console.log(world);
     world.character.energy = 100;
     world.character.lastHit = 0;
+    
 }
 
 function handleDescription() {

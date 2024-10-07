@@ -1,7 +1,7 @@
 class BgObject extends MovableObject {
 
     x;
-    y = 215;
+    y; // = 215;
     height = 480;
     width = 720;
 

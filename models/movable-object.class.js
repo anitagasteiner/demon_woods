@@ -85,6 +85,4 @@ class MovableObject extends DrawableObject {
         return this.energy == 0; // Wenn die "energy" "0" ist, dann kommt aus dieser Funktion der Wert "0" raus. (true/false)
     }
 
-
-
 }

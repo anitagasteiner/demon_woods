@@ -42,6 +42,25 @@
 
     <canvas id="canvas" width="720" height="480"></canvas>
 
+    <div id="restartContainer" class="hide" onclick="handleRestartContainer()">
+        <div class="restart-bg">
+            <div class="restart-content">
+                <h3>Play again?</h3>
+                <div class="restart-img-container">
+                    <img src="img/end/ok.png" class="restart-img" onclick="startNewGame()">
+                    <img src="img/end/close.png" class="restart-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bannerContainer" class="hide">
+        <div class="banner-bg">
+            <img src="img/end/you_win.png" id="bannerWin" class="banner-img hide">
+            <img src="img/end/you_lose.png" id="bannerLose" class="banner-img hide">
+        </div>
+    </div>    
+
     <div id="infoboxContainer" class="hide" onclick="handleInfoboxContainer()">
         <div class="infobox-bg">
             <div class="infobox">
