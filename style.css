@@ -43,8 +43,6 @@ canvas {
 
 .symbol-restart {
     height: 50px;
-    transform: scaleX(-1);
-    filter: invert(25%);
     position: absolute;
     top: 30px;
     right: 30px;

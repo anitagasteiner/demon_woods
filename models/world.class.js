@@ -3,10 +3,13 @@ class World {
     character = new Character();
     level = level1;
     canvas;
+    canvas_left = canvas.offsetLeft + canvas.clientLeft;
+    canvas_top = canvas.offsetTop + canvas.clientTop;
     ctx; // Abkürzung für Context
     keyboard;
     camera_x = -100;
     statusBars = newStatusBars;
+    buttons = newButtons;
     throwableObjects = [];
     sound_pickup_apple = new Audio('audio/apple-pickup.flac');
     sound_pickup_crystal = new Audio('audio/crystal_pickup.wav');
@@ -32,6 +35,7 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben. -> SPACE FOR FIXED OBJECTS:
         this.addObjectsToMap(this.statusBars);
+        this.addObjectsToMap(this.buttons);
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
 
         this.addObjectsToMap(this.level.crystals);

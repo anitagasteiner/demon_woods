@@ -5,6 +5,7 @@ let world;
 function init() {    
     initLevel();
     initStatusBars();
+    initButtons();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard); // Bei der Erstellung einer neuen "World" kann ich schon eine Variable mitgeben: "canvas". // Das "keyboard"-Objekt wird auch an die Welt übergeben. -> Wird beides dort in den Constructor aufgenommen. 
     // console.log('My character is ', world.character);
@@ -71,3 +72,15 @@ window.addEventListener("keyup", (e) => { // Wenn die jeweilige Taste losgelasse
         keyboard.T = false;
     }
 });
+
+canvas.addEventListener('click', function(event) {
+    var x = event.pageX - world.canvas_left,
+        y = event.pageY - world.canvas_top;
+    // Collision detection between clicked offset and element.
+    world.buttons.forEach(function(button) {
+        if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
+            alert('clicked an element');
+        }
+    });
+
+}, false);
