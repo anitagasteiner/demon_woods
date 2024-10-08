@@ -54,6 +54,7 @@ class Demon extends MovableObject {
 
     affect() { // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
         const intervalIdDead = setInterval(() => { // dead
+            this.sound_demon_dead.pause();
             if (this.isDead()) {
                 if (this.death_sound_index > 0) {
                     this.sound_demon_dead.play();
@@ -89,6 +90,7 @@ class Demon extends MovableObject {
             }
         }, 500);
         const intervalIdHurt1 = setInterval(() => { // hurt first time
+            this.sound_demon_hit.pause();
             if (!this.isDead() && this.energy == 75) {
                 this.sound_demon_hit.play();
                 if (this.paths_index < this.paths_hurt_total) {
@@ -105,6 +107,7 @@ class Demon extends MovableObject {
             }
         }, 200);
         const intervalIdHurt2 = setInterval(() => { // hurt second time
+            this.sound_demon_hit.pause();
             if (!this.isDead() && this.energy == 50) {
                 this.sound_demon_hit.play();
                 if (this.paths_index < this.paths_hurt_total) {
@@ -121,6 +124,7 @@ class Demon extends MovableObject {
             }
         }, 200);
         const intervalIdHurt3 = setInterval(() => { // hurt third time
+            this.sound_demon_hit.pause();
             if (!this.isDead() && this.energy == 25) {
                 this.sound_demon_hit.play();
                 if (this.paths_index < this.paths_hurt_total) {

@@ -38,7 +38,7 @@
 
     <h1>Demon Woods</h1>
 
-    <img class="symbol-restart" src="img/symbols/restart.png" onclick="startNewGame()">
+    <img class="symbol-restart" src="img/symbols/restart.png" onclick="resetGame()">
 
     <canvas id="canvas" width="720" height="480"></canvas>
 
@@ -47,7 +47,7 @@
             <div class="restart-content">
                 <h3>Play again?</h3>
                 <div class="restart-img-container">
-                    <img src="img/end/ok.png" class="restart-img" onclick="startNewGame()">
+                    <img src="img/end/ok.png" class="restart-img" onclick="resetGame(); closeRestartContainer()">
                     <img src="img/end/close.png" class="restart-img">
                 </div>
             </div>
@@ -109,7 +109,7 @@
             <div class="start-screen-content">
                 <h2>Demon Woods</h2>
                 <div class="choices-container">
-                    <div onclick="startNewGame()" class="start-screen-mouseover">
+                    <div onclick="init()" class="start-screen-mouseover">
                         <img class="start-screen-image" src="img/start/fairy.png"><br>
                         <span>Start Game</span>
                     </div>

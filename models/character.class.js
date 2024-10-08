@@ -95,6 +95,7 @@ class Character extends MovableObject {
 
     affect() { // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
         const intervalIdDie = setInterval(() => {  // dying
+            this.sound_dying.pause();
             if (this.isDead()) {
                 this.sound_dying.play();
                 if (this.paths_index < this.paths_die_total) {
@@ -135,6 +136,7 @@ class Character extends MovableObject {
             }
         }, 1000 / 25); // 25 mal pro Sekunde
         setInterval(() => { // hurt
+            this.sound_hurt.pause();
             if (!this.isDead() && this.isHurt()) {
                 this.sound_hurt.play();
                 this.changePictures(this.PATHS_HURT);

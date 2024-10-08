@@ -2,7 +2,8 @@ let canvas;
 let keyboard = new Keyboard();
 let world;
 
-function init() {    
+function init() {
+    hideStartScreen();
     initLevel();
     initStatusBars();
     initButtons();
@@ -12,17 +13,9 @@ function init() {
     addCanvasEventListener();
 }
 
-function startNewGame() {
-    hideStartScreen();
+function resetGame() {
+    world = null;
     init();
-    resetVariables();
-}
-
-function resetVariables() {
-    console.log(world);
-    world.character.energy = 100;
-    world.character.lastHit = 0;
-    
 }
 
 function handleDescription() {
@@ -35,6 +28,10 @@ function hideStartScreen() {
 
 function handleInfoboxContainer() {
     document.getElementById('infoboxContainer').classList.toggle('hide');
+}
+
+function closeRestartContainer() {
+    document.getElementById('restartContainer').classList.add('hide');
 }
 
 window.addEventListener("keydown", (e) => { // Wenn die jeweilige Taste gedrückt wird, wird die entsprechende Variable auf "true" gesetzt.
@@ -97,7 +94,7 @@ function addCanvasEventListener() {
                         button.loadImage('img/symbols/sound_on_orange.png');
                     }                    
                 } else if (button.content == 'restart') {
-                    startNewGame();
+                    resetGame();
                 }
             }
         });

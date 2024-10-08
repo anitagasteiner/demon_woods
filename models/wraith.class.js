@@ -1,5 +1,6 @@
 class Wraith extends MovableObject {
 
+    wraithIndex;
     x = 430 + Math.random() * 1000; // -> Zufallszahl mal 1000, damit sie hoch genug ist, um ausreichend px zu erhalten; 430 fix -> Startpunkt nicht weiter links
     y = 370 - Math.random() * 100;
     height = 100;
@@ -49,11 +50,12 @@ class Wraith extends MovableObject {
     paths_index = 0; // Zähler für die Bildfolge
     paths_defeated_total = this.PATHS_DYING.length;
     
-    constructor() {
+    constructor(i) {
         super().loadImage(this.PATHS_MOVING_FORWARD[0]); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
         this.loadImages(this.PATHS_MOVING_FORWARD);
         this.loadImages(this.PATHS_DYING);
         this.affect();
+        this.wraithIndex = i;
     }
 
     affect() {  // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
@@ -67,7 +69,10 @@ class Wraith extends MovableObject {
                     this.loadImage(this.PATHS_DYING[this.paths_defeated_total - 1]);
                     setTimeout(() => {
                         this.sound_disappearing.play();
-                        this.y = -100;
+                        const test = world.level.enemies.find(el => el.wraithIndex === this.wraithIndex);      
+                        console.log('test: ', test, 'wraithIndex: ', test.wraithIndex);
+
+                        // world.level.enemies.splice(currentIndex, 1);
                     }, 500);
                 }
             }            
