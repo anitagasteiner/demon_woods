@@ -163,7 +163,12 @@ class World {
         });
         this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpingOn(enemy) && !enemy.demon) {
-                console.log('Jumped on: ', enemy);
+                for (let i = 0; i < this.level.enemies.length; i++) {
+                    if (this.level.enemies[i].wraithIndex === enemy.wraithIndex) {
+                        this.level.enemies.splice(i, 1);
+                    }
+                }
+                console.log('Jumped on: ', enemy, ' with wraithIndex ', enemy.wraithIndex);
             };
         });
     }
