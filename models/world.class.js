@@ -168,6 +168,7 @@ class World {
                         this.level.enemies.splice(i, 1);
                     }
                 }
+                this.character.fly();
                 console.log('Jumped on: ', enemy, ' with wraithIndex ', enemy.wraithIndex);
             };
         });

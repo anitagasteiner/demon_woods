@@ -34,7 +34,7 @@ function closeRestartContainer() {
     document.getElementById('restartContainer').classList.add('hide');
 }
 
-window.addEventListener("keydown", (e) => { // Wenn die jeweilige Taste gedrückt wird, wird die entsprechende Variable auf "true" gesetzt.
+window.addEventListener('keydown', (e) => { // Wenn die jeweilige Taste gedrückt wird, wird die entsprechende Variable auf "true" gesetzt.
     if (e.keyCode == 32) { // TODO DOWN und SPACE werden nicht verwendet -> entfernen!!!
         keyboard.SPACE = true;
     }
@@ -55,7 +55,7 @@ window.addEventListener("keydown", (e) => { // Wenn die jeweilige Taste gedrück
     }
 });
 
-window.addEventListener("keyup", (e) => { // Wenn die jeweilige Taste losgelassen wird, wird die entsprechende Variable auf "false" gesetzt.
+window.addEventListener('keyup', (e) => { // Wenn die jeweilige Taste losgelassen wird, wird die entsprechende Variable auf "false" gesetzt.
     if (e.keyCode == 32) {
         keyboard.SPACE = false;
     }
