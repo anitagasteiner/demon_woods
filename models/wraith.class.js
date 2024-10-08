@@ -69,10 +69,11 @@ class Wraith extends MovableObject {
                     this.loadImage(this.PATHS_DYING[this.paths_defeated_total - 1]);
                     setTimeout(() => {
                         this.sound_disappearing.play();
-                        const test = world.level.enemies.find(el => el.wraithIndex === this.wraithIndex);      
-                        console.log('test: ', test, 'wraithIndex: ', test.wraithIndex);
-
-                        // world.level.enemies.splice(currentIndex, 1);
+                        for (let i = 0; i < world.level.enemies.length; i++) {
+                            if (world.level.enemies[i].wraithIndex === this.wraithIndex) {
+                                world.level.enemies.splice(i, 1);
+                            }
+                        }
                     }, 500);
                 }
             }            
