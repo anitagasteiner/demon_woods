@@ -1,7 +1,7 @@
 class Apple extends CollectableObject {
     
+    appleIndex;
     y = 200 - Math.random() * 100; // 200 fix -> Mindesthöhe
-    x = 200 + Math.random() * 6000;
     height = 50;
     width = 50;
     offset = {
@@ -12,9 +12,9 @@ class Apple extends CollectableObject {
     };
     path = 'img/apple/apple.png';
 
-    constructor() {
+    constructor(i) {
         super().loadImage(this.path);
-        this.corrPlace();
+        this.appleIndex = i;
     }
 
 }

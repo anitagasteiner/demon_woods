@@ -139,7 +139,11 @@ class World {
                 this.statusBars[1].setPercentage(this.statusBars[1].paths, this.statusBars[1].percentage);
                 this.sound_pickup_apple.play();
                 setTimeout(() => {
-                    apple.y = -100;
+                    for (let i = 0; i < this.level.apples.length; i++) {
+                        if (this.level.apples[i].appleIndex === apple.appleIndex) {
+                            this.level.apples.splice(i, 1);
+                        }
+                    }
                 }, 100);
             };
         });
@@ -149,7 +153,11 @@ class World {
                 this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
                 this.sound_pickup_crystal.play();
                 setTimeout(() => {
-                    crystal.y = -100;
+                    for (let i = 0; i < this.level.crystals.length; i++) {
+                        if (this.level.crystals[i].crystalIndex === crystal.crystalIndex) {
+                            this.level.crystals.splice(i, 1);
+                        }
+                    }
                 }, 100);
             };
         });

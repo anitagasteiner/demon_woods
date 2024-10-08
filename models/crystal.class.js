@@ -1,5 +1,6 @@
 class Crystal extends CollectableObject {
     
+    crystalIndex;
     y = 400;
     height = 65;
     width = 65;
@@ -11,9 +12,9 @@ class Crystal extends CollectableObject {
     };
     path = 'img/crystal/crystal.png';
 
-    constructor() {
+    constructor(i) {
         super().loadImage(this.path);
-        this.corrPlace();
+        this.crystalIndex = i;
     }
 
     

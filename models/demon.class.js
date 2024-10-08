@@ -70,7 +70,13 @@ class Demon extends MovableObject {
                         this.paths_index++;
                     } else {
                         clearInterval(intervalIdDead);
-                        this.x = 3150;
+
+                        console.log('test: ', world.character.world.level.enemies);
+                        for (let i = 0; i < world.character.world.level.enemies.length; i++) {
+                            if (world.character.world.level.enemies[i].demon == true) {
+                                world.character.world.level.enemies.splice(i, 1);
+                            }
+                        }
                         this.paths_index = 0;
                         world.keyboard = 0;                        
                         this.handleBannerContainer();
