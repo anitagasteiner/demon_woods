@@ -93,6 +93,9 @@ class World {
             this.checkThrowObjects();
             this.checkBonusLife();
         }, 200);
+        setInterval(() => {
+            this.checkJumpingOn();
+        }, 20);        
     }
 
     checkThrowObjects() {
@@ -161,6 +164,9 @@ class World {
                 }, 100);
             };
         });
+    }
+
+    checkJumpingOn() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpingOn(enemy) && !enemy.demon) {
                 for (let i = 0; i < this.level.enemies.length; i++) {
@@ -169,6 +175,7 @@ class World {
                     }
                 }
                 this.character.fly();
+                this.character.y = 150;
                 console.log('Jumped on: ', enemy, ' with wraithIndex ', enemy.wraithIndex);
             };
         });

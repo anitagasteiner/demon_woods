@@ -132,7 +132,7 @@ class Character extends MovableObject {
         }, this.interval_fly);
         setInterval(() => { // flying
             if (!this.isDead() && this.world.keyboard.UP && !this.isAboveGround()) {
-                this.fly();                
+                this.fly();
             }
         }, 1000 / 25); // 25 mal pro Sekunde
         setInterval(() => { // hurt

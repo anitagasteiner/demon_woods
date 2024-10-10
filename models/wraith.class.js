@@ -2,7 +2,7 @@ class Wraith extends MovableObject {
 
     wraithIndex;
     x = 430 + Math.random() * 1000; // -> Zufallszahl mal 1000, damit sie hoch genug ist, um ausreichend px zu erhalten; 430 fix -> Startpunkt nicht weiter links
-    y = 370 - Math.random() * 100;
+    y = Math.floor(Math.random() * (380 - 330)) + 330; // -> Zufallszahl zwischen 330 (inkl.) und 380 (exkl.)
     height = 100;
     width = 200;
     offset = {

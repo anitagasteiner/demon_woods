@@ -1,7 +1,7 @@
 class Crystal extends CollectableObject {
     
     crystalIndex;
-    y = 400;
+    y = 390;
     height = 65;
     width = 65;
     offset = {
