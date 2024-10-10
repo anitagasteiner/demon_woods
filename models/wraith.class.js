@@ -59,13 +59,13 @@ class Wraith extends MovableObject {
     }
 
     affect() {  // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
-        const intervalIdDefeated = setInterval(() => {
+        const intervalIdWraithDefeated = setInterval(() => {
             if (this.isDead()) {
                 if (this.paths_index < this.paths_defeated_total) {
                     this.loadImage(this.PATHS_DYING[this.paths_index]);
                     this.paths_index++;
                 } else {
-                    clearInterval(intervalIdDefeated);
+                    clearInterval(intervalIdWraithDefeated);
                     this.loadImage(this.PATHS_DYING[this.paths_defeated_total - 1]);
                     setTimeout(() => {
                         this.sound_disappearing.play();
@@ -78,12 +78,12 @@ class Wraith extends MovableObject {
                 }
             }            
         }, 300);
-        setInterval(() => {
+        const intervalIdWraithMoving = setInterval(() => {
             if (!this.isDead()) {
                 this.changePictures(this.PATHS_MOVING_FORWARD);
             }
         }, this.interval);
-        setInterval(() => {
+        const intervalIdWraithMove = setInterval(() => {
             if (!this.isDead()) {
                 this.moveLeft();
             }

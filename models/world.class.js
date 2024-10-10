@@ -87,13 +87,13 @@ class World {
     }
 
     run() {
-        setInterval(() => {
+        const intervalIdRun = setInterval(() => {
             this.sound_background.play();
             this.checkCollisions();
             this.checkThrowObjects();
             this.checkBonusLife();
         }, 200);
-        setInterval(() => {
+        const intervalIdJumpingOn = setInterval(() => {
             this.checkJumpingOn();
         }, 20);        
     }
@@ -113,7 +113,7 @@ class World {
     }
 
     checkHitEnemy(crystal) {
-        setInterval(() => {
+        const intervalIdHitEnemy = setInterval(() => {
             this.sound_wraith_hit.pause();
             this.level.enemies.forEach((enemy) => {
                 if (crystal.isColliding(enemy)) {

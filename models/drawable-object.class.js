@@ -54,8 +54,4 @@ class DrawableObject {
         document.getElementById('bannerWin').classList.remove('hide');
     }
 
-    handleRestartContainer() {
-        document.getElementById('restartContainer').classList.toggle('hide');
-    }
-
 }

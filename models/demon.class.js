@@ -53,7 +53,7 @@ class Demon extends MovableObject {
     }
 
     affect() { // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
-        const intervalIdDead = setInterval(() => { // dead
+        const intervalIdDemonDead = setInterval(() => { // dead
             if (this.isDead()) {
                 if (this.death_sound_index > 0) {
                     this.sound_demon_dead.play();
@@ -68,7 +68,7 @@ class Demon extends MovableObject {
                         this.width = 186;
                         this.paths_index++;
                     } else {
-                        clearInterval(intervalIdDead);
+                        clearInterval(intervalIdDemonDead);
                         for (let i = 0; i < world.character.world.level.enemies.length; i++) {
                             if (world.character.world.level.enemies[i].demon == true) {
                                 world.character.world.level.enemies.splice(i, 1);
@@ -82,12 +82,12 @@ class Demon extends MovableObject {
                 }, 500);                
             }
         }, 100);
-        setInterval(() => { // idle
+        const intervalIdDemonMove = setInterval(() => { // move
             if (!this.isDead()) {
                 this.moveLeft();
             }
         }, this.interval_move);
-        setInterval(() => { // idle
+        const intervalIdDemonIdle = setInterval(() => { // idle
             if (!this.isDead()) {
                 this.changePictures(this.PATHS_IDLE);
             }

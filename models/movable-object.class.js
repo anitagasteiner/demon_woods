@@ -18,7 +18,7 @@ class MovableObject extends DrawableObject {
     }
 
     animate(paths, interval) {
-        setInterval(() => {
+        const intervalIdAnimate = setInterval(() => {
             this.changePictures(paths);            
         }, interval);
     }
@@ -28,7 +28,7 @@ class MovableObject extends DrawableObject {
     }
 
     applyGravity() { // Die y-Achse wird regelmäßig verringert.
-        setInterval(() => {
+        const intervalIdAboveGround = setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration; // negative Geschwindigkeit, damit das Objekt nach unten fällt

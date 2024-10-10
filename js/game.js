@@ -14,8 +14,59 @@ function init() {
 }
 
 function resetGame() {
+    resetIntervalsWorld(),
+    resetIntervalClouds();
+    resetIntervalsMovableObjects();
+    resetIntervalThrowableObjects();
+    resetIntervalsCharacter();
+    resetIntervalsDemon();
+    resetIntervalsWraiths();
     world = null;
     init();
+}
+
+function resetIntervalsCharacter() {
+    clearInterval(world.character.intervalIdDie);
+    clearInterval(world.character.intervalIdIdle);
+    clearInterval(world.character.intervalIdWalking);
+    clearInterval(world.character.intervalIdFlying);
+    clearInterval(world.character.intervalIdFly);
+    clearInterval(world.character.intervalIdHurt);
+    clearInterval(world.character.intervalIdMove);
+}
+
+function resetIntervalsDemon() {
+    clearInterval(world.level.enemies.intervalIdDemonDead);
+    clearInterval(world.level.enemies.intervalIdDemonMove);
+    clearInterval(world.level.enemies.intervalIdDemonIdle);
+    clearInterval(world.level.enemies.intervalIdHurt1);
+    clearInterval(world.level.enemies.intervalIdHurt2);
+    clearInterval(world.level.enemies.intervalIdHurt3);    
+}
+
+function resetIntervalClouds() {
+    clearInterval(world.level.clouds.intervalIdClouds);
+}
+
+function resetIntervalsMovableObjects() {
+    clearInterval(world.intervalIdAnimate);
+    clearInterval(world.intervalIdAboveGround);
+}
+
+function resetIntervalThrowableObjects() {
+    clearInterval(world.intervalIdThrow);
+}
+
+function resetIntervalsWorld() {
+    clearInterval(world.intervalIdRun);
+    clearInterval(world.intervalIdJumpingOn);
+    clearInterval(world.intervalIdHitEnemy);
+}
+
+function resetIntervalsWraiths() {
+    clearInterval(world.level.enemies.intervalIdWraithDefeated);
+    clearInterval(world.level.enemies.intervalIdWraithMoving);
+    clearInterval(world.level.enemies.intervalIdWraithMove);
 }
 
 function handleDescription() {

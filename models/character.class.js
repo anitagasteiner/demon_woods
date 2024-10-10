@@ -115,27 +115,27 @@ class Character extends MovableObject {
                 }                
             }
         }, this.interval_die);
-        setInterval(() => { // idle
+        const intervalIdIdle = setInterval(() => { // idle
             if (!this.isDead() && this.world.keyboard.SPACE == false && this.world.keyboard.DOWN == false && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
                 this.changePictures(this.PATHS_IDLE);
             }
         }, this.interval_idle);   
-        setInterval(() => { // while walking
+        const intervalIdWalking = setInterval(() => { // while walking
             if (!this.isDead() && this.world.keyboard.RIGHT && !this.isAboveGround() || !this.isDead() && this.world.keyboard.LEFT && !this.isAboveGround()) {
                 this.changePictures(this.PATHS_WALK);
             }
         }, this.interval_walk);
-        setInterval(() => { // while flying
+        const intervalIdFlying = setInterval(() => { // while flying
             if (!this.isDead() && this.isAboveGround()) {
                 this.changePictures(this.PATHS_FLY);
             }
         }, this.interval_fly);
-        setInterval(() => { // flying
+        const intervalIdFly = setInterval(() => { // flying
             if (!this.isDead() && this.world.keyboard.UP && !this.isAboveGround()) {
                 this.fly();
             }
         }, 1000 / 25); // 25 mal pro Sekunde
-        setInterval(() => { // hurt
+        const intervalIdHurt = setInterval(() => { // hurt
             this.sound_hurt.pause();
             if (!this.isDead() && this.isHurt()) {
                 this.sound_hurt.play();
@@ -145,7 +145,7 @@ class Character extends MovableObject {
     }
 
     moveForward() {
-        setInterval(() => {
+        const intervalIdMove = setInterval(() => {
             this.sound_walking.pause();            
             if (!this.isDead() && this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
@@ -160,6 +160,10 @@ class Character extends MovableObject {
             }
             this.world.camera_x = -this.x -100; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
         }, 1000 / 60); // 60 mal pro Sekunde
+    }
+
+    handleRestartContainer() {
+        document.getElementById('restartContainer').classList.toggle('hide');
     }
 
 }
