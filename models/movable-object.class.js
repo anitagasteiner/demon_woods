@@ -6,6 +6,12 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5; // Beschleunigung
     energy = 100;
     lastHit = 0;
+    intervalIds = [];
+
+    setStoppableInterval(fn, time) {
+        let id = setInterval(() => fn.call(this), time);
+        this.intervalIds.push(id);
+    }
 
     moveLeft() {
         this.x -= this.speed;  // Von der x-Koordinate werden soviel px abgezogen, wie in der Variable "speed" angegeben.

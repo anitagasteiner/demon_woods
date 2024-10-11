@@ -88,12 +88,14 @@ class Character extends MovableObject {
         this.loadImages(this.PATHS_FLY);
         this.loadImages(this.PATHS_DIE);
         this.loadImages(this.PATHS_HURT);
-        this.affect();
-        this.moveForward();
+        this.characterDies();
         this.applyGravity();
+        this.setStoppableIntervals();
     }
 
-    affect() { // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
+    // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
+
+    characterDies() { 
         const intervalIdDie = setInterval(() => {  // dying
             this.sound_dying.pause();
             if (this.isDead()) {
@@ -115,51 +117,58 @@ class Character extends MovableObject {
                 }                
             }
         }, this.interval_die);
-        const intervalIdIdle = setInterval(() => { // idle
-            if (!this.isDead() && this.world.keyboard.SPACE == false && this.world.keyboard.DOWN == false && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
-                this.changePictures(this.PATHS_IDLE);
-            }
-        }, this.interval_idle);   
-        const intervalIdWalking = setInterval(() => { // while walking
-            if (!this.isDead() && this.world.keyboard.RIGHT && !this.isAboveGround() || !this.isDead() && this.world.keyboard.LEFT && !this.isAboveGround()) {
-                this.changePictures(this.PATHS_WALK);
-            }
-        }, this.interval_walk);
-        const intervalIdFlying = setInterval(() => { // while flying
-            if (!this.isDead() && this.isAboveGround()) {
-                this.changePictures(this.PATHS_FLY);
-            }
-        }, this.interval_fly);
-        const intervalIdFly = setInterval(() => { // flying
-            if (!this.isDead() && this.world.keyboard.UP && !this.isAboveGround()) {
-                this.fly();
-            }
-        }, 1000 / 25); // 25 mal pro Sekunde
-        const intervalIdHurt = setInterval(() => { // hurt
-            this.sound_hurt.pause();
-            if (!this.isDead() && this.isHurt()) {
-                this.sound_hurt.play();
-                this.changePictures(this.PATHS_HURT);
-            }
-        }, this.interval_hurt);
+    }    
+
+    setStoppableIntervals() {
+        this.setStoppableInterval(this.characterIdle, this.interval_idle);
+        this.setStoppableInterval(this.characterWalking, this.interval_walk);
+        this.setStoppableInterval(this.characterFly, this.interval_fly);
+        this.setStoppableInterval(this.characterHurt, this.interval_hurt);
+        this.setStoppableInterval(this.characterMove, 1000 / 60); // 60 mal pro Sekunde
+    }    
+
+    characterIdle() {
+        if (!this.isDead() && this.world.keyboard.SPACE == false && this.world.keyboard.DOWN == false && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
+            this.changePictures(this.PATHS_IDLE);
+        }
     }
 
-    moveForward() {
-        const intervalIdMove = setInterval(() => {
-            this.sound_walking.pause();            
-            if (!this.isDead() && this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                this.sound_walking.play();
-            }
-            if (!this.isDead() && this.world.keyboard.LEFT && this.x > -670) {
-                this.moveLeft();                
-                this.sound_walking.play();
-            }
-            if (this.isAboveGround()) {
-                this.sound_walking.pause();
-            }
-            this.world.camera_x = -this.x -100; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
-        }, 1000 / 60); // 60 mal pro Sekunde
+    characterWalking() {
+        if (!this.isDead() && this.world.keyboard.RIGHT && !this.isAboveGround() || !this.isDead() && this.world.keyboard.LEFT && !this.isAboveGround()) {
+            this.changePictures(this.PATHS_WALK);
+        }
+    }
+
+    characterFly() {
+        if (!this.isDead() && this.world.keyboard.UP && !this.isAboveGround()) {
+            this.fly();
+        } else if (!this.isDead() && this.isAboveGround()) {
+            this.changePictures(this.PATHS_FLY);
+        }
+    }
+
+    characterHurt() {
+        this.sound_hurt.pause();
+        if (!this.isDead() && this.isHurt()) {
+            this.sound_hurt.play();
+            this.changePictures(this.PATHS_HURT);
+        }
+    }
+
+    characterMove() {
+        this.sound_walking.pause();
+        if (!this.isDead() && this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            this.moveRight();
+            this.sound_walking.play();
+        }
+        if (!this.isDead() && this.world.keyboard.LEFT && this.x > -670) {
+            this.moveLeft();                
+            this.sound_walking.play();
+        }
+        if (this.isAboveGround()) {
+            this.sound_walking.pause();
+        }
+        this.world.camera_x = -this.x -100; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
     }
 
     handleRestartContainer() {

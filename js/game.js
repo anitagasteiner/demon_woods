@@ -26,13 +26,8 @@ function resetGame() {
 }
 
 function resetIntervalsCharacter() {
+    world.character.intervalIds.forEach(clearInterval);
     clearInterval(world.character.intervalIdDie);
-    clearInterval(world.character.intervalIdIdle);
-    clearInterval(world.character.intervalIdWalking);
-    clearInterval(world.character.intervalIdFlying);
-    clearInterval(world.character.intervalIdFly);
-    clearInterval(world.character.intervalIdHurt);
-    clearInterval(world.character.intervalIdMove);
 }
 
 function resetIntervalsDemon() {
