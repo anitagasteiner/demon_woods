@@ -25,24 +25,28 @@ function resetGame() {
     init();
 }
 
+function resetSound(sound) {
+    sound.muted = !sound.muted;
+}
+
 function resetSounds() {
-    world.sound_background.muted = !world.sound_background.muted;
-    world.sound_pickup_apple.muted = !world.sound_pickup_apple.muted;
-    world.sound_pickup_crystal.muted = !world.sound_pickup_crystal.muted;
-    world.sound_wraith_hit.muted = !world.sound_wraith_hit.muted;
+    resetSound(world.sound_background);
+    resetSound(world.sound_pickup_apple);
+    resetSound(world.sound_pickup_crystal);
+    resetSound(world.sound_wraith_hit);
+    resetSound(world.character.sound_walking);
+    resetSound(world.character.sound_hurt);
+    resetSound(world.character.sound_dying);
     for (let i = 0; i < world.throwableObjects.length; i++) {
-        world.throwableObjects[i].sound_throwing.muted = !world.throwableObjects[i].sound_throwing.muted;
+        resetSound(world.throwableObjects[i].sound_throwing);
     }
-    world.character.sound_walking.muted = !world.character.sound_walking.muted;
-    world.character.sound_hurt.muted = !world.character.sound_hurt.muted;
-    world.character.sound_dying.muted = !world.character.sound_dying.muted;
     for (let i = 0; i < world.level.enemies.length; i++) {
         if (world.level.enemies[i].sound_demon_dead) {
-            world.level.enemies[i].sound_demon_dead.muted = !world.level.enemies[i].sound_demon_dead.muted;
+            resetSound(world.level.enemies[i].sound_demon_dead);
         } else if (world.level.enemies[i].sound_demon_hit) {
-            world.level.enemies[i].sound_demon_hit.muted = !world.level.enemies[i].sound_demon_hit.muted;
+            resetSound(world.level.enemies[i].sound_demon_hit);
         } else if (world.level.enemies[i].sound_disappearing) {
-            world.level.enemies[i].sound_disappearing.muted = !world.level.enemies[i].sound_disappearing.muted;
+            resetSound(world.level.enemies[i].sound_disappearing);
         }        
     }
 }
