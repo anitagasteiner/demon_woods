@@ -113,7 +113,7 @@ class Character extends MovableObject {
                     setTimeout(() => {
                         this.handleBannerContainer();
                         this.handleRestartContainer();
-                    }, 5000);
+                    }, 3000);
                 }                
             }
         }, this.interval_die);

@@ -14,6 +14,7 @@ function init() {
 }
 
 function resetGame() {
+    resetSounds();    
     resetIntervalsWorld(),
     resetIntervalClouds();
     resetIntervalsMovableObjects();
@@ -22,6 +23,13 @@ function resetGame() {
     resetIntervalsEnemies();
     world = null;
     init();
+}
+
+function resetSounds() { // TODO
+    world.sound_background.muted = !world.sound_background.muted;
+    for (let i = 0; i < world.throwableObjects.length; i++) {
+        world.throwableObjects[i].sound_throwing.muted = !world.throwableObjects[i].sound_throwing.muted;
+    }
 }
 
 function resetIntervalsCharacter() {
@@ -34,6 +42,9 @@ function resetIntervalsEnemies() {
         world.level.enemies[i].intervalIds.forEach(clearInterval);
     }
     clearInterval(world.level.enemies.intervalIdDemonDead);
+    clearInterval(world.level.enemies.intervalIdDemonHurt1);
+    clearInterval(world.level.enemies.intervalIdDemonHurt2);
+    clearInterval(world.level.enemies.intervalIdDemonHurt3);
     clearInterval(world.level.enemies.intervalIdWraithDefeated);
 }
 
