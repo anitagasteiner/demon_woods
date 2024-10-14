@@ -14,7 +14,8 @@ function init() {
 }
 
 function resetGame() {
-    resetSounds();    
+    resetSounds();
+    resetCanvasEventListener();
     resetIntervalsWorld(),
     resetIntervalClouds();
     resetIntervalsMovableObjects();
@@ -144,26 +145,33 @@ window.addEventListener('keyup', (e) => { // Wenn die jeweilige Taste losgelasse
 });
 
 function addCanvasEventListener() {
-    canvas.addEventListener('click', function(event) {
-        let canvas_left = canvas.offsetLeft + canvas.clientLeft;
-        let canvas_top = canvas.offsetTop + canvas.clientTop;
-        let x = event.pageX - canvas_left;
-        let y = event.pageY - canvas_top;
-        world.buttons.forEach((button) => {
-            if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
-                if (button.content == 'info') {
-                    handleInfoboxContainer();
-                } else if (button.content == 'sound') {                
-                    world.sound_background.muted = !world.sound_background.muted;
-                    if (world.sound_background.muted) {
-                        button.loadImage('img/symbols/sound_off_orange.png');
-                    } else if (!world.sound_background.muted) {
-                        button.loadImage('img/symbols/sound_on_orange.png');
-                    }                    
-                } else if (button.content == 'restart') {
-                    resetGame();
-                }
+    canvas.addEventListener('click', handleCanvasClick, false);
+}
+
+function resetCanvasEventListener() {
+    canvas.removeEventListener('click', handleCanvasClick, false);
+    addCanvasEventListener();
+}
+
+function handleCanvasClick(event) {
+    let canvas_left = canvas.offsetLeft + canvas.clientLeft;
+    let canvas_top = canvas.offsetTop + canvas.clientTop;
+    let x = event.pageX - canvas_left;
+    let y = event.pageY - canvas_top;
+    world.buttons.forEach((button) => {
+        if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
+            if (button.content == 'info') {
+                handleInfoboxContainer();
+            } else if (button.content == 'sound') {                
+                world.sound_background.muted = !world.sound_background.muted;
+                if (world.sound_background.muted) {
+                    button.loadImage('img/symbols/sound_off_orange.png');
+                } else if (!world.sound_background.muted) {
+                    button.loadImage('img/symbols/sound_on_orange.png');
+                }                    
+            } else if (button.content == 'restart') {
+                resetGame();
             }
-        });
-    }, false);
+        }
+    });
 }

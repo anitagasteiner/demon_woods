@@ -6,10 +6,10 @@ class Wraith extends MovableObject {
     height = 100;
     width = 200;
     offset = {
-        top: 10, // 10
-        bottom: 35, // 35
-        left: 55, // 65
-        right: 50 // 60
+        top: 10,
+        bottom: 35,
+        left: 65,
+        right: 60
     };
     speed = 0.15 + Math.random() * 1.5; // Mindestgeschwindigkeit 0.15, max. 0.25; "Math.random" ist immer eine zufällige Zahl zw. 0 und 1.
     demon = false;
@@ -76,7 +76,7 @@ class Wraith extends MovableObject {
                     }, 500);
                 }
             }            
-        }, 300);
+        }, 80);
     }
 
     setStoppableIntervals() {

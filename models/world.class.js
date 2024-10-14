@@ -122,7 +122,6 @@ class World {
 
     checkHitEnemy(crystal) {
         const intervalIdHitEnemy = setInterval(() => {
-            this.sound_wraith_hit.pause();
             this.level.enemies.forEach((enemy) => {
                 if (crystal.isColliding(enemy)) {
                     if (!enemy.demon) {
