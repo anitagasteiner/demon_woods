@@ -40,13 +40,13 @@
 
     <canvas id="canvas" width="720" height="480"></canvas>
 
-    <div id="restartContainer" class="hide" onclick="handleRestartContainer()">
+    <div id="restartContainer" class="hide">
         <div class="restart-bg">
             <div class="restart-content">
                 <h3>Play again?</h3>
                 <div class="restart-img-container">
                     <img src="img/end/ok.png" class="restart-img" onclick="resetGame(); closeRestartContainer()">
-                    <img src="img/end/close.png" class="restart-img">
+                    <img src="img/end/close.png" class="restart-img" onclick="closeRestartContainer()">
                 </div>
             </div>
         </div>

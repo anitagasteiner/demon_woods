@@ -23,11 +23,11 @@ class MovableObject extends DrawableObject {
         this.otherDirection = false;
     }
 
-    animate(paths, interval) {
-        const intervalIdAnimate = setInterval(() => {
-            this.changePictures(paths);            
-        }, interval);
-    }
+    // animate(paths, interval) {
+    //     const intervalIdAnimate = setInterval(() => {
+    //         this.changePictures(paths);            
+    //     }, interval);
+    // }
 
     fly() {
         this.speedY = 30;        

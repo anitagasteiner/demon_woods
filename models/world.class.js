@@ -9,6 +9,7 @@ class World {
     statusBars = newStatusBars;
     buttons = newButtons;
     throwableObjects = [];
+    intervalIds = [];
     sound_pickup_apple = new Audio('audio/apple-pickup.flac');
     sound_pickup_crystal = new Audio('audio/crystal_pickup.wav');
     sound_wraith_hit = new Audio('audio/wraith_hit.mp3');
@@ -21,6 +22,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.setStoppableIntervals();
     }
 
     draw() {
@@ -55,6 +57,15 @@ class World {
 
     setWorld() { // Das Objekt "keyboard" (damit die Keyboard-Funktionen) wird durch diese Funktion an zB den Character übergeben.
         this.character.world = this; // Der "character" hat eine Variable "world", durch die nun auf die Variablen der "world" hier zugegriffen werden kann, u.a. auch auf "keyboard".
+    }
+
+    setStoppableInterval(fn, time) {
+        let id = setInterval(() => fn.call(this), time);
+        this.intervalIds.push(id);
+    }
+
+    setStoppableIntervals() {
+        this.setStoppableInterval(this.checkJumpingOn, 20);
     }
 
     addObjectsToMap(objects) {
@@ -92,10 +103,7 @@ class World {
             this.checkCollisions();
             this.checkThrowObjects();
             this.checkBonusLife();
-        }, 200);
-        const intervalIdJumpingOn = setInterval(() => {
-            this.checkJumpingOn();
-        }, 20);        
+        }, 200);        
     }
 
     checkThrowObjects() {

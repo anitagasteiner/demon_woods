@@ -12,6 +12,7 @@ class Demon extends MovableObject {
     };
     interval = 1000;
     interval_move = 40;
+    interval_hurt = 200;
     speed = 0.7;
     demon = true;
     sound_demon_dead = new Audio('audio/demon_dead.wav');
@@ -49,10 +50,19 @@ class Demon extends MovableObject {
         this.loadImages(this.PATHS_IDLE);
         this.loadImages(this.PATHS_HURT);
         this.loadImages(this.PATHS_EXPLOSION);
-        this.affect();
+        this.demonDead();
+        this.setStoppableIntervals();
     }
 
-    affect() { // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
+    setStoppableIntervals() {
+        this.setStoppableInterval(this.demonMove, this.interval_move);
+        this.setStoppableInterval(this.demonIdle, 500);
+        this.setStoppableInterval(this.demonHurt1, this.interval_hurt);
+        this.setStoppableInterval(this.demonHurt2, this.interval_hurt);
+        this.setStoppableInterval(this.demonHurt3, this.interval_hurt);
+    }
+
+    demonDead() {
         const intervalIdDemonDead = setInterval(() => { // dead
             if (this.isDead()) {
                 if (this.death_sound_index > 0) {
@@ -82,67 +92,69 @@ class Demon extends MovableObject {
                 }, 500);                
             }
         }, 100);
-        const intervalIdDemonMove = setInterval(() => { // move
-            if (!this.isDead()) {
-                this.moveLeft();
-            }
-        }, this.interval_move);
-        const intervalIdDemonIdle = setInterval(() => { // idle
-            if (!this.isDead()) {
-                this.changePictures(this.PATHS_IDLE);
-            }
-        }, 500);
-        const intervalIdHurt1 = setInterval(() => { // hurt first time
-            // this.sound_demon_hit.pause();
-            if (!this.isDead() && this.energy == 75) {
-                this.sound_demon_hit.play();
-                if (this.paths_index < this.paths_hurt_total) {
-                    this.loadImage(this.PATHS_HURT[this.paths_index]);
-                    this.paths_index++;
-                } else {
-                    clearInterval(intervalIdHurt1);
-                    this.paths_index = 0;
-                    this.y = 180;
-                    this.height = 285;
-                    this.width = 119.5;
-                    console.log('Demon hurt, energy: ', this.energy);
-                }                
-            }
-        }, 200);
-        const intervalIdHurt2 = setInterval(() => { // hurt second time
-            // this.sound_demon_hit.pause();
-            if (!this.isDead() && this.energy == 50) {
-                this.sound_demon_hit.play();
-                if (this.paths_index < this.paths_hurt_total) {
-                    this.loadImage(this.PATHS_HURT[this.paths_index]);
-                    this.paths_index++;
-                } else {
-                    clearInterval(intervalIdHurt2);
-                    this.paths_index = 0;
-                    this.y = 205;
-                    this.height = 260;
-                    this.width = 109;
-                    console.log('Demon hurt, energy: ', this.energy);
-                }                
-            }
-        }, 200);
-        const intervalIdHurt3 = setInterval(() => { // hurt third time
-            // this.sound_demon_hit.pause();
-            if (!this.isDead() && this.energy == 25) {
-                this.sound_demon_hit.play();
-                if (this.paths_index < this.paths_hurt_total) {
-                    this.loadImage(this.PATHS_HURT[this.paths_index]);
-                    this.paths_index++;
-                } else {
-                    clearInterval(intervalIdHurt3);
-                    this.paths_index = 0;
-                    this.y = 230;
-                    this.height = 235;
-                    this.width = 98.5;
-                    console.log('Demon hurt, energy: ', this.energy);
-                }                
-            }
-        }, 200);
+    }
+
+    demonIdle() {
+        if (!this.isDead()) {
+            this.changePictures(this.PATHS_IDLE);
+        }
+    }
+
+    demonMove() {
+        if (!this.isDead()) {
+            this.moveLeft();
+        }
+    }
+
+    demonHurt1() { // hurt first time
+        if (!this.isDead() && this.energy == 75) {
+            this.sound_demon_hit.play();
+            if (this.paths_index < this.paths_hurt_total) {
+                this.loadImage(this.PATHS_HURT[this.paths_index]);
+                this.paths_index++;
+            } else {
+                clearInterval(intervalIdHurt1);
+                this.paths_index = 0;
+                this.y = 180;
+                this.height = 285;
+                this.width = 119.5;
+                console.log('Demon hurt, energy: ', this.energy);
+            }                
+        }
+    }
+
+    demonHurt2() { // hurt second time
+        if (!this.isDead() && this.energy == 50) {
+            this.sound_demon_hit.play();
+            if (this.paths_index < this.paths_hurt_total) {
+                this.loadImage(this.PATHS_HURT[this.paths_index]);
+                this.paths_index++;
+            } else {
+                clearInterval(intervalIdHurt2);
+                this.paths_index = 0;
+                this.y = 205;
+                this.height = 260;
+                this.width = 109;
+                console.log('Demon hurt, energy: ', this.energy);
+            }                
+        }
+    }
+
+    demonHurt3() { // hurt third time
+        if (!this.isDead() && this.energy == 25) {
+            this.sound_demon_hit.play();
+            if (this.paths_index < this.paths_hurt_total) {
+                this.loadImage(this.PATHS_HURT[this.paths_index]);
+                this.paths_index++;
+            } else {
+                clearInterval(intervalIdHurt3);
+                this.paths_index = 0;
+                this.y = 230;
+                this.height = 235;
+                this.width = 98.5;
+                console.log('Demon hurt, energy: ', this.energy);
+            }                
+        }
     }
     
 }

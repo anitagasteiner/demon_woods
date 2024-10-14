@@ -19,8 +19,7 @@ function resetGame() {
     resetIntervalsMovableObjects();
     resetIntervalThrowableObjects();
     resetIntervalsCharacter();
-    resetIntervalsDemon();
-    resetIntervalsWraiths();
+    resetIntervalsEnemies();
     world = null;
     init();
 }
@@ -30,13 +29,12 @@ function resetIntervalsCharacter() {
     clearInterval(world.character.intervalIdDie);
 }
 
-function resetIntervalsDemon() {
+function resetIntervalsEnemies() {
+    for (let i = 0; i < world.level.enemies.length; i++) {
+        world.level.enemies[i].intervalIds.forEach(clearInterval);
+    }
     clearInterval(world.level.enemies.intervalIdDemonDead);
-    clearInterval(world.level.enemies.intervalIdDemonMove);
-    clearInterval(world.level.enemies.intervalIdDemonIdle);
-    clearInterval(world.level.enemies.intervalIdHurt1);
-    clearInterval(world.level.enemies.intervalIdHurt2);
-    clearInterval(world.level.enemies.intervalIdHurt3);    
+    clearInterval(world.level.enemies.intervalIdWraithDefeated);
 }
 
 function resetIntervalClouds() {
@@ -44,7 +42,6 @@ function resetIntervalClouds() {
 }
 
 function resetIntervalsMovableObjects() {
-    clearInterval(world.intervalIdAnimate);
     clearInterval(world.intervalIdAboveGround);
 }
 
@@ -53,15 +50,9 @@ function resetIntervalThrowableObjects() {
 }
 
 function resetIntervalsWorld() {
+    world.intervalIds.forEach(clearInterval);
     clearInterval(world.intervalIdRun);
-    clearInterval(world.intervalIdJumpingOn);
     clearInterval(world.intervalIdHitEnemy);
-}
-
-function resetIntervalsWraiths() {
-    clearInterval(world.level.enemies.intervalIdWraithDefeated);
-    clearInterval(world.level.enemies.intervalIdWraithMoving);
-    clearInterval(world.level.enemies.intervalIdWraithMove);
 }
 
 function handleDescription() {

@@ -12,8 +12,6 @@ class Wraith extends MovableObject {
         right: 50 // 60
     };
     speed = 0.15 + Math.random() * 1.5; // Mindestgeschwindigkeit 0.15, max. 0.25; "Math.random" ist immer eine zufällige Zahl zw. 0 und 1.
-    interval = 100;
-    interval_move = 30;
     demon = false;
     sound_disappearing = new Audio('audio/wraith_disappearing.mp3');
     PATHS_MOVING_FORWARD = [
@@ -54,11 +52,12 @@ class Wraith extends MovableObject {
         super().loadImage(this.PATHS_MOVING_FORWARD[0]); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
         this.loadImages(this.PATHS_MOVING_FORWARD);
         this.loadImages(this.PATHS_DYING);
-        this.affect();
+        this.wraithDefeated();
+        this.setStoppableIntervals();
         this.wraithIndex = i;
     }
 
-    affect() {  // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
+    wraithDefeated() {
         const intervalIdWraithDefeated = setInterval(() => {
             if (this.isDead()) {
                 if (this.paths_index < this.paths_defeated_total) {
@@ -78,16 +77,23 @@ class Wraith extends MovableObject {
                 }
             }            
         }, 300);
-        const intervalIdWraithMoving = setInterval(() => {
-            if (!this.isDead()) {
-                this.changePictures(this.PATHS_MOVING_FORWARD);
-            }
-        }, this.interval);
-        const intervalIdWraithMove = setInterval(() => {
-            if (!this.isDead()) {
-                this.moveLeft();
-            }
-        }, this.interval_move);
+    }
+
+    setStoppableIntervals() {
+        this.setStoppableInterval(this.wraithMoving, 100);
+        this.setStoppableInterval(this.wraithMove, 30);
+    }
+
+    wraithMoving() {
+        if (!this.isDead()) {
+            this.changePictures(this.PATHS_MOVING_FORWARD);
+        }
+    }
+
+    wraithMove() {
+        if (!this.isDead()) {
+            this.moveLeft();
+        }
     }
 
 }
