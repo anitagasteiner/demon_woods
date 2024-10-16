@@ -144,7 +144,7 @@ class Demon extends MovableObject {
     }
 
     demonMove() {
-        if (!this.isDead()) {
+        if (!this.isDead() && this.x - world.character.x + world.character.width - world.character.offset.right < 1000) {
             this.moveLeft();
         }
     }
