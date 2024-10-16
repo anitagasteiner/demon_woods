@@ -1,6 +1,7 @@
 let canvas;
 let keyboard = new Keyboard();
 let world;
+let fullscreen = false;
 
 function init() {
     hideStartScreen();
@@ -162,7 +163,7 @@ function handleCanvasClick(event) {
         if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
             if (button.content == 'info') {
                 handleInfoboxContainer();
-            } else if (button.content == 'sound') {                
+            } else if (button.content == 'sound') {
                 world.sound_background.muted = !world.sound_background.muted;
                 if (world.sound_background.muted) {
                     button.loadImage('img/symbols/sound_off_orange.png');
@@ -171,7 +172,40 @@ function handleCanvasClick(event) {
                 }                    
             } else if (button.content == 'restart') {
                 resetGame();
+            } else if (button.content == 'fullscreen' && !fullscreen) {
+                handleFullscreen();
+                button.loadImage('img/symbols/arrow_down_orange.png');
+                fullscreen = true;
+            } else if (button.content == 'fullscreen' && fullscreen) {
+                closeFullscreen();
+                button.loadImage('img/symbols/arrow_up_orange.png');
+                fullscreen = false;                
             }
         }
     });
 }
+
+function handleFullscreen() {
+    let fullscreen = document.getElementById('fullscreen');
+    openFullscreen(fullscreen);
+}
+
+function openFullscreen(fullscreen) {
+    if (fullscreen.requestFullscreen) {
+        fullscreen.requestFullscreen();
+    } else if (fullscreen.webkitRequestFullscreen) { /* Safari */
+        fullscreen.webkitRequestFullscreen();
+    } else if (fullscreen.msRequestFullscreen) { /* IE11 */
+        fullscreen.msRequestFullscreen();
+    }
+}
+
+function closeFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
+    }
+  }

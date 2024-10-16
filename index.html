@@ -36,86 +36,34 @@
 
 <body>
 
-    <h1>Demon Woods</h1>
+    <div id="fullscreen">
 
-    <canvas id="canvas" width="720" height="480"></canvas>
+        <h1>Demon Woods</h1>
 
-    <div id="restartContainer" class="hide">
-        <div class="restart-bg">
-            <div class="restart-content">
-                <h3>Play again?</h3>
-                <div class="restart-img-container">
-                    <img src="img/end/ok.png" class="restart-img" onclick="resetGame(); closeRestartContainer()">
-                    <img src="img/end/close.png" class="restart-img" onclick="closeRestartContainer()">
+        <canvas id="canvas" width="720" height="480"></canvas>
+
+        <div id="restartContainer" class="hide">
+            <div class="restart-bg">
+                <div class="restart-content">
+                    <h3>Play again?</h3>
+                    <div class="restart-img-container">
+                        <img src="img/end/ok.png" class="restart-img" onclick="resetGame(); closeRestartContainer()">
+                        <img src="img/end/close.png" class="restart-img" onclick="closeRestartContainer()">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div id="bannerContainer" class="hide">
-        <div class="banner-bg">
-            <img src="img/end/you_win.png" id="bannerWin" class="banner-img hide">
-            <img src="img/end/you_lose.png" id="bannerLose" class="banner-img hide">
-        </div>
-    </div>    
-
-    <div id="infoboxContainer" class="hide" onclick="handleInfoboxContainer()">
-        <div class="infobox-bg">
-            <div class="infobox">
-                <h3>How to Play</h3>
-                <p class="description-text">Use the following keys:</p>
-                <table class="table-keys">
-                    <tr>
-                        <td>Right</td>
-                        <td>Move right</td>
-                    </tr>
-                    <tr>
-                        <td>Left</td>
-                        <td>Move left</td>
-                    </tr>
-                    <tr>
-                        <td>Up</td>
-                        <td>Fly/Jump</td>
-                    </tr>
-                    <tr>
-                        <td>T</td>
-                        <td>Throw</td>
-                    </tr>
-                </table>
-                <table class="table-description description-text">
-                    <tr>
-                        <td><img class="description-crystal" src="img/crystal/crystal.png"></td>
-                        <td>You start with three crystals in your pocket - throw them on your enemies! Collect new crystals and keep on defending yourself.</td>
-                    </tr>
-                    <tr>
-                        <td><img class="description-apple" src="img/apple/apple.png"></td>
-                        <td>Collect heart-shaped apples to gain back lifes. Five of them give you back one life.</td>
-                    </tr>
-                    <tr>
-                        <td><img class="description-wraith" src="img/wraith/png/Idle/Wraith_02_Idle_000.png"></td>
-                        <td>Be aware of the wraiths: Move out of their way, throw your crystals or jump on them.</td>
-                    </tr>
-                </table>
-                <p class="description-text">After having survived all wraiths, you will come to the big demon. Make sure to have enough crystals left to fight it! And when it's dead, don't touch its fire ...</p>
+        <div id="bannerContainer" class="hide">
+            <div class="banner-bg">
+                <img src="img/end/you_win.png" id="bannerWin" class="banner-img hide">
+                <img src="img/end/you_lose.png" id="bannerLose" class="banner-img hide">
             </div>
-        </div>
-    </div>   
+        </div>    
 
-    <div id="startScreen">        
-        <div class="start-screen-bg">
-            <div class="start-screen-content">
-                <h2>Demon Woods</h2>
-                <div class="choices-container">
-                    <div onclick="init()" class="start-screen-mouseover">
-                        <img class="start-screen-image" src="img/start/fairy.png"><br>
-                        <span>Start Game</span>
-                    </div>
-                    <div onclick="handleDescription()" class="start-screen-mouseover">
-                        <img class="start-screen-image" src="img/start/box.png"><br>
-                        <span>How to Play</span>
-                    </div>
-                </div>
-                <div id="description" class="hide description" onclick="handleDescription()">
+        <div id="infoboxContainer" class="hide" onclick="handleInfoboxContainer()">
+            <div class="infobox-bg">
+                <div class="infobox">
                     <h3>How to Play</h3>
                     <p class="description-text">Use the following keys:</p>
                     <table class="table-keys">
@@ -150,10 +98,66 @@
                             <td>Be aware of the wraiths: Move out of their way, throw your crystals or jump on them.</td>
                         </tr>
                     </table>
-                    <p class="description-text">After having survived all wraiths, you will come to the big demon. Make sure to have enough crystals left to fight it! And when it's dead, don't touch its fire ...</p>                    
+                    <p class="description-text">After having survived all wraiths, you will come to the big demon. Make sure to have enough crystals left to fight it! And when it's dead, don't touch its fire ...</p>
+                </div>
+            </div>
+        </div>   
+
+        <div id="startScreen">        
+            <div class="start-screen-bg">
+                <div class="start-screen-content">
+                    <h2>Demon Woods</h2>
+                    <div class="choices-container">
+                        <div onclick="init()" class="start-screen-mouseover">
+                            <img class="start-screen-image" src="img/start/fairy.png"><br>
+                            <span>Start Game</span>
+                        </div>
+                        <div onclick="handleDescription()" class="start-screen-mouseover">
+                            <img class="start-screen-image" src="img/start/box.png"><br>
+                            <span>How to Play</span>
+                        </div>
+                    </div>
+                    <div id="description" class="hide description" onclick="handleDescription()">
+                        <h3>How to Play</h3>
+                        <p class="description-text">Use the following keys:</p>
+                        <table class="table-keys">
+                            <tr>
+                                <td>Right</td>
+                                <td>Move right</td>
+                            </tr>
+                            <tr>
+                                <td>Left</td>
+                                <td>Move left</td>
+                            </tr>
+                            <tr>
+                                <td>Up</td>
+                                <td>Fly/Jump</td>
+                            </tr>
+                            <tr>
+                                <td>T</td>
+                                <td>Throw</td>
+                            </tr>
+                        </table>
+                        <table class="table-description description-text">
+                            <tr>
+                                <td><img class="description-crystal" src="img/crystal/crystal.png"></td>
+                                <td>You start with three crystals in your pocket - throw them on your enemies! Collect new crystals and keep on defending yourself.</td>
+                            </tr>
+                            <tr>
+                                <td><img class="description-apple" src="img/apple/apple.png"></td>
+                                <td>Collect heart-shaped apples to gain back lifes. Five of them give you back one life.</td>
+                            </tr>
+                            <tr>
+                                <td><img class="description-wraith" src="img/wraith/png/Idle/Wraith_02_Idle_000.png"></td>
+                                <td>Be aware of the wraiths: Move out of their way, throw your crystals or jump on them.</td>
+                            </tr>
+                        </table>
+                        <p class="description-text">After having survived all wraiths, you will come to the big demon. Make sure to have enough crystals left to fight it! And when it's dead, don't touch its fire ...</p>                    
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
     
 </body>

@@ -4,6 +4,7 @@
 }
 
 body {
+    margin: 0;
     font-family: 'SofadiOne-Regular', sans-serif;
     display: flex;
     flex-direction: column;
@@ -17,6 +18,7 @@ h1 {
     color: #62457C;
     font-size: 48px;
     letter-spacing: -2.5px;
+    text-align: center;
 }
 
 h2 {
@@ -36,7 +38,14 @@ h3 {
 
 canvas {
     background-color: black;
-    display: block;
+
+}
+
+#fullscreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
 }
 
 
