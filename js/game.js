@@ -17,12 +17,7 @@ function init() {
 function resetGame() {
     resetSounds();
     resetCanvasEventListener();
-    resetIntervalsWorld(),
-    resetIntervalClouds();
-    resetIntervalsMovableObjects();
-    resetIntervalThrowableObjects();
-    resetIntervalsCharacter();
-    resetIntervalsEnemies();
+    resetIntervals();
     world = null;
     init();
 }
@@ -51,6 +46,15 @@ function resetSounds() {
             resetSound(world.level.enemies[i].sound_disappearing);
         }        
     }
+}
+
+function resetIntervals() {
+    resetIntervalsWorld(),
+    resetIntervalClouds();
+    resetIntervalsMovableObjects();
+    resetIntervalThrowableObjects();
+    resetIntervalsCharacter();
+    resetIntervalsEnemies();
 }
 
 function resetIntervalsCharacter() {
