@@ -7,8 +7,8 @@ class Demon extends MovableObject {
     offset = {
         top: 90,
         bottom: 190,
-        left: 190,
-        right: 220
+        left: 210,
+        right: 250
     };
     interval = 1000;
     interval_move = 40;
@@ -17,6 +17,7 @@ class Demon extends MovableObject {
     demon = true;
     sound_demon_dead = new Audio('audio/demon_dead.wav');
     sound_demon_hit = new Audio('audio/demon_hit.wav');
+    sound_demon_attack = new Audio('audio/demon_attack.wav');
     PATHS_ATTACK = [
         'img/demon/attacking/wraith_03_attacking_000.png',
         'img/demon/attacking/wraith_03_attacking_001.png',
@@ -125,12 +126,14 @@ class Demon extends MovableObject {
                         }
                         this.paths_index = 0;
                         world.keyboard = 0;
-                        this.showBannerWin();
-                        this.handleBannerContainer();
-                        setTimeout(() => {
+                        if (!world.character.isDead()) {
+                            this.showBannerWin();
                             this.handleBannerContainer();
-                            this.handleRestartContainer();
-                        }, 1500);
+                            setTimeout(() => {
+                                this.handleBannerContainer();
+                                this.handleRestartContainer();
+                            }, 1500);
+                        }
                     }
                 }, 500);                
             }
@@ -141,6 +144,7 @@ class Demon extends MovableObject {
         if (!this.isDead()) {
             if (this.x - world.character.x + world.character.width - world.character.offset.right < 600) {
                 this.changePictures(this.PATHS_ATTACK);
+                this.sound_demon_attack.play();
             } else {
                 this.changePictures(this.PATHS_IDLE);
             }            

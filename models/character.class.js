@@ -109,7 +109,6 @@ class Character extends MovableObject {
                     world.keyboard = 0;
                     this.showBannerLose();
                     this.handleBannerContainer();
-                    this.world.sound_background.muted = !this.world.sound_background.muted;
                     setTimeout(() => {
                         this.handleBannerContainer();
                         this.handleRestartContainer();
