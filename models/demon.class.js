@@ -180,7 +180,7 @@ class Demon extends MovableObject {
                         left: 171,
                         right: 198
                     };
-                    console.log('Demon hurt, energy: ', this.energy);
+                    // console.log('Demon hurt, energy: ', this.energy);
                 }                
             }
         }, this.interval_hurt);
@@ -206,7 +206,7 @@ class Demon extends MovableObject {
                         left: 153.9,
                         right: 178.2
                     };
-                    console.log('Demon hurt, energy: ', this.energy);
+                    // console.log('Demon hurt, energy: ', this.energy);
                 }                
             }
         }, this.interval_hurt);
@@ -232,7 +232,7 @@ class Demon extends MovableObject {
                         left: 138.5,
                         right: 160.4
                     };
-                    console.log('Demon hurt, energy: ', this.energy);
+                    // console.log('Demon hurt, energy: ', this.energy);
                 }                
             }
         }, this.interval_hurt);

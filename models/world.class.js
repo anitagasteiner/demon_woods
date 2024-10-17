@@ -183,7 +183,7 @@ class World {
                 }
                 this.character.fly();
                 this.character.y = 150;
-                console.log('Jumped on: ', enemy, ' with wraithIndex ', enemy.wraithIndex);
+                // console.log('Jumped on: ', enemy, ' with wraithIndex ', enemy.wraithIndex);
             };
         });
     }
