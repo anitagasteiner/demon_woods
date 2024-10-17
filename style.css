@@ -220,6 +220,31 @@ canvas {
     height: 50px;
 }
 
+.mobile-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.mobile-bar-left, .mobile-bar-right {
+    display: flex;
+    gap: 25px;
+}
+
+.mobile-bar-left {
+    padding-left: 25px;
+}
+
+.mobile-bar-right {
+    padding-right: 25px;
+}
+
+.mobile-bar img {
+    height: 50px;
+    width: 50px;
+}
+
 
 /* Responsiveness max-width */
 
