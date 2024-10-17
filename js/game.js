@@ -24,7 +24,7 @@ function resetGame() {
 }
 
 function resetSound(sound) {
-    sound.muted = !sound.muted;
+    sound.muted = true;
 }
 
 function resetSounds() {
