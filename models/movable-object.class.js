@@ -15,7 +15,7 @@ class MovableObject extends DrawableObject {
 
     moveLeft() {
         this.x -= this.speed;  // Von der x-Koordinate werden soviel px abgezogen, wie in der Variable "speed" angegeben.
-        this.otherDirection = true;        
+        this.otherDirection = true;
     }
 
     moveRight() {
@@ -46,7 +46,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) { // -> damit die ThrowableObjects immer ganz nach unten fallen
             return true;
         } else {
-            return this.y < 125;
+            return this.y < 150;
         }
     }
 

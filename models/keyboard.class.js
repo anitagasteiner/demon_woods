@@ -4,7 +4,7 @@ class Keyboard { // TODO: Use SPACE to throw and delete T?
     RIGHT = false;
     UP = false;
     // DOWN = false;
-    // SPACE = false;
-    T = false;
+    SPACE = false;
+    // T = false;
 
 }

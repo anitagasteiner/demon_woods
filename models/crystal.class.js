@@ -15,8 +15,6 @@ class Crystal extends CollectableObject {
     constructor(i) {
         super().loadImage(this.path);
         this.crystalIndex = i;
-    }
-
-    
+    }    
     
 }

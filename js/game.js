@@ -52,7 +52,7 @@ function resetSounds() {
 function resetIntervals() {
     resetIntervalsWorld(),
     resetIntervalClouds();
-    resetIntervalsMovableObjects();
+    resetIntervalMovableObjects();
     resetIntervalThrowableObjects();
     resetIntervalsCharacter();
     resetIntervalsEnemies();
@@ -78,7 +78,7 @@ function resetIntervalClouds() {
     clearInterval(world.level.clouds.intervalIdClouds);
 }
 
-function resetIntervalsMovableObjects() {
+function resetIntervalMovableObjects() {
     clearInterval(world.intervalIdAboveGround);
 }
 
@@ -109,12 +109,12 @@ function closeRestartContainer() {
 }
 
 window.addEventListener('keydown', (e) => { // Wenn die jeweilige Taste gedrückt wird, wird die entsprechende Variable auf "true" gesetzt.
-    if (e.keyCode == 32) { // TODO DOWN und SPACE werden nicht verwendet -> entfernen!!!
+    if (e.keyCode == 32) {
         keyboard.SPACE = true;
     }
-    if (e.keyCode == 40) {
-        keyboard.DOWN = true;
-    }
+    // if (e.keyCode == 40) {
+    //     keyboard.DOWN = true;
+    // }
     if (e.keyCode == 38) {
         keyboard.UP = true;
     }
@@ -124,18 +124,18 @@ window.addEventListener('keydown', (e) => { // Wenn die jeweilige Taste gedrück
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;
     }
-    if (e.keyCode == 84) {
-        keyboard.T = true;
-    }
+    // if (e.keyCode == 84) {
+    //     keyboard.T = true;
+    // }
 });
 
 window.addEventListener('keyup', (e) => { // Wenn die jeweilige Taste losgelassen wird, wird die entsprechende Variable auf "false" gesetzt.
     if (e.keyCode == 32) {
         keyboard.SPACE = false;
     }
-    if (e.keyCode == 40) {
-        keyboard.DOWN = false;
-    }
+    // if (e.keyCode == 40) {
+    //     keyboard.DOWN = false;
+    // }
     if (e.keyCode == 38) {
         keyboard.UP = false;
     }
@@ -145,9 +145,9 @@ window.addEventListener('keyup', (e) => { // Wenn die jeweilige Taste losgelasse
     if (e.keyCode == 39) {
         keyboard.RIGHT = false;
     }
-    if (e.keyCode == 84) {
-        keyboard.T = false;
-    }
+    // if (e.keyCode == 84) {
+    //     keyboard.T = false;
+    // }
 });
 
 function mobileButtonsPressEvents() {
@@ -169,11 +169,11 @@ function mobileButtonsPressEvents() {
     });
     document.getElementById('btnThrow').addEventListener('touchstart', (e) => {
         e.preventDefault();
-        keyboard.T = true;
+        keyboard.SPACE = true;
     });
     document.getElementById('btnThrow').addEventListener('touchend', (e) => {
         e.preventDefault();
-        keyboard.T = false;
+        keyboard.SPACE = false;
     });
     document.getElementById('btnUp').addEventListener('touchstart', (e) => {
         e.preventDefault();

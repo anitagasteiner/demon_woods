@@ -89,8 +89,8 @@ class Character extends MovableObject {
         this.loadImages(this.PATHS_DIE);
         this.loadImages(this.PATHS_HURT);
         this.characterDies();
-        this.applyGravity();
         this.setStoppableIntervals();
+        this.applyGravity();
     }
 
     // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
@@ -127,7 +127,7 @@ class Character extends MovableObject {
     }    
 
     characterIdle() {
-        if (!this.isDead() && this.world.keyboard.SPACE == false && this.world.keyboard.DOWN == false && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
+        if (!this.isDead() && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
             this.changePictures(this.PATHS_IDLE);
         }
     }
@@ -143,7 +143,7 @@ class Character extends MovableObject {
             this.fly();
         } else if (!this.isDead() && this.isAboveGround()) {
             this.changePictures(this.PATHS_FLY);
-        }
+        }    
     }
 
     characterHurt() {
