@@ -48,10 +48,16 @@ class DrawableObject {
     
     showBannerLose() {
         document.getElementById('bannerLose').classList.remove('hide');
+        document.getElementById('bannerWin').classList.add('hide');
     }
     
     showBannerWin() {
         document.getElementById('bannerWin').classList.remove('hide');
+        document.getElementById('bannerLose').classList.add('hide');
+    }
+
+    handleRestartContainer() {
+        document.getElementById('restartContainer').classList.toggle('hide');
     }
 
 }

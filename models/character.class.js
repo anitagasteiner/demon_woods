@@ -107,8 +107,8 @@ class Character extends MovableObject {
                     clearInterval(intervalIdDie);
                     this.loadImage(this.PATHS_DIE[this.paths_die_total - 1]);
                     world.keyboard = 0;
-                    this.handleBannerContainer();
                     this.showBannerLose();
+                    this.handleBannerContainer();
                     this.world.sound_background.muted = !this.world.sound_background.muted;
                     setTimeout(() => {
                         this.handleBannerContainer();
@@ -169,10 +169,6 @@ class Character extends MovableObject {
             this.sound_walking.pause();
         }
         this.world.camera_x = -this.x -100; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
-    }
-
-    handleRestartContainer() {
-        document.getElementById('restartContainer').classList.toggle('hide');
     }
 
 }

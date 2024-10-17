@@ -124,9 +124,13 @@ class Demon extends MovableObject {
                             }
                         }
                         this.paths_index = 0;
-                        world.keyboard = 0;                        
-                        this.handleBannerContainer();
+                        world.keyboard = 0;
                         this.showBannerWin();
+                        this.handleBannerContainer();
+                        setTimeout(() => {
+                            this.handleBannerContainer();
+                            this.handleRestartContainer();
+                        }, 1500);
                     }
                 }, 500);                
             }
