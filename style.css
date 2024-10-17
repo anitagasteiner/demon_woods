@@ -206,7 +206,7 @@ canvas {
 }
 
 .banner-img {
-    height: 100px;
+    height: 150px;
 }
 
 .restart-img-container {
@@ -220,11 +220,14 @@ canvas {
     height: 50px;
 }
 
-.mobile-bar {
+.mobile-bar-bg {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
     margin-top: 10px;
+}
+
+.mobile-bar {
+    display: flex;
+    justify-content: space-between;    
 }
 
 .mobile-bar-left, .mobile-bar-right {

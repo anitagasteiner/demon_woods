@@ -34,7 +34,7 @@
 
 </head>
 
-<body>
+<body onload="handleMobileBar()">
 
     <div id="fullscreen">
 
@@ -42,14 +42,16 @@
 
         <canvas id="canvas" width="720" height="480"></canvas>
 
-        <div id="mobileBar" class="mobile-bar">
-            <div class="mobile-bar-left">
-                <img id="btnLeft" src="img/mobile/left.png">
-                <img id="btnRight" src="img/mobile/right.png">
-            </div>
-            <div class="mobile-bar-right">
-                <img id="btnThrow" src="img/mobile/throw_crystal.png">
-                <img id="btnUp" src="img/mobile/up.png">
+        <div id="mobileBar" class="mobile-bar-bg hide">
+            <div class="mobile-bar">
+                <div class="mobile-bar-left">
+                    <img id="btnLeft" src="img/mobile/left.png">
+                    <img id="btnRight" src="img/mobile/right.png">
+                </div>
+                <div class="mobile-bar-right">
+                    <img id="btnThrow" src="img/mobile/throw_crystal.png">
+                    <img id="btnUp" src="img/mobile/up.png">
+                </div>
             </div>
         </div>
 
