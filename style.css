@@ -48,27 +48,6 @@ canvas {
     justify-content: center;    
 }
 
-
-/* Responsiveness Smartphones */
-@media only screen and (max-width: 720px) {
-    canvas {
-        width: 100%;
-    }
-}
-
-@media only screen and (max-height: 480px) {
-    canvas {
-        height: 100vh;
-    }
-}
-
-@media only screen and (max-height: 620px) {
-    h1 {
-        display: none;
-    }
-}
-/* -------------------------------------- */
-
 .hide {
     display: none;
 }
@@ -239,4 +218,79 @@ canvas {
 
 .restart-img {
     height: 50px;
+}
+
+
+/* Responsiveness max-width */
+
+@media only screen and (max-width: 720px) {
+
+    canvas {
+        width: 100%;
+    }
+
+}
+
+@media only screen and (max-width: 550px) {
+
+    .choices-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+
+    h2 {        
+        font-size: 34px; /* 44 */
+        margin: 25px; /* 50 */
+    }
+
+    .start-screen-bg {
+        background-image: unset;
+    }
+    
+    .start-screen-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        font-size: 22px;
+        border-radius: unset;
+    }
+
+    .choices-container {
+        gap: 25px; /* 80 */
+        margin: 30px 40px 25px 40px; /* 0 80px 50px 80px */
+    }
+
+    .start-screen-image {
+        height: 125px; /* 150 */
+    }
+    
+    .description {
+        top: 80px;
+    }
+
+}
+
+
+/* Responsiveness max-height */
+
+@media only screen and (max-height: 620px) {
+
+    h1 {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-height: 480px) {
+
+    canvas {
+        height: 100vh;
+    }
+
 }
