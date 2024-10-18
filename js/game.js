@@ -275,6 +275,7 @@ function closeFullscreen() {
     /* Using test() method to search regexp in details it returns boolean value*/
     let isMobileDevice = regexp.test(details);
     if (isMobileDevice) { 
-        document.getElementById('mobileBar').classList.remove('hide');
+        document.getElementById('mobile-bar-container-left').classList.remove('hide');
+        document.getElementById('mobile-bar-container-right').classList.remove('hide');
     }      
   }

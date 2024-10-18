@@ -42,9 +42,27 @@
 
         <h1>Demon Woods</h1>
 
-        <canvas id="canvas" width="720" height="480"></canvas>
+        <div class="game-container">
 
-        <div id="mobileBar" class="mobile-bar-bg hide">
+            <div id="mobile-bar-container-left" class="hide">
+                <div class="mobile-bar">
+                    <img id="btnLeft" src="img/mobile/left.png">
+                    <img id="btnRight" src="img/mobile/right.png">
+                </div>
+            </div>            
+    
+            <canvas id="canvas" width="720" height="480"></canvas>
+
+            <div id="mobile-bar-container-right" class="hide">
+                <div class="mobile-bar">
+                    <img id="btnUp" src="img/mobile/up.png">
+                    <img id="btnThrow" src="img/mobile/throw_crystal.png">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- <div id="mobileBar" class="mobile-bar-bg hide">
             <div class="mobile-bar">
                 <div class="mobile-bar-left">
                     <img id="btnLeft" src="img/mobile/left.png">
@@ -55,7 +73,7 @@
                     <img id="btnUp" src="img/mobile/up.png">
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div id="restartContainer" class="hide">
             <div class="restart-bg">
