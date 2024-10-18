@@ -36,6 +36,14 @@ h3 {
     letter-spacing: 0.5px;
 }
 
+h4 {
+    color: white;
+    font-size: 20px;
+    letter-spacing: 0.1px;
+    margin: 0;
+    font-weight: lighter;
+}
+
 canvas {
     background-color: black;
 }
@@ -49,13 +57,6 @@ canvas {
 
 .hide {
     display: none;
-}
-
-.symbol-restart {
-    height: 50px;
-    position: absolute;
-    top: 30px;
-    right: 30px;
 }
 
 .start-screen-bg {
@@ -178,6 +179,7 @@ canvas {
 .restart-bg {
     top: 0;
     align-items: center;
+    background-color: rgba(0,0,0,0.4);
 }
 
 .infobox-bg {
@@ -207,11 +209,6 @@ canvas {
     text-align: left;
 }
 
-.banner-bg,
-.restart-bg {
-    background-color: rgba(0,0,0,0.4);
-}
-
 .banner-img {
     height: 150px;
 }
@@ -225,6 +222,18 @@ canvas {
 
 .restart-img {
     height: 50px;
+}
+
+.restart-result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 30px 0 30px;
+    gap: 25px;
+}
+
+.restart-result-img {
+    height: 25px;    
 }
 
 .game-container {

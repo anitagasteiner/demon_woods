@@ -10,6 +10,8 @@ class World {
     buttons = newButtons;
     throwableObjects = [];
     intervalIds = [];
+    wraiths_defeated = 0;
+    apples_collected = 0;
     sound_pickup_apple = new Audio('audio/apple-pickup.flac');
     sound_pickup_crystal = new Audio('audio/crystal_pickup.wav');
     sound_wraith_hit = new Audio('audio/wraith_hit.mp3');
@@ -128,6 +130,8 @@ class World {
                         this.sound_wraith_hit.play();
                         enemy.energy = 0;
                         enemy.isDead();
+                        this.wraiths_defeated += 1;
+                        document.getElementById('wraithsDefeated').innerHTML = this.wraiths_defeated;
                     } else if (enemy.demon) {
                         enemy.hit();
                     }                    
@@ -152,6 +156,8 @@ class World {
                     for (let i = 0; i < this.level.apples.length; i++) {
                         if (this.level.apples[i].appleIndex === apple.appleIndex) {
                             this.level.apples.splice(i, 1);
+                            this.apples_collected += 1;
+                            document.getElementById('applesCollected').innerHTML = this.apples_collected;
                         }
                     }
                 }, 100);
