@@ -1,7 +1,7 @@
 class Button extends DrawableObject {
 
-    height = 30;
-    width = 30;
+    height = 40;
+    width = 40;
     y = 20;
     content;
 

@@ -187,7 +187,7 @@ function mobileButtonsPressEvents() {
 
 function addCanvasEventListener() {
     canvas.addEventListener('click', handleCanvasClick, false);
-    canvas.addEventListener('touchstart', handleCanvasTouch, false); //NEU
+    canvas.addEventListener('touchstart', handleCanvasTouch, { passive: false }); //NEU
 }
 
 function resetCanvasEventListener() {
@@ -202,15 +202,20 @@ function handleCanvasClick(event) {
 
 function handleCanvasTouch(event) {
     event.preventDefault(); // Verhindert, dass die Seite scrollt, wenn der Benutzer den Bildschirm berührt
-    const touch = event.touches[0];
+    const touch = event.changedTouches[0];
     handleCanvasInteraction(touch.pageX, touch.pageY);
 }
 
 function handleCanvasInteraction(pageX, pageY) {
+    // Ursprüngliche Größe des Canvas:
     let canvas_left = canvas.offsetLeft + canvas.clientLeft;
     let canvas_top = canvas.offsetTop + canvas.clientTop;
-    let x = pageX - canvas_left;
-    let y = pageY - canvas_top;
+    // Aktuelle Größe des Canvas:
+    let canvasWidth = canvas.clientWidth;
+    let canvasHeight = canvas.clientHeight;
+    // Relative x und y basierend auf der aktuellen Größe des Canvas (je nach benutztem Gerät):
+    let x = (pageX - canvas_left) * (canvas.width / canvasWidth);
+    let y = (pageY - canvas_top) * (canvas.height / canvasHeight);
     world.buttons.forEach((button) => {
         if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
             if (button.content == 'info') {
@@ -236,37 +241,6 @@ function handleCanvasInteraction(pageX, pageY) {
         }
     });
 }
-
-// function handleCanvasClick(event) {
-//     let canvas_left = canvas.offsetLeft + canvas.clientLeft;
-//     let canvas_top = canvas.offsetTop + canvas.clientTop;
-//     let x = event.pageX - canvas_left;
-//     let y = event.pageY - canvas_top;
-//     world.buttons.forEach((button) => {
-//         if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
-//             if (button.content == 'info') {
-//                 handleInfoboxContainer();
-//             } else if (button.content == 'sound') {
-//                 world.sound_background.muted = !world.sound_background.muted;
-//                 if (world.sound_background.muted) {
-//                     button.loadImage('img/symbols/sound_off_orange.png');
-//                 } else if (!world.sound_background.muted) {
-//                     button.loadImage('img/symbols/sound_on_orange.png');
-//                 }                    
-//             } else if (button.content == 'restart') {
-//                 resetGame();
-//             } else if (button.content == 'fullscreen' && !fullscreen) {
-//                 handleFullscreen();
-//                 button.loadImage('img/symbols/arrow_down_orange.png');
-//                 fullscreen = true;
-//             } else if (button.content == 'fullscreen' && fullscreen) {
-//                 closeFullscreen();
-//                 button.loadImage('img/symbols/arrow_up_orange.png');
-//                 fullscreen = false;                
-//             }
-//         }
-//     });
-// }
 
 function handleFullscreen() {
     let fullscreen = document.getElementById('fullscreen');

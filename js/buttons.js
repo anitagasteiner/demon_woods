@@ -7,9 +7,9 @@ let newButtons;
 
 function initButtons() {
     newButtons = [
-        new Button(INFO, 550, 'info'),
-        new Button(SOUND_ON, 590, 'sound'),
-        new Button(RESTART, 630, 'restart'),
-        new Button(FULLSCREEN_ON, 670, 'fullscreen')
+        new Button(INFO, 510, 'info'),
+        new Button(SOUND_ON, 560, 'sound'),
+        new Button(RESTART, 610, 'restart'),
+        new Button(FULLSCREEN_ON, 660, 'fullscreen')
     ];
 }
