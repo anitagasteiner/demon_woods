@@ -267,7 +267,7 @@ function closeFullscreen() {
     }
   }
 
-  function handleMobileBar() {
+function handleMobileBar() {
     /* Storing user's device details in a variable*/
     let details = navigator.userAgent;
     /* Creating a regular expression containing some mobile devices keywords to search it in details string*/
@@ -278,4 +278,4 @@ function closeFullscreen() {
         document.getElementById('mobile-bar-container-left').classList.remove('hide');
         document.getElementById('mobile-bar-container-right').classList.remove('hide');
     }      
-  }
+}
