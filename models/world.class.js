@@ -185,6 +185,8 @@ class World {
                 for (let i = 0; i < this.level.enemies.length; i++) {
                     if (this.level.enemies[i].wraithIndex === enemy.wraithIndex) {
                         this.level.enemies.splice(i, 1);
+                        this.wraiths_defeated += 1;
+                        document.getElementById('wraithsDefeated').innerHTML = this.wraiths_defeated;
                     }
                 }
                 this.character.fly();

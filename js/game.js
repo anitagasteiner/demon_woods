@@ -22,7 +22,7 @@ function resetGame() {
     resetCanvasEventListener();
     resetIntervals();
     world = null;
-    init();
+    // init();
 }
 
 function resetSound(sound) {
@@ -100,6 +100,10 @@ function handleDescription() {
 
 function hideStartScreen() {
     document.getElementById('startScreen').classList.add('hide');
+}
+
+function showStartScreen() {
+    document.getElementById('startScreen').classList.remove('hide');
 }
 
 function handleInfoboxContainer() {
@@ -231,6 +235,7 @@ function handleCanvasInteraction(pageX, pageY) {
                 }
             } else if (button.content == 'restart') {
                 resetGame();
+                init();
             } else if (button.content == 'fullscreen' && !fullscreen) {
                 handleFullscreen();
                 button.loadImage('img/symbols/arrow_down_orange.png');

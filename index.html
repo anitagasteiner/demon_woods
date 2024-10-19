@@ -69,18 +69,18 @@
         <div id="restartContainer" class="hide">
             <div class="restart-bg">
                 <div class="restart-content">
-                    <div class="restart-result">
-                        <h4>Defeated Wraiths: <span id="wraithsDefeated">0</span></h4>
-                        <img src="img/wraith/wraith.png" class="restart-result-img">
+                    <div class="restart-result">                        
+                        <img src="img/wraith/wraith.png" class="restart-result-wraith">
+                        <h4>Wraiths defeated: <span id="wraithsDefeated">0</span></h4>
                     </div>
                     <div class="restart-result">
-                        <h4>Collected Apples: <span id="applesCollected">0</span></h4>
-                        <img src="img/apple/apple.png" class="restart-result-img">
+                        <img src="img/apple/apple.png" class="restart-result-apple">
+                        <h4>Apples collected: <span id="applesCollected">0</span></h4>
                     </div>
                     <h3>Play again?</h3>
                     <div class="restart-img-container">
-                        <img src="img/end/ok.png" class="restart-img pointer" onclick="resetGame(); closeRestartContainer()">
-                        <img src="img/end/close.png" class="restart-img pointer" onclick="closeRestartContainer()">
+                        <img src="img/end/ok.png" class="restart-img pointer" onclick="resetGame(); init(); closeRestartContainer()">
+                        <img src="img/end/close.png" class="restart-img pointer" onclick="resetGame(); closeRestartContainer(); showStartScreen();">
                     </div>
                 </div>
             </div>
