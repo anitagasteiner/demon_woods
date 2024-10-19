@@ -2,6 +2,7 @@ let canvas;
 let keyboard = new Keyboard();
 let world;
 let fullscreen = false;
+let pointerOnButton = false;
 
 function init() {
     hideStartScreen();
@@ -13,6 +14,7 @@ function init() {
     // console.log('My character is ', world.character);
     addCanvasEventListener();
     mobileButtonsPressEvents();
+    cursorPointing();
 }
 
 function resetGame() {
@@ -240,6 +242,28 @@ function handleCanvasInteraction(pageX, pageY) {
             }
         }
     });
+}
+
+function cursorPointing() {
+    canvas.addEventListener('mousemove', function (event) {
+        let canvas_left = canvas.offsetLeft + canvas.clientLeft;
+        let canvas_top = canvas.offsetTop + canvas.clientTop;
+        let canvasWidth = canvas.clientWidth;
+        let canvasHeight = canvas.clientHeight;
+        let x = (event.pageX - canvas_left) * (canvas.width / canvasWidth);
+        let y = (event.pageY - canvas_top) * (canvas.height / canvasHeight);
+        let pointerOnButton = false;
+        world.buttons.forEach((button) => {
+            if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
+                pointerOnButton = true;
+            }
+        });
+        if (pointerOnButton) {
+            canvas.style.cursor = 'pointer';
+        } else {
+            canvas.style.cursor = 'default';
+        }
+    });    
 }
 
 function handleFullscreen() {

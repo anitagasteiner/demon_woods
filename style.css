@@ -59,6 +59,10 @@ canvas {
     display: none;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .start-screen-bg {
     background-image: url('img/background.png');
     background-position: center;

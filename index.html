@@ -79,8 +79,8 @@
                     </div>
                     <h3>Play again?</h3>
                     <div class="restart-img-container">
-                        <img src="img/end/ok.png" class="restart-img" onclick="resetGame(); closeRestartContainer()">
-                        <img src="img/end/close.png" class="restart-img" onclick="closeRestartContainer()">
+                        <img src="img/end/ok.png" class="restart-img pointer" onclick="resetGame(); closeRestartContainer()">
+                        <img src="img/end/close.png" class="restart-img pointer" onclick="closeRestartContainer()">
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
             </div>
         </div>    
 
-        <div id="infoboxContainer" class="hide" onclick="handleInfoboxContainer()">
+        <div id="infoboxContainer" class="hide pointer" onclick="handleInfoboxContainer()">
             <div class="infobox-bg">
                 <div class="infobox">
                     <h3>How to Play</h3>
@@ -140,16 +140,16 @@
                 <div class="start-screen-content">
                     <h2>Demon Woods</h2>
                     <div class="choices-container">
-                        <div onclick="init()" class="start-screen-mouseover">
+                        <div onclick="init()" class="start-screen-mouseover pointer">
                             <img class="start-screen-image" src="img/start/fairy.png"><br>
                             <span>Start Game</span>
                         </div>
-                        <div onclick="handleDescription()" class="start-screen-mouseover">
+                        <div onclick="handleDescription()" class="start-screen-mouseover pointer">
                             <img class="start-screen-image" src="img/start/box.png"><br>
                             <span>How to Play</span>
                         </div>
                     </div>
-                    <div id="description" class="hide description" onclick="handleDescription()">
+                    <div id="description" class="hide description pointer" onclick="handleDescription()">
                         <h3>How to Play</h3>
                         <p class="description-text">Use the following keys:</p>
                         <table class="table-keys">
