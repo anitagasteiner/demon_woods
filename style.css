@@ -12,6 +12,9 @@ body {
     justify-content: center;
     background-image: url('img/background.png');
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 h1 {
@@ -66,6 +69,9 @@ canvas {
 .start-screen-bg {
     background-image: url('img/background.png');
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     z-index: 2;
     position: fixed;
     left: 0;
