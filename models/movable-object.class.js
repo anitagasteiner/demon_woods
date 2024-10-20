@@ -24,7 +24,7 @@ class MovableObject extends DrawableObject {
     }
 
     fly() {
-        this.speedY = 30;        
+        this.speedY = 30;
     }
 
     applyGravity() { // Die y-Achse wird regelmäßig verringert.
@@ -32,6 +32,8 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration; // negative Geschwindigkeit, damit das Objekt nach unten fällt
+            } else if (this.isBelowGround) {
+                this.y = 150;
             }
         }, 1000 / 25); // 25-mal pro Sekunde
     }
@@ -41,6 +43,14 @@ class MovableObject extends DrawableObject {
             return true;
         } else {
             return this.y < 150;
+        }
+    }
+
+    isBelowGround() {
+        if (this instanceof ThrowableObject) {
+            return false;
+        } else {
+            return this.y > 150;
         }
     }
 
@@ -55,7 +65,7 @@ class MovableObject extends DrawableObject {
         return this.x + this.width - this.offset.right > wraith.x + wraith.offset.left
         && this.x + this.offset.left < wraith.x + wraith.width - wraith.offset.right
         && this.y + this.height - this.offset.bottom > wraith.y + wraith.offset.top
-        && this.y + this.height - this.offset.bottom < wraith.y + wraith.offset.top + 10;
+        && this.y + this.height - this.offset.bottom < wraith.y + wraith.offset.top + 15;
     }
 
     hit() {

@@ -11,7 +11,7 @@ class Demon extends MovableObject {
         right: 250
     };
     interval = 1000;
-    interval_move = 40;
+    interval_move = 20; //40
     interval_hurt = 200;
     speed = 0.7;
     demon = true;

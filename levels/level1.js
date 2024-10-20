@@ -85,14 +85,7 @@ function initLevel() {
             new Apple(6),
             new Apple(7),
             new Apple(8),
-            new Apple(9),
-            new Apple(10),
-            new Apple(11),
-            new Apple(12),
-            new Apple(13),
-            new Apple(14),
-            new Apple(15),
-            new Apple(16)
+            new Apple(9)
         ]
     );
 }

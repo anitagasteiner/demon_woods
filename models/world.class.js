@@ -129,9 +129,6 @@ class World {
                     if (!enemy.demon) {
                         this.sound_wraith_hit.play();
                         enemy.energy = 0;
-                        enemy.isDead();
-                        this.wraiths_defeated += 1;
-                        document.getElementById('wraithsDefeated').innerHTML = this.wraiths_defeated;
                     } else if (enemy.demon) {
                         enemy.hit();
                     }                    
@@ -182,15 +179,14 @@ class World {
     checkJumpingOn() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpingOn(enemy) && !enemy.demon) {
+                this.sound_wraith_hit.play();
                 for (let i = 0; i < this.level.enemies.length; i++) {
-                    if (this.level.enemies[i].wraithIndex === enemy.wraithIndex) {
-                        this.level.enemies.splice(i, 1);
-                        this.wraiths_defeated += 1;
-                        document.getElementById('wraithsDefeated').innerHTML = this.wraiths_defeated;
+                    if (this.level.enemies[i].wraithIndex === enemy.wraithIndex) {                        
+                        enemy.energy = 0;
                     }
                 }
                 this.character.fly();
-                this.character.y = 150;
+                // this.character.y = 150;
                 // console.log('Jumped on: ', enemy, ' with wraithIndex ', enemy.wraithIndex);
             };
         });
