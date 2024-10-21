@@ -73,7 +73,6 @@ class Character extends MovableObject {
         'img/character/Fairy_03__HURT_008.png',
         'img/character/Fairy_03__HURT_009.png'        
     ];
-    paths_index = 0; // Zähler für die Bildfolge
     paths_die_total = this.PATHS_DIE.length;
 
     constructor() {

@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     intervalIds = [];
+    paths_index = 0; // Zähler für die Bildfolge
 
     setStoppableInterval(fn, time) {
         let id = setInterval(() => fn.call(this), time);

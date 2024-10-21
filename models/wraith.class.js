@@ -1,7 +1,7 @@
 class Wraith extends MovableObject {
 
     wraithIndex;
-    x = 430 + Math.random() * 1000; // -> Zufallszahl mal 1000, damit sie hoch genug ist, um ausreichend px zu erhalten; 430 fix -> Startpunkt nicht weiter links
+    x = 430 + Math.random() * 1000;
     y = Math.floor(Math.random() * (380 - 330)) + 330; // -> Zufallszahl zwischen 330 (inkl.) und 380 (exkl.)
     height = 100;
     width = 200;
@@ -11,7 +11,7 @@ class Wraith extends MovableObject {
         left: 65,
         right: 60
     };
-    speed = 0.15 + Math.random() * 1.5; // Mindestgeschwindigkeit 0.15, max. 0.25; "Math.random" ist immer eine zufällige Zahl zw. 0 und 1.
+    speed = 0.15 + Math.random() * 1.5;
     demon = false;
     sound_disappearing = new Audio('audio/wraith_disappearing.mp3');
     PATHS_MOVING_FORWARD = [
@@ -45,7 +45,6 @@ class Wraith extends MovableObject {
         'img/wraith/png/Dying/Wraith_02_Dying_013.png',
         'img/wraith/png/Dying/Wraith_02_Dying_014.png'
     ];
-    paths_index = 0; // Zähler für die Bildfolge
     paths_defeated_total = this.PATHS_DYING.length;
     
     constructor(i) {
@@ -66,19 +65,27 @@ class Wraith extends MovableObject {
                 } else {
                     clearInterval(intervalIdWraithDefeated);
                     this.loadImage(this.PATHS_DYING[this.paths_defeated_total - 1]);
+                    this.countDefeatedWraiths();
                     setTimeout(() => {
-                        this.sound_disappearing.play();
-                        world.wraiths_defeated += 1;
-                        document.getElementById('wraithsDefeated').innerHTML = world.wraiths_defeated;
-                        for (let i = 0; i < world.level.enemies.length; i++) {
-                            if (world.level.enemies[i].wraithIndex === this.wraithIndex) {
-                                world.level.enemies.splice(i, 1);
-                            }
-                        }
+                        this.sound_disappearing.play();                        
+                        this.deleteWraith();
                     }, 500);
                 }
             }            
         }, 80);
+    }
+
+    countDefeatedWraiths() {
+        world.wraiths_defeated += 1;
+        document.getElementById('wraithsDefeated').innerHTML = world.wraiths_defeated;
+    }
+
+    deleteWraith() {
+        for (let i = 0; i < world.level.enemies.length; i++) {
+            if (world.level.enemies[i].wraithIndex === this.wraithIndex) {
+                world.level.enemies.splice(i, 1);
+            }
+        }
     }
 
     setStoppableIntervals() {

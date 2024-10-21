@@ -72,7 +72,6 @@ class Demon extends MovableObject {
         'img/demon/explosion/2/Explosion_1_5.png',
         'img/demon/explosion/2/Explosion_1_6.png'
     ];
-    paths_index = 0; // Zähler für die Bildfolge
     paths_hurt_total = this.PATHS_HURT.length;
     paths_explosion_total = this.PATHS_EXPLOSION.length * 4;
     death_sound_index = 20;
