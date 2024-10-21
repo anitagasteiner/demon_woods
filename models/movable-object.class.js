@@ -35,10 +35,10 @@ class MovableObject extends DrawableObject {
             } else if (this.isBelowGround) {
                 this.y = 150;
             }
-        }, 1000 / 25); // 25-mal pro Sekunde
+        }, 1000 / 25);
     }
 
-    isAboveGround() { // returnt, ob das Objekt in der Luft ist
+    isAboveGround() {
         if (this instanceof ThrowableObject) { // -> damit die ThrowableObjects immer ganz nach unten fallen
             return true;
         } else {
@@ -86,7 +86,7 @@ class MovableObject extends DrawableObject {
     }
 
     isHurt() {
-        let timePassed = new Date().getTime() - this.lastHit; // Welche Zeitspanne ist vergangen? -> in Millisekunden
+        let timePassed = new Date().getTime() - this.lastHit; // vergangene Zeitspanne in Millisekunden
         timePassed = timePassed / 1000; // -> in Sekunden
         return timePassed < 0.5; // Wenn die vergangene Zeit unter 1/2 Sekunde liegt, wir also innerhalb der letzten 1/2 Sekunde getroffen wurden, dann returnt diese Funktion den Wert "true".
     }

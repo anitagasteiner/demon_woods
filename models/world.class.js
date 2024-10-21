@@ -3,7 +3,7 @@ class World {
     character = new Character();
     level = level1;
     canvas;
-    ctx; // Abkürzung für Context
+    ctx; // Context
     keyboard;
     camera_x = -100;
     statusBars = newStatusBars;
@@ -27,7 +27,7 @@ class World {
         this.setStoppableIntervals();
     }
 
-    draw() {
+    draw() { // TODO zu lang?
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Dadurch wird das Bild gelöscht, bevor ein neues gezeichnet wird.
 
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
@@ -57,7 +57,7 @@ class World {
         }); // -> In dieser Methode wird die "draw"-Methode so oft aufgerufen, wie es die Grafikkarte hergibt. Die Funktion in "requestAnimationFrame" wird ausgeführt, sobald das darüber alles fertig gezeichnet wurde, also asynchron, ein wenig später. Das Wort "this" ist innerhalb dieser Funktion nicht mehr bekannt, daher brauchen wir eine Variable (hier: "self").
     }
 
-    setWorld() { // Das Objekt "keyboard" (damit die Keyboard-Funktionen) wird durch diese Funktion an zB den Character übergeben.
+    setWorld() {
         this.character.world = this; // Der "character" hat eine Variable "world", durch die nun auf die Variablen der "world" hier zugegriffen werden kann, u.a. auch auf "keyboard".
     }
 
@@ -138,42 +138,66 @@ class World {
     }
 
     checkCollisions() {
+        this.collidingEnemy();
+        this.collidingApple();
+        this.collidingCrystal();
+    }
+
+    collidingEnemy() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.isJumpingOn(enemy)) {
                 this.character.hit();
                 this.statusBars[0].setPercentage(this.statusBars[0].paths, this.character.energy);
             };
         });
+    }
+
+    collidingApple() {
         this.level.apples.forEach((apple) => {
             if (this.character.isColliding(apple) && this.statusBars[1].percentage < 100) {
                 this.statusBars[1].percentage += 20;
                 this.statusBars[1].setPercentage(this.statusBars[1].paths, this.statusBars[1].percentage);
                 this.sound_pickup_apple.play();
+                this.countCollectedApples();                
                 setTimeout(() => {
-                    for (let i = 0; i < this.level.apples.length; i++) {
-                        if (this.level.apples[i].appleIndex === apple.appleIndex) {
-                            this.level.apples.splice(i, 1);
-                            this.apples_collected += 1;
-                            document.getElementById('applesCollected').innerHTML = this.apples_collected;
-                        }
-                    }
+                    this.deleteApple(apple);                    
                 }, 100);
             };
         });
+    }
+
+    countCollectedApples() {
+        this.apples_collected += 1;
+        document.getElementById('applesCollected').innerHTML = this.apples_collected;
+    }
+
+    deleteApple(apple) {
+        for (let i = 0; i < this.level.apples.length; i++) {
+            if (this.level.apples[i].appleIndex === apple.appleIndex) {
+                this.level.apples.splice(i, 1);
+            }
+        }
+    }
+
+    collidingCrystal() {
         this.level.crystals.forEach((crystal) => {
             if (this.character.isColliding(crystal) && this.statusBars[2].percentage < 100) {
                 this.statusBars[2].percentage += 20;
                 this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
                 this.sound_pickup_crystal.play();
                 setTimeout(() => {
-                    for (let i = 0; i < this.level.crystals.length; i++) {
-                        if (this.level.crystals[i].crystalIndex === crystal.crystalIndex) {
-                            this.level.crystals.splice(i, 1);
-                        }
-                    }
+                    this.deleteCrystal(crystal);
                 }, 100);
             };
         });
+    }
+
+    deleteCrystal(crystal) {
+        for (let i = 0; i < this.level.crystals.length; i++) {
+            if (this.level.crystals[i].crystalIndex === crystal.crystalIndex) {
+                this.level.crystals.splice(i, 1);
+            }
+        }
     }
 
     checkJumpingOn() {
@@ -186,8 +210,6 @@ class World {
                     }
                 }
                 this.character.fly();
-                // this.character.y = 150;
-                // console.log('Jumped on: ', enemy, ' with wraithIndex ', enemy.wraithIndex);
             };
         });
     }

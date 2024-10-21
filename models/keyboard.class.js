@@ -1,10 +1,8 @@
-class Keyboard { // TODO: Use SPACE to throw and delete T?
+class Keyboard {
 
     LEFT = false;
     RIGHT = false;
     UP = false;
-    // DOWN = false;
     SPACE = false;
-    // T = false;
 
 }
