@@ -95,4 +95,24 @@ class MovableObject extends DrawableObject {
         return this.energy == 0; // Wenn die "energy" "0" ist, dann kommt aus dieser Funktion der Wert "0" raus. (true/false)
     }
 
+    youWinAction() {
+        world.keyboard = 0;
+        this.showBannerWin();
+        this.handleBannerContainer();
+        setTimeout(() => {
+            this.handleBannerContainer();
+            this.handleRestartContainer();
+        }, 1500);
+    }
+
+    youLoseAction() {
+        world.keyboard = 0;
+        this.showBannerLose();
+        this.handleBannerContainer();
+        setTimeout(() => {
+            this.handleBannerContainer();
+            this.handleRestartContainer();
+        }, 1500);
+    }
+
 }

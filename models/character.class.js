@@ -6,7 +6,7 @@ class Character extends MovableObject {
     y = 150;
     offset = {
         top: 120,
-        bottom: 70,
+        bottom: 90,
         left: 270,
         right: 270
     };
@@ -103,16 +103,6 @@ class Character extends MovableObject {
                 }                
             }
         }, 300);
-    }
-
-    youLoseAction() {
-        world.keyboard = 0;
-        this.showBannerLose();
-        this.handleBannerContainer();
-            setTimeout(() => {
-                this.handleBannerContainer();
-                this.handleRestartContainer();
-            }, 1500);
     }
 
     setStoppableIntervals() {
