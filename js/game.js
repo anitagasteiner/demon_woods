@@ -10,8 +10,7 @@ function init() {
     initStatusBars();
     initButtons();
     canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard); // Bei der Erstellung einer neuen "World" kann ich schon eine Variable mitgeben: "canvas". // Das "keyboard"-Objekt wird auch an die Welt übergeben. -> Wird beides dort in den Constructor aufgenommen. 
-    // console.log('My character is ', world.character);
+    world = new World(canvas, keyboard);
     addCanvasEventListener();
     mobileButtonsPressEvents();
     cursorPointing();
@@ -22,7 +21,6 @@ function resetGame() {
     resetCanvasEventListener();
     resetIntervals();
     world = null;
-    // init();
 }
 
 function resetSound(sound) {
@@ -33,13 +31,25 @@ function resetSounds() {
     resetSound(world.sound_background);
     resetSound(world.sound_pickup_apple);
     resetSound(world.sound_pickup_crystal);
-    resetSound(world.sound_wraith_hit);
+    resetSoundsCharacter();
+    resetSoundsThrowableObjects();    
+    resetSoundsEnemies();
+}
+
+function resetSoundsCharacter() {
     resetSound(world.character.sound_walking);
     resetSound(world.character.sound_hurt);
     resetSound(world.character.sound_dying);
+}
+
+function resetSoundsThrowableObjects() {
     for (let i = 0; i < world.throwableObjects.length; i++) {
         resetSound(world.throwableObjects[i].sound_throwing);
     }
+}
+
+function resetSoundsEnemies() {
+    resetSound(world.sound_wraith_hit);
     for (let i = 0; i < world.level.enemies.length; i++) {
         if (world.level.enemies[i].sound_demon_dead) {
             resetSound(world.level.enemies[i].sound_demon_dead);
@@ -110,17 +120,14 @@ function handleInfoboxContainer() {
     document.getElementById('infoboxContainer').classList.toggle('hide');
 }
 
-function closeRestartContainer() {
+function hideRestartContainer() {
     document.getElementById('restartContainer').classList.add('hide');
 }
 
-window.addEventListener('keydown', (e) => { // Wenn die jeweilige Taste gedrückt wird, wird die entsprechende Variable auf "true" gesetzt.
+window.addEventListener('keydown', (e) => {
     if (e.keyCode == 32) {
         keyboard.SPACE = true;
     }
-    // if (e.keyCode == 40) {
-    //     keyboard.DOWN = true;
-    // }
     if (e.keyCode == 38) {
         keyboard.UP = true;
     }
@@ -130,18 +137,12 @@ window.addEventListener('keydown', (e) => { // Wenn die jeweilige Taste gedrück
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;
     }
-    // if (e.keyCode == 84) {
-    //     keyboard.T = true;
-    // }
 });
 
-window.addEventListener('keyup', (e) => { // Wenn die jeweilige Taste losgelassen wird, wird die entsprechende Variable auf "false" gesetzt.
+window.addEventListener('keyup', (e) => {
     if (e.keyCode == 32) {
         keyboard.SPACE = false;
     }
-    // if (e.keyCode == 40) {
-    //     keyboard.DOWN = false;
-    // }
     if (e.keyCode == 38) {
         keyboard.UP = false;
     }
@@ -151,12 +152,9 @@ window.addEventListener('keyup', (e) => { // Wenn die jeweilige Taste losgelasse
     if (e.keyCode == 39) {
         keyboard.RIGHT = false;
     }
-    // if (e.keyCode == 84) {
-    //     keyboard.T = false;
-    // }
 });
 
-function mobileButtonsPressEvents() {
+function mobileButtonsPressEvents() { // TODO zu lang?
     document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.LEFT = true;
@@ -213,6 +211,26 @@ function handleCanvasTouch(event) {
 }
 
 function handleCanvasInteraction(pageX, pageY) {
+    let {x, y} = calculateCanvasXY(pageX, pageY);
+    world.buttons.forEach((button) => {
+        if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
+            if (button.content == 'info') {
+                handleInfoboxContainer();
+            } else if (button.content == 'sound') {
+                handleBackgroundSound(button);
+            } else if (button.content == 'restart') {
+                resetGame();
+                init();
+            } else if (button.content == 'fullscreen' && !fullscreen) {
+                openFullscreen(button);
+            } else if (button.content == 'fullscreen' && fullscreen) {
+                closeFullscreen(button);
+            }
+        }
+    });
+}
+
+function calculateCanvasXY(pageX, pageY) {
     // Ursprüngliche Größe des Canvas:
     let canvas_left = canvas.offsetLeft + canvas.clientLeft;
     let canvas_top = canvas.offsetTop + canvas.clientTop;
@@ -222,41 +240,24 @@ function handleCanvasInteraction(pageX, pageY) {
     // Relative x und y basierend auf der aktuellen Größe des Canvas (je nach benutztem Gerät):
     let x = (pageX - canvas_left) * (canvas.width / canvasWidth);
     let y = (pageY - canvas_top) * (canvas.height / canvasHeight);
-    world.buttons.forEach((button) => {
-        if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
-            if (button.content == 'info') {
-                handleInfoboxContainer();
-            } else if (button.content == 'sound') {
-                world.sound_background.muted = !world.sound_background.muted;
-                if (world.sound_background.muted) {
-                    button.loadImage('img/symbols/sound_off_orange.png');
-                } else {
-                    button.loadImage('img/symbols/sound_on_orange.png');
-                }
-            } else if (button.content == 'restart') {
-                resetGame();
-                init();
-            } else if (button.content == 'fullscreen' && !fullscreen) {
-                handleFullscreen();
-                button.loadImage('img/symbols/arrow_down_orange.png');
-                fullscreen = true;
-            } else if (button.content == 'fullscreen' && fullscreen) {
-                closeFullscreen();
-                button.loadImage('img/symbols/arrow_up_orange.png');
-                fullscreen = false;
-            }
-        }
-    });
+    return {
+        x: x,
+        y: y
+    };
+}
+
+function handleBackgroundSound(button) {
+    world.sound_background.muted = !world.sound_background.muted;
+    if (world.sound_background.muted) {
+        button.loadImage('img/symbols/sound_off_orange.png');
+    } else {
+        button.loadImage('img/symbols/sound_on_orange.png');
+    }
 }
 
 function cursorPointing() {
     canvas.addEventListener('mousemove', function (event) {
-        let canvas_left = canvas.offsetLeft + canvas.clientLeft;
-        let canvas_top = canvas.offsetTop + canvas.clientTop;
-        let canvasWidth = canvas.clientWidth;
-        let canvasHeight = canvas.clientHeight;
-        let x = (event.pageX - canvas_left) * (canvas.width / canvasWidth);
-        let y = (event.pageY - canvas_top) * (canvas.height / canvasHeight);
+        let {x, y} = calculateCanvasXY(event.pageX, event.pageY);
         let pointerOnButton = false;
         world.buttons.forEach((button) => {
             if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
@@ -271,22 +272,20 @@ function cursorPointing() {
     });    
 }
 
-function handleFullscreen() {
-    let fullscreen = document.getElementById('fullscreen');
-    openFullscreen(fullscreen);
-}
-
-function openFullscreen(fullscreen) {
-    if (fullscreen.requestFullscreen) {
-        fullscreen.requestFullscreen();
-    } else if (fullscreen.webkitRequestFullscreen) { /* Safari */
-        fullscreen.webkitRequestFullscreen();
-    } else if (fullscreen.msRequestFullscreen) { /* IE11 */
-        fullscreen.msRequestFullscreen();
+function openFullscreen(button) {
+    let fullscreenContainer = document.getElementById('fullscreen');
+    if (fullscreenContainer.requestFullscreen) {
+        fullscreenContainer.requestFullscreen();
+    } else if (fullscreenContainer.webkitRequestFullscreen) { /* Safari */
+        fullscreenContainer.webkitRequestFullscreen();
+    } else if (fullscreenContainer.msRequestFullscreen) { /* IE11 */
+        fullscreenContainer.msRequestFullscreen();
     }
+    button.loadImage('img/symbols/arrow_down_orange.png');
+    fullscreen = true;
 }
 
-function closeFullscreen() {
+function closeFullscreen(button) {
     if (document.exitFullscreen) {
       document.exitFullscreen();
     } else if (document.webkitExitFullscreen) { /* Safari */
@@ -294,15 +293,14 @@ function closeFullscreen() {
     } else if (document.msExitFullscreen) { /* IE11 */
       document.msExitFullscreen();
     }
+    button.loadImage('img/symbols/arrow_up_orange.png');
+    fullscreen = false;
   }
 
 function handleMobileBar() {
-    /* Storing user's device details in a variable*/
-    let details = navigator.userAgent;
-    /* Creating a regular expression containing some mobile devices keywords to search it in details string*/
-    let regexp = /android|iphone|kindle|ipad/i;
-    /* Using test() method to search regexp in details it returns boolean value*/
-    let isMobileDevice = regexp.test(details);
+    let details = navigator.userAgent; // Infos zum benutzten Gerät
+    let regexp = /android|iphone|kindle|ipad/i; // Keywords
+    let isMobileDevice = regexp.test(details); // Überprüfung, ob Keywords in Variable "details" vorhanden
     if (isMobileDevice) { 
         document.getElementById('mobile-bar-container-left').classList.remove('hide');
         document.getElementById('mobile-bar-container-right').classList.remove('hide');
