@@ -70,10 +70,7 @@ function initLevel() {
             new Crystal(5),
             new Crystal(6),
             new Crystal(7),
-            new Crystal(8),
-            new Crystal(9),
-            new Crystal(10),
-            new Crystal(11)
+            new Crystal(8)
         ],
         [
             new Apple(0),

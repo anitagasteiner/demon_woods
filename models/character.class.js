@@ -10,11 +10,6 @@ class Character extends MovableObject {
         left: 270,
         right: 270
     };
-    interval_idle = 170;
-    interval_walk = 50; // 50 ms = 20 mal pro Sekunde
-    interval_fly = 40;
-    interval_die = 300;
-    interval_hurt = 400;
     speed = 5;
     world;
     demon = false;
@@ -82,7 +77,7 @@ class Character extends MovableObject {
     paths_die_total = this.PATHS_DIE.length;
 
     constructor() {
-        super().loadImage(this.PATHS_IDLE[0]); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
+        super().loadImage(this.PATHS_IDLE[0]);
         this.loadImages(this.PATHS_IDLE);
         this.loadImages(this.PATHS_WALK);
         this.loadImages(this.PATHS_FLY);
@@ -93,10 +88,8 @@ class Character extends MovableObject {
         this.applyGravity();
     }
 
-    // TODO: animate(paths, interval) gibt es in movable-object.class.js -> hier auch nutzen?
-
     characterDies() { 
-        const intervalIdDie = setInterval(() => {  // dying
+        const intervalIdDie = setInterval(() => {
             this.sound_dying.pause();
             if (this.isDead()) {
                 this.sound_dying.play();
@@ -105,25 +98,29 @@ class Character extends MovableObject {
                     this.paths_index++;
                 } else {
                     clearInterval(intervalIdDie);
-                    this.loadImage(this.PATHS_DIE[this.paths_die_total - 1]);
-                    world.keyboard = 0;
-                    this.showBannerLose();
-                    this.handleBannerContainer();
-                    setTimeout(() => {
-                        this.handleBannerContainer();
-                        this.handleRestartContainer();
-                    }, 1500);
+                    this.loadImage(this.PATHS_DIE[this.paths_die_total - 1]);                    
+                    this.youLoseAction();
                 }                
             }
-        }, this.interval_die);
-    }    
+        }, 300);
+    }
+
+    youLoseAction() {
+        world.keyboard = 0;
+        this.showBannerLose();
+        this.handleBannerContainer();
+            setTimeout(() => {
+                this.handleBannerContainer();
+                this.handleRestartContainer();
+            }, 1500);
+    }
 
     setStoppableIntervals() {
-        this.setStoppableInterval(this.characterIdle, this.interval_idle);
-        this.setStoppableInterval(this.characterWalking, this.interval_walk);
-        this.setStoppableInterval(this.characterFly, this.interval_fly);
-        this.setStoppableInterval(this.characterHurt, this.interval_hurt);
-        this.setStoppableInterval(this.characterMove, 1000 / 60); // 60 mal pro Sekunde
+        this.setStoppableInterval(this.characterIdle, 170);
+        this.setStoppableInterval(this.characterWalking, 50);
+        this.setStoppableInterval(this.characterFly, 40);
+        this.setStoppableInterval(this.characterHurt, 400);
+        this.setStoppableInterval(this.characterMove, 15);
     }    
 
     characterIdle() {
@@ -167,7 +164,7 @@ class Character extends MovableObject {
         if (this.isAboveGround()) {
             this.sound_walking.pause();
         }
-        this.world.camera_x = -this.x -100; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt.
+        this.world.camera_x = -this.x -100; // Gegenteil der x-Achse des Characters, damit sich Camera genau gegengleich bewegt
     }
 
 }

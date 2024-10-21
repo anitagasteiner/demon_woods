@@ -191,12 +191,12 @@ function mobileButtonsPressEvents() { // TODO zu lang?
 
 function addCanvasEventListener() {
     canvas.addEventListener('click', handleCanvasClick, false);
-    canvas.addEventListener('touchstart', handleCanvasTouch, { passive: false }); //NEU
+    canvas.addEventListener('touchstart', handleCanvasTouch, { passive: false });
 }
 
 function resetCanvasEventListener() {
     canvas.removeEventListener('click', handleCanvasClick, false);
-    canvas.removeEventListener('touchstart', handleCanvasTouch, false); //NEU
+    canvas.removeEventListener('touchstart', handleCanvasTouch, false);
     addCanvasEventListener();
 }
 
@@ -205,7 +205,7 @@ function handleCanvasClick(event) {
 }
 
 function handleCanvasTouch(event) {
-    event.preventDefault(); // Verhindert, dass die Seite scrollt, wenn der Benutzer den Bildschirm berührt
+    event.preventDefault(); // verhindert, dass die Seite scrollt, wenn der Benutzer den Bildschirm berührt
     const touch = event.changedTouches[0];
     handleCanvasInteraction(touch.pageX, touch.pageY);
 }
@@ -276,9 +276,9 @@ function openFullscreen(button) {
     let fullscreenContainer = document.getElementById('fullscreen');
     if (fullscreenContainer.requestFullscreen) {
         fullscreenContainer.requestFullscreen();
-    } else if (fullscreenContainer.webkitRequestFullscreen) { /* Safari */
+    } else if (fullscreenContainer.webkitRequestFullscreen) { // Safari
         fullscreenContainer.webkitRequestFullscreen();
-    } else if (fullscreenContainer.msRequestFullscreen) { /* IE11 */
+    } else if (fullscreenContainer.msRequestFullscreen) { // IE11
         fullscreenContainer.msRequestFullscreen();
     }
     button.loadImage('img/symbols/arrow_down_orange.png');
@@ -288,9 +288,9 @@ function openFullscreen(button) {
 function closeFullscreen(button) {
     if (document.exitFullscreen) {
       document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { /* Safari */
+    } else if (document.webkitExitFullscreen) { // Safari
       document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE11 */
+    } else if (document.msExitFullscreen) { // IE11
       document.msExitFullscreen();
     }
     button.loadImage('img/symbols/arrow_up_orange.png');
