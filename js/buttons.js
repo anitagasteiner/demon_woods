@@ -5,6 +5,9 @@ const FULLSCREEN_ON = 'img/symbols/arrow_up_orange.png';
 
 let newButtons;
 
+/**
+ * Creates the buttons placed on the canvas. Each button passes the parameters for its path, its x value and its content information.
+ */
 function initButtons() {
     newButtons = [
         new Button(INFO, 510, 'info'),

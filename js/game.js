@@ -4,6 +4,9 @@ let world;
 let fullscreen = false;
 let pointerOnButton = false;
 
+/**
+ * Initialises the game to start playing it.
+ */
 function init() {
     hideStartScreen();
     initLevel();
@@ -16,6 +19,9 @@ function init() {
     cursorPointing();
 }
 
+/**
+ * Resets the game to play it again.
+ */
 function resetGame() {
     resetSounds();
     resetCanvasEventListener();
@@ -23,10 +29,17 @@ function resetGame() {
     world = null;
 }
 
+/**
+ * Resets a sound
+ * @param {object} sound - audio file to be resetted
+ */
 function resetSound(sound) {
     sound.muted = true;
 }
 
+/**
+ * Resets all sounds
+ */
 function resetSounds() {
     resetSound(world.sound_background);
     resetSound(world.sound_pickup_apple);
@@ -36,18 +49,27 @@ function resetSounds() {
     resetSoundsEnemies();
 }
 
+/**
+ * Resets the Character's sounds
+ */
 function resetSoundsCharacter() {
     resetSound(world.character.sound_walking);
     resetSound(world.character.sound_hurt);
     resetSound(world.character.sound_dying);
 }
 
+/**
+ * Resets the sounds of the Throwable Objects
+ */
 function resetSoundsThrowableObjects() {
     for (let i = 0; i < world.throwableObjects.length; i++) {
         resetSound(world.throwableObjects[i].sound_throwing);
     }
 }
 
+/**
+ * Resets the Enemies' sounds
+ */
 function resetSoundsEnemies() {
     resetSound(world.sound_wraith_hit);
     for (let i = 0; i < world.level.enemies.length; i++) {
@@ -61,6 +83,9 @@ function resetSoundsEnemies() {
     }
 }
 
+/**
+ * Resets all intervals
+ */
 function resetIntervals() {
     resetIntervalsWorld(),
     resetIntervalClouds();
@@ -70,11 +95,17 @@ function resetIntervals() {
     resetIntervalsEnemies();
 }
 
+/**
+ * Clears the Character's intervals
+ */
 function resetIntervalsCharacter() {
     world.character.intervalIds.forEach(clearInterval);
     clearInterval(world.character.intervalIdDie);
 }
 
+/**
+ * Clears the Enemies' intervals
+ */
 function resetIntervalsEnemies() {
     for (let i = 0; i < world.level.enemies.length; i++) {
         world.level.enemies[i].intervalIds.forEach(clearInterval);
@@ -86,48 +117,81 @@ function resetIntervalsEnemies() {
     clearInterval(world.level.enemies.intervalIdWraithDefeated);
 }
 
+/**
+ * Clears the interval of the Clouds
+ */
 function resetIntervalClouds() {
     clearInterval(world.level.clouds.intervalIdClouds);
 }
 
+/**
+ * Clears the interval of the Movable Objects
+ */
 function resetIntervalMovableObjects() {
     clearInterval(world.intervalIdAboveGround);
 }
 
+/**
+ * Clears the interval of the Throwable Objects
+ */
 function resetIntervalThrowableObjects() {
     clearInterval(world.intervalIdThrow);
 }
 
+/**
+ * Clears the intervals of the World
+ */
 function resetIntervalsWorld() {
     world.intervalIds.forEach(clearInterval);
     clearInterval(world.intervalIdRun);
     clearInterval(world.intervalIdHitEnemy);
 }
 
+/**
+ * Shows and hides the game description on the start screen
+ */
 function handleDescription() {
     document.getElementById('description').classList.toggle('hide');
 }
 
+/**
+ * Hides the start screen to be able to start the game
+ */
 function hideStartScreen() {
     document.getElementById('startScreen').classList.add('hide');
 }
 
+/**
+ * Shows the start screen if user doesn't want to play new game
+ */
 function showStartScreen() {
     document.getElementById('startScreen').classList.remove('hide');
 }
 
+/**
+ * Shows and hides the game description during the game
+ */
 function handleInfoboxContainer() {
     document.getElementById('infoboxContainer').classList.toggle('hide');
 }
 
+/**
+ * Hides the container that is shown after a finished game
+ */
 function hideRestartContainer() {
     document.getElementById('restartContainer').classList.add('hide');
 }
 
+/**
+ * Shows and hides the impressum
+ */
 function handleImpressum() {
     document.getElementById('impressum').classList.toggle('hide');
 }
 
+/**
+ * Adds Event Listener to register if user presses the keys space, up, left or right
+ */
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 32) {
         keyboard.SPACE = true;
@@ -143,6 +207,9 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
+/**
+ * Adds Event Listener to register if user stops pressing the keys space, up, left or right
+ */
 window.addEventListener('keyup', (e) => {
     if (e.keyCode == 32) {
         keyboard.SPACE = false;
@@ -158,34 +225,51 @@ window.addEventListener('keyup', (e) => {
     }
 });
 
-function mobileButtonsPressEvents() { // TODO zu lang?
+/**
+ * Checks if the user presses or stops pressing the buttons on the mobile version
+ */
+function mobileButtonsPressEvents() {
+    mobileButtonsPressed();
+    mobileButtonsNotPressed();
+}
+
+/**
+ * Adds Event Listeners to register if the user presses the buttons on the mobile version
+ */
+function mobileButtonsPressed() {
     document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.LEFT = true;
-    });
-    document.getElementById('btnLeft').addEventListener('touchend', (e) => {
-        e.preventDefault();
-        keyboard.LEFT = false;
     });
     document.getElementById('btnRight').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.RIGHT = true;
     });
-    document.getElementById('btnRight').addEventListener('touchend', (e) => {
-        e.preventDefault();
-        keyboard.RIGHT = false;
-    });
     document.getElementById('btnThrow').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.SPACE = true;
     });
-    document.getElementById('btnThrow').addEventListener('touchend', (e) => {
-        e.preventDefault();
-        keyboard.SPACE = false;
-    });
     document.getElementById('btnUp').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.UP = true;
+    });
+}
+
+/**
+ * Adds Event Listeners to register if the user stops pressing the buttons on the mobile version
+ */
+function mobileButtonsNotPressed() {
+    document.getElementById('btnLeft').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = false;
+    });
+    document.getElementById('btnRight').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = false;
+    });
+    document.getElementById('btnThrow').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = false;
     });
     document.getElementById('btnUp').addEventListener('touchend', (e) => {
         e.preventDefault();
@@ -193,27 +277,53 @@ function mobileButtonsPressEvents() { // TODO zu lang?
     });
 }
 
+/**
+ * Adds Event Listeners to register if user touches or clicks on canvas
+ */
 function addCanvasEventListener() {
     canvas.addEventListener('click', handleCanvasClick, false);
     canvas.addEventListener('touchstart', handleCanvasTouch, { passive: false });
 }
 
+/**
+ * Removes Event Listeners to register if user touches or clicks on canvas
+ */
 function resetCanvasEventListener() {
     canvas.removeEventListener('click', handleCanvasClick, false);
     canvas.removeEventListener('touchstart', handleCanvasTouch, false);
     addCanvasEventListener();
 }
 
+/**
+ * Handles a click event on the canvas element.
+ * Extracts the x and y coordinates from the event and passes them to the handleCanvasInteraction function.
+ *
+ * @param {MouseEvent} event - The click event object containing details about the user's interaction with the canvas, including coordinates.
+ */
 function handleCanvasClick(event) {
     handleCanvasInteraction(event.pageX, event.pageY);
 }
 
+/**
+ * Handles a touch event on the canvas element.
+ * Prevents the default scroll behavior and extracts the x and y coordinates from the first touch point.
+ * Passes the touch coordinates to the handleCanvasInteraction function.
+ * 
+ * @param {TouchEvent} event - The touch event object containing details about the user's interaction, including the touch points.
+ */
 function handleCanvasTouch(event) {
-    event.preventDefault(); // verhindert, dass die Seite scrollt, wenn der Benutzer den Bildschirm berührt
+    event.preventDefault();
     const touch = event.changedTouches[0];
     handleCanvasInteraction(touch.pageX, touch.pageY);
 }
 
+/**
+ * Processes interactions with canvas elements based on the x and y coordinates provided.
+ * Determines which button (if any) was clicked or touched by checking the coordinates against each button's position.
+ * Executes the corresponding action based on the button's content (info, sound, restart, fullscreen).
+ * @param {number} pageX - The x-coordinate of the interaction on the canvas (from the page).
+ * @param {number} pageY - The y-coordinate of the interaction on the canvas (from the page).
+ */
 function handleCanvasInteraction(pageX, pageY) {
     let {x, y} = calculateCanvasXY(pageX, pageY);
     world.buttons.forEach((button) => {
@@ -234,14 +344,18 @@ function handleCanvasInteraction(pageX, pageY) {
     });
 }
 
+/**
+ * Converts page coordinates to canvas coordinates, adjusting for the current size and position of the canvas element.
+ * This ensures that interactions on different devices or screen sizes are properly mapped to the canvas' internal coordinate system.
+ * @param {number} pageX - The x-coordinate from the page.
+ * @param {number} pageY - The y-coordinate from the page.
+ * @returns {object} - An object containing the calculated x and y coordinates relative to the canvas.
+ */
 function calculateCanvasXY(pageX, pageY) {
-    // Ursprüngliche Größe des Canvas:
     let canvas_left = canvas.offsetLeft + canvas.clientLeft;
     let canvas_top = canvas.offsetTop + canvas.clientTop;
-    // Aktuelle Größe des Canvas:
     let canvasWidth = canvas.clientWidth;
     let canvasHeight = canvas.clientHeight;
-    // Relative x und y basierend auf der aktuellen Größe des Canvas (je nach benutztem Gerät):
     let x = (pageX - canvas_left) * (canvas.width / canvasWidth);
     let y = (pageY - canvas_top) * (canvas.height / canvasHeight);
     return {
@@ -250,6 +364,10 @@ function calculateCanvasXY(pageX, pageY) {
     };
 }
 
+/**
+ * Toggles the background sound on or off and updates the button image to reflect the current sound state.
+ * @param {object} button - The button object that was interacted with.
+ */
 function handleBackgroundSound(button) {
     world.sound_background.muted = !world.sound_background.muted;
     if (world.sound_background.muted) {
@@ -259,6 +377,11 @@ function handleBackgroundSound(button) {
     }
 }
 
+/**
+ * Adds Event Listener to register the moving of the mouse.
+ * Changes the cursor style based on whether the mouse is hovering over a button on the canvas.
+ * When the mouse moves over a button, the cursor changes to a pointer, otherwise it resets to the default cursor.
+ */
 function cursorPointing() {
     canvas.addEventListener('mousemove', function (event) {
         let {x, y} = calculateCanvasXY(event.pageX, event.pageY);
@@ -276,6 +399,11 @@ function cursorPointing() {
     });    
 }
 
+/**
+ * Activates fullscreen mode for the specified container and updates the button image to indicate the fullscreen state.
+ * It uses browser-specific methods to request fullscreen for compatibility across different browsers.
+ * @param {object} button - The button object used to trigger fullscreen mode.
+ */
 function openFullscreen(button) {
     let fullscreenContainer = document.getElementById('fullscreen');
     if (fullscreenContainer.requestFullscreen) {
@@ -289,6 +417,11 @@ function openFullscreen(button) {
     fullscreen = true;
 }
 
+/**
+ * Exits fullscreen mode and updates the button image to reflect the change.
+ * It uses browser-specific methods to exit fullscreen for compatibility across different browsers.
+ * @param {object} button - The button object used to trigger the exit from fullscreen mode.
+ */
 function closeFullscreen(button) {
     if (document.exitFullscreen) {
       document.exitFullscreen();
@@ -299,12 +432,16 @@ function closeFullscreen(button) {
     }
     button.loadImage('img/symbols/arrow_up_orange.png');
     fullscreen = false;
-  }
+}
 
+/**
+ * Detects if the user is on a mobile device and displays the mobile bar if true.
+ * Uses the user agent string to identify mobile devices based on common keywords.
+ */
 function handleMobileBar() {
-    let details = navigator.userAgent; // Infos zum benutzten Gerät
-    let regexp = /android|iphone|kindle|ipad/i; // Keywords
-    let isMobileDevice = regexp.test(details); // Überprüfung, ob Keywords in Variable "details" vorhanden
+    let details = navigator.userAgent;
+    let regexp = /android|iphone|kindle|ipad/i;
+    let isMobileDevice = regexp.test(details);
     if (isMobileDevice) { 
         document.getElementById('mobile-bar-container-left').classList.remove('hide');
         document.getElementById('mobile-bar-container-right').classList.remove('hide');
