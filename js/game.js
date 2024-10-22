@@ -124,6 +124,10 @@ function hideRestartContainer() {
     document.getElementById('restartContainer').classList.add('hide');
 }
 
+function handleImpressum() {
+    document.getElementById('impressum').classList.toggle('hide');
+}
+
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 32) {
         keyboard.SPACE = true;

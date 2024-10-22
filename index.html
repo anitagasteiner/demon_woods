@@ -69,7 +69,7 @@
         <div id="restartContainer" class="hide">
             <div class="restart-bg">
                 <div class="restart-content">
-                    <div class="restart-result">                        
+                    <div class="restart-result">
                         <img src="img/wraith/wraith.png" class="restart-result-wraith">
                         <h4>Wraiths defeated: <span id="wraithsDefeated">0</span></h4>
                     </div>
@@ -140,15 +140,16 @@
                 <div class="start-screen-content">
                     <h2>Demon Woods</h2>
                     <div class="choices-container">
-                        <div onclick="init()" class="start-screen-mouseover pointer">
+                        <div onclick="init()" class="start-screen-mouseover pointer link-color">
                             <img class="start-screen-image" src="img/start/fairy.png"><br>
                             <span>Start Game</span>
                         </div>
-                        <div onclick="handleDescription()" class="start-screen-mouseover pointer">
+                        <div onclick="handleDescription()" class="start-screen-mouseover pointer link-color">
                             <img class="start-screen-image" src="img/start/box.png"><br>
                             <span>How to Play</span>
                         </div>
                     </div>
+                    <div class="impressum-link-container"><span class="pointer link-color" onclick="handleImpressum()">Impressum</span></div>
                     <div id="description" class="hide description pointer" onclick="handleDescription()">
                         <h3>How to Play</h3>
                         <p class="description-text">Use the following keys:</p>
@@ -185,6 +186,15 @@
                             </tr>
                         </table>
                         <p class="description-text">After having survived all wraiths, you will come to the big demon. Make sure to have enough crystals left to fight it! And when it's dead, don't touch its fire&nbsp;...</p>                    
+                    </div>
+                    <div id="impressum" class="impressum hide pointer" onclick="handleImpressum()">
+                        <h3>Impressum</h3>
+                        <p>&#169; Anita Gasteiner 2024</p>
+                        <p>Anita Gasteiner
+                        <br>Knotzenbachgasse 8a
+                        <br>1230 Wien</p>
+                        <p><b>Font:</b><br>Copyright &#169; 2011 by Botjo Nikoltchev, with Reserved Font Name <i>Sofadi</i>. This Font Software is licensed under the SIL Open Font License, Version 1.1.</p>
+                        <p><b>Images:</b><br><a href="https://craftpix.net/" target="_blank" class="link-color">CraftPix</a> (royalty-free) | <a href="https://pixabay.com" target="_blank" class="link-color">Pixabay</a> (royalty-free)</p>
                     </div>
                 </div>
             </div>
