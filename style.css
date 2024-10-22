@@ -282,18 +282,9 @@ canvas {
 
 @media only screen and (max-width: 550px) {
 
-    .choices-container {
-        display: flex;
-        flex-direction: column;
-    }
-
-}
-
-@media only screen and (max-width: 400px) {
-
     h2 {        
-        font-size: 34px; /* 44 */
-        margin: 25px; /* 50 */
+        font-size: 34px;
+        margin: 25px;
     }
 
     .start-screen-bg {
@@ -311,12 +302,12 @@ canvas {
     }
 
     .choices-container {
-        gap: 25px; /* 80 */
-        margin: 30px 40px 25px 40px; /* 0 80px 50px 80px */
+        gap: 25px;
+        margin: 30px 40px 25px 40px;
     }
 
     .start-screen-image {
-        height: 125px; /* 150 */
+        height: 125px;
     }
     
     .description {
@@ -345,6 +336,7 @@ canvas {
 }
 
 @media only screen and (max-height: 400px) {
+
     .start-screen-bg {
         background-image: unset;
     }
