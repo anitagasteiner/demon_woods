@@ -1,5 +1,11 @@
 let level1;
 
+/**
+ * Creates the objects needed for game level 1: enemies, clouds, bgObjects, grounds, plants, crystals, apples.
+ * Each wraith, crystal and apple passes the parameter for its index.
+ * Each cloud passes the parameter for its path.
+ * Each background object and ground passes the parameters for its path and x value.
+ */
 function initLevel() {
     level1 = new Level(
         [

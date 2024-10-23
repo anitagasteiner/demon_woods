@@ -1,3 +1,5 @@
+//TODO - Datei zu lang!!!
+
 let canvas;
 let keyboard = new Keyboard();
 let world;

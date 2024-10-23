@@ -27,7 +27,7 @@ class World {
         this.setStoppableIntervals();
     }
 
-    draw() { // TODO zu lang?
+    draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Dadurch wird das Bild gelöscht, bevor ein neues gezeichnet wird.
 
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.

@@ -24,6 +24,9 @@ const PATHS_STATUS_CRYSTALS = [
 ];
 let newStatusBars;
 
+/**
+ * Creates the status bars placed on the canvas. Each status bar passes the parameters for its paths, its y value and its percentage.
+ */
 function initStatusBars() {
     newStatusBars = [
         new StatusBar(PATHS_STATUS_HEALTH, 10, 100),

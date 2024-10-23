@@ -1,7 +1,10 @@
+/**
+ * Represents an apple object that can be collected in the game.
+ */
 class Apple extends CollectableObject {
     
     appleIndex;
-    y = 200 - Math.random() * 100; // 200 fix -> Mindesthöhe
+    y = 200 - Math.random() * 100;
     height = 50;
     width = 50;
     offset = {
@@ -12,6 +15,11 @@ class Apple extends CollectableObject {
     };
     path = 'img/apple/apple.png';
 
+
+    /**
+     * Creates a new Apple instance. Loads its image and assigns its index.
+     * @param {number} i - index of the apple
+     */
     constructor(i) {
         super().loadImage(this.path);
         this.appleIndex = i;

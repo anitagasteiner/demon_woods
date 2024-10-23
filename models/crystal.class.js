@@ -1,3 +1,6 @@
+/**
+ * Represents a crystal object that can be collected in the game.
+ */
 class Crystal extends CollectableObject {
     
     crystalIndex;
@@ -12,6 +15,10 @@ class Crystal extends CollectableObject {
     };
     path = 'img/crystal/crystal.png';
 
+    /**
+     * Creates a new Crystal instance. Loads its image and assigns its index.
+     * @param {number} i - index of the crystal
+     */
     constructor(i) {
         super().loadImage(this.path);
         this.crystalIndex = i;
