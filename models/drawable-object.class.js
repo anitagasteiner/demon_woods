@@ -52,11 +52,9 @@ class DrawableObject {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
-    // TODO - Hier weiter!!!
     /**
-     * 
-     * 
-     * 
+     * Draws a grey outline rectangle around the object on the specified canvas context, using adjusted dimensions based on the object's offset properties.
+     * The rectangle is drawn only if the object is an instance of Character, Crystal, Apple, Wraith, or Demon.
      * @param {CanvasRenderingContext2D} ctx - 2D rendering context of the canvas where the image will be drawn
      */
     drawRectangle(ctx) {
@@ -69,20 +67,33 @@ class DrawableObject {
         }
     }
 
+
+    /**
+     * Shows and hides the container for the you win/lose banner.
+     */
     handleBannerContainer() {
         document.getElementById('bannerContainer').classList.toggle('hide');
     }
     
+    /**
+     * Shows the you lose banner and hides the you win banner.
+     */
     showBannerLose() {
         document.getElementById('bannerLose').classList.remove('hide');
         document.getElementById('bannerWin').classList.add('hide');
     }
     
+    /**
+     * Shows the you win banner and hides the you lose banner.
+     */
     showBannerWin() {
         document.getElementById('bannerWin').classList.remove('hide');
         document.getElementById('bannerLose').classList.add('hide');
     }
 
+    /**
+     * Shows and hides the container that is shown after a finished game.
+     */
     handleRestartContainer() {
         document.getElementById('restartContainer').classList.toggle('hide');
     }

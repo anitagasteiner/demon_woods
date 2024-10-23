@@ -32,7 +32,7 @@ function resetGame() {
 }
 
 /**
- * Resets a sound
+ * Resets a sound.
  * @param {object} sound - audio file to be resetted
  */
 function resetSound(sound) {
@@ -40,7 +40,7 @@ function resetSound(sound) {
 }
 
 /**
- * Resets all sounds
+ * Resets all sounds.
  */
 function resetSounds() {
     resetSound(world.sound_background);
@@ -52,7 +52,7 @@ function resetSounds() {
 }
 
 /**
- * Resets the Character's sounds
+ * Resets the Character's sounds.
  */
 function resetSoundsCharacter() {
     resetSound(world.character.sound_walking);
@@ -61,7 +61,7 @@ function resetSoundsCharacter() {
 }
 
 /**
- * Resets the sounds of the Throwable Objects
+ * Resets the sounds of the Throwable Objects.
  */
 function resetSoundsThrowableObjects() {
     for (let i = 0; i < world.throwableObjects.length; i++) {
@@ -70,7 +70,7 @@ function resetSoundsThrowableObjects() {
 }
 
 /**
- * Resets the Enemies' sounds
+ * Resets the Enemies' sounds.
  */
 function resetSoundsEnemies() {
     resetSound(world.sound_wraith_hit);
@@ -86,7 +86,7 @@ function resetSoundsEnemies() {
 }
 
 /**
- * Resets all intervals
+ * Resets all intervals.
  */
 function resetIntervals() {
     resetIntervalsWorld(),
@@ -98,7 +98,7 @@ function resetIntervals() {
 }
 
 /**
- * Clears the Character's intervals
+ * Clears the Character's intervals.
  */
 function resetIntervalsCharacter() {
     world.character.intervalIds.forEach(clearInterval);
@@ -106,7 +106,7 @@ function resetIntervalsCharacter() {
 }
 
 /**
- * Clears the Enemies' intervals
+ * Clears the Enemies' intervals.
  */
 function resetIntervalsEnemies() {
     for (let i = 0; i < world.level.enemies.length; i++) {
@@ -120,28 +120,28 @@ function resetIntervalsEnemies() {
 }
 
 /**
- * Clears the interval of the Clouds
+ * Clears the interval of the Clouds.
  */
 function resetIntervalClouds() {
     clearInterval(world.level.clouds.intervalIdClouds);
 }
 
 /**
- * Clears the interval of the Movable Objects
+ * Clears the interval of the Movable Objects.
  */
 function resetIntervalMovableObjects() {
     clearInterval(world.intervalIdAboveGround);
 }
 
 /**
- * Clears the interval of the Throwable Objects
+ * Clears the interval of the Throwable Objects.
  */
 function resetIntervalThrowableObjects() {
     clearInterval(world.intervalIdThrow);
 }
 
 /**
- * Clears the intervals of the World
+ * Clears the intervals of the World.
  */
 function resetIntervalsWorld() {
     world.intervalIds.forEach(clearInterval);
@@ -150,49 +150,49 @@ function resetIntervalsWorld() {
 }
 
 /**
- * Shows and hides the game description on the start screen
+ * Shows and hides the game description on the start screen.
  */
 function handleDescription() {
     document.getElementById('description').classList.toggle('hide');
 }
 
 /**
- * Hides the start screen to be able to start the game
+ * Hides the start screen to be able to start the game.
  */
 function hideStartScreen() {
     document.getElementById('startScreen').classList.add('hide');
 }
 
 /**
- * Shows the start screen if user doesn't want to play new game
+ * Shows the start screen if user doesn't want to play new game.
  */
 function showStartScreen() {
     document.getElementById('startScreen').classList.remove('hide');
 }
 
 /**
- * Shows and hides the game description during the game
+ * Shows and hides the game description during the game.
  */
 function handleInfoboxContainer() {
     document.getElementById('infoboxContainer').classList.toggle('hide');
 }
 
 /**
- * Hides the container that is shown after a finished game
+ * Hides the container that is shown after a finished game.
  */
 function hideRestartContainer() {
     document.getElementById('restartContainer').classList.add('hide');
 }
 
 /**
- * Shows and hides the impressum
+ * Shows and hides the impressum.
  */
 function handleImpressum() {
     document.getElementById('impressum').classList.toggle('hide');
 }
 
 /**
- * Adds Event Listener to register if user presses the keys space, up, left or right
+ * Adds Event Listener to register if user presses the keys space, up, left or right.
  */
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 32) {
@@ -210,7 +210,7 @@ window.addEventListener('keydown', (e) => {
 });
 
 /**
- * Adds Event Listener to register if user stops pressing the keys space, up, left or right
+ * Adds Event Listener to register if user stops pressing the keys space, up, left or right.
  */
 window.addEventListener('keyup', (e) => {
     if (e.keyCode == 32) {
@@ -228,7 +228,7 @@ window.addEventListener('keyup', (e) => {
 });
 
 /**
- * Checks if the user presses or stops pressing the buttons on the mobile version
+ * Checks if the user presses or stops pressing the buttons on the mobile version.
  */
 function mobileButtonsPressEvents() {
     mobileButtonsPressed();
@@ -236,7 +236,7 @@ function mobileButtonsPressEvents() {
 }
 
 /**
- * Adds Event Listeners to register if the user presses the buttons on the mobile version
+ * Adds Event Listeners to register if the user presses the buttons on the mobile version.
  */
 function mobileButtonsPressed() {
     document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
@@ -258,7 +258,7 @@ function mobileButtonsPressed() {
 }
 
 /**
- * Adds Event Listeners to register if the user stops pressing the buttons on the mobile version
+ * Adds Event Listeners to register if the user stops pressing the buttons on the mobile version.
  */
 function mobileButtonsNotPressed() {
     document.getElementById('btnLeft').addEventListener('touchend', (e) => {
@@ -280,7 +280,7 @@ function mobileButtonsNotPressed() {
 }
 
 /**
- * Adds Event Listeners to register if user touches or clicks on canvas
+ * Adds Event Listeners to register if user touches or clicks on canvas.
  */
 function addCanvasEventListener() {
     canvas.addEventListener('click', handleCanvasClick, false);
@@ -288,7 +288,7 @@ function addCanvasEventListener() {
 }
 
 /**
- * Removes Event Listeners to register if user touches or clicks on canvas
+ * Removes Event Listeners to register if user touches or clicks on canvas.
  */
 function resetCanvasEventListener() {
     canvas.removeEventListener('click', handleCanvasClick, false);
@@ -300,7 +300,7 @@ function resetCanvasEventListener() {
  * Handles a click event on the canvas element.
  * Extracts the x and y coordinates from the event and passes them to the handleCanvasInteraction function.
  *
- * @param {MouseEvent} event - The click event object containing details about the user's interaction with the canvas, including coordinates.
+ * @param {MouseEvent} event - the click event object containing details about the user's interaction with the canvas, including coordinates
  */
 function handleCanvasClick(event) {
     handleCanvasInteraction(event.pageX, event.pageY);
@@ -311,7 +311,7 @@ function handleCanvasClick(event) {
  * Prevents the default scroll behavior and extracts the x and y coordinates from the first touch point.
  * Passes the touch coordinates to the handleCanvasInteraction function.
  * 
- * @param {TouchEvent} event - The touch event object containing details about the user's interaction, including the touch points.
+ * @param {TouchEvent} event - the touch event object containing details about the user's interaction, including the touch points
  */
 function handleCanvasTouch(event) {
     event.preventDefault();
@@ -323,8 +323,8 @@ function handleCanvasTouch(event) {
  * Processes interactions with canvas elements based on the x and y coordinates provided.
  * Determines which button (if any) was clicked or touched by checking the coordinates against each button's position.
  * Executes the corresponding action based on the button's content (info, sound, restart, fullscreen).
- * @param {number} pageX - The x-coordinate of the interaction on the canvas (from the page).
- * @param {number} pageY - The y-coordinate of the interaction on the canvas (from the page).
+ * @param {number} pageX - the x-coordinate of the interaction on the canvas (from the page)
+ * @param {number} pageY - the y-coordinate of the interaction on the canvas (from the page)
  */
 function handleCanvasInteraction(pageX, pageY) {
     let {x, y} = calculateCanvasXY(pageX, pageY);
@@ -349,9 +349,9 @@ function handleCanvasInteraction(pageX, pageY) {
 /**
  * Converts page coordinates to canvas coordinates, adjusting for the current size and position of the canvas element.
  * This ensures that interactions on different devices or screen sizes are properly mapped to the canvas' internal coordinate system.
- * @param {number} pageX - The x-coordinate from the page.
- * @param {number} pageY - The y-coordinate from the page.
- * @returns {object} - An object containing the calculated x and y coordinates relative to the canvas.
+ * @param {number} pageX - the x-coordinate from the page
+ * @param {number} pageY - the y-coordinate from the page
+ * @returns {object} - an object containing the calculated x and y coordinates relative to the canvas
  */
 function calculateCanvasXY(pageX, pageY) {
     let canvas_left = canvas.offsetLeft + canvas.clientLeft;
@@ -368,7 +368,7 @@ function calculateCanvasXY(pageX, pageY) {
 
 /**
  * Toggles the background sound on or off and updates the button image to reflect the current sound state.
- * @param {object} button - The button object that was interacted with.
+ * @param {object} button - the button object that was interacted with
  */
 function handleBackgroundSound(button) {
     world.sound_background.muted = !world.sound_background.muted;
@@ -404,7 +404,7 @@ function cursorPointing() {
 /**
  * Activates fullscreen mode for the specified container and updates the button image to indicate the fullscreen state.
  * It uses browser-specific methods to request fullscreen for compatibility across different browsers.
- * @param {object} button - The button object used to trigger fullscreen mode.
+ * @param {object} button - the button object used to trigger fullscreen mode
  */
 function openFullscreen(button) {
     let fullscreenContainer = document.getElementById('fullscreen');
@@ -422,7 +422,7 @@ function openFullscreen(button) {
 /**
  * Exits fullscreen mode and updates the button image to reflect the change.
  * It uses browser-specific methods to exit fullscreen for compatibility across different browsers.
- * @param {object} button - The button object used to trigger the exit from fullscreen mode.
+ * @param {object} button - the button object used to trigger the exit from fullscreen mode
  */
 function closeFullscreen(button) {
     if (document.exitFullscreen) {
