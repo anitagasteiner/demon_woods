@@ -1,3 +1,6 @@
+/**
+ * Represents a movable object.
+ */
 class MovableObject extends DrawableObject {
 
     canvasHeight = 480;
@@ -9,52 +12,83 @@ class MovableObject extends DrawableObject {
     intervalIds = [];
     paths_index = 0; // Zähler für die Bildfolge
 
+    /**
+     * Sets an interval that can be stopped later by storing its ID. 
+     * The provided function is repeatedly called at the specified time interval.
+     * The ID is pushed to the array "intervalIds".
+     * @param {function} fn - the function to be executed at each interval
+     * @param {number} time - the interval time between the function executions (in milliseconds)
+     */
     setStoppableInterval(fn, time) {
         let id = setInterval(() => fn.call(this), time);
         this.intervalIds.push(id);
     }
 
+    /**
+     * Moves the object to the left by decreasing its x-coordinate based on the object's speed value.
+     * Sets the object's direction to face left.
+     */
     moveLeft() {
-        this.x -= this.speed;  // Von der x-Koordinate werden soviel px abgezogen, wie in der Variable "speed" angegeben.
+        this.x -= this.speed;
         this.otherDirection = true;
     }
 
+    /**
+     * Moves the object to the right by increasing its x-coordinate based on the object's speed value.
+     * Sets the object's direction to face right.
+     */
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
     }
 
+    /**
+     * Sets the object's speedY value to 30.
+     */
     fly() {
         this.speedY = 30;
     }
 
-    applyGravity() { // Die y-Achse wird regelmäßig verringert.
+    /**
+     * Sets an interval to repeatedly decrease the object's y value using the speedY value.
+     * The speedY value is also repeatedly decreased using the acceleration value so that the object is falling down.
+     * If the object is not above ground and its speedY is not higher than 0, its y value is set to 150 to ensure that it lands on the ground on the same y position as it was before.
+     */
+    applyGravity() {
         const intervalIdAboveGround = setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
-                this.speedY -= this.acceleration; // negative Geschwindigkeit, damit das Objekt nach unten fällt
-            } else if (this.isBelowGround) {
+                this.speedY -= this.acceleration;
+            } else {
                 this.y = 150;
             }
         }, 1000 / 25);
     }
 
+    /**
+     * Checks if the object is above ground by checking if its y value is below 150.
+     * If the object is an instance of "ThrowableObject" it always returns true so that the throwable object does not stop at the ground but continues falling when the function "applyGravity()" is being executed.
+     * @returns {boolean} true if the object is an instance of "ThrowableObject" or if its y value is lower than 150
+     */
     isAboveGround() {
-        if (this instanceof ThrowableObject) { // -> damit die ThrowableObjects immer ganz nach unten fallen
+        if (this instanceof ThrowableObject) {
             return true;
         } else {
             return this.y < 150;
         }
     }
 
-    isBelowGround() {
-        if (this instanceof ThrowableObject) {
-            return false;
-        } else {
-            return this.y > 150;
-        }
-    }
+    // isBelowGround() {
+    //     if (this instanceof ThrowableObject) {
+    //         return false;
+    //     } else {
+    //         return this.y > 150;
+    //     }
+    // }
 
+
+    // TODO - hier weiter!!!!!
+    
     isColliding(movableObject) {
         return this.x + this.width - this.offset.right > movableObject.x + movableObject.offset.left
         && this.x + this.offset.left < movableObject.x + movableObject.width - movableObject.offset.right
