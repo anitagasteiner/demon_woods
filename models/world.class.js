@@ -31,7 +31,6 @@ class World {
         this.keyboard = keyboard;        
         this.draw();
         this.setWorld();
-        // this.run();
         this.setStoppableIntervals();
     }
 
@@ -108,7 +107,7 @@ class World {
     }
 
     /**
-     * Iterates through a list of objects and adds each object to the map by calling the "addToMap()" function. All objects in the provided array are drawn onto the canvas.
+     * Iterates through a list of objects and adds each object to the map by calling the "addToMap" function. All objects in the provided array are drawn onto the canvas.
      * @param {array<object>} objects - array of objects to be added to the map
      */
     addObjectsToMap(objects) {
@@ -155,15 +154,19 @@ class World {
     }
 
     /**
-     * // TODO - hier weiter!!!
+     * Proofs if the character is not dead, if the space key is pressed/button to throw is klicked/touched, and if there are crystals left to be thrown.
+     * Creates a new throwable object (crystal). Its x value depends on the characters direction.
+     * Reduces the crystal status bar percentage and refreshes the status bar image.
+     * Triggers the "checkHitEnemy" function to check if the throwable object hit an enemy.
      */
     checkThrowObjects() {
         let positionX = this.character.x + 300;
+        let positionY = this.character.y + 200;
         if (this.character.otherDirection == true) {
             positionX -= 100;
         }
         if (!this.character.isDead() && this.keyboard.SPACE && this.statusBars[2].percentage > 0) {
-            let crystal = new ThrowableObject(positionX, this.character.y + 200, this.character.otherDirection);
+            let crystal = new ThrowableObject(positionX, positionY, this.character.otherDirection);
             this.throwableObjects.push(crystal);
             this.statusBars[2].percentage -= 20;
             this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
@@ -171,6 +174,12 @@ class World {
         }
     }
 
+    /**
+     * Sets an interval to constantly check if the thrown crystal is colliding with an enemy.
+     * If the hit enemy is not the demon, the corresponding sound is played and the enemy's energy is set to 0.
+     * If the hit enemy is the demon, the "hit" function is triggered so that the demon looses his energy step by step.
+     * @param {object} crystal - crystal that was thrown
+     */
     checkHitEnemy(crystal) {
         const intervalIdHitEnemy = setInterval(() => {
             this.level.enemies.forEach((enemy) => {
@@ -186,12 +195,20 @@ class World {
         }, 500);
     }
 
+    /**
+     * Triggers functions to check if the character is colliding with an enemy/an apple/a crystal.
+     */
     checkCollisions() {
         this.collidingEnemy();
         this.collidingApple();
         this.collidingCrystal();
     }
 
+    /**
+     * Loops through all enemies and checks if the character is colliding with them but not jumping on them.
+     * The "hit" function is triggered so that the character looses his energy step by step.
+     * Refreshes the health status bar image depending on the aktualized character's energy.
+     */
     collidingEnemy() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.isJumpingOn(enemy)) {
@@ -201,6 +218,13 @@ class World {
         });
     }
 
+    /**
+     * Loops through all apples and checks if the character is colliding with them and if the apple status bar is not full.
+     * Increases the apple status bar percentage and refreshes the status bar image.
+     * Plays the pickup apple sound.
+     * Triggers the "countCollectedApples" function to add one apple to the "apples_collected" variable.
+     * Sets a timeout to remove the collected apple.
+     */
     collidingApple() {
         this.level.apples.forEach((apple) => {
             if (this.character.isColliding(apple) && this.statusBars[1].percentage < 100) {
@@ -215,11 +239,19 @@ class World {
         });
     }
 
+    /**
+     * Increases the amout of the collected apples stored in the "apples_collected" variable by adding 1.
+     * Refreshes the HTML text to display the sum of collected apples to the user as soon as the game will be finished.
+     */
     countCollectedApples() {
         this.apples_collected += 1;
         document.getElementById('applesCollected').innerHTML = this.apples_collected;
     }
 
+    /**
+     * Deletes the collected apple from the apples array.
+     * @param {object} apple - apple object to be deleted
+     */
     deleteApple(apple) {
         for (let i = 0; i < this.level.apples.length; i++) {
             if (this.level.apples[i].appleIndex === apple.appleIndex) {
@@ -228,6 +260,12 @@ class World {
         }
     }
 
+    /**
+     * Loops through all crystals and checks if the character is colliding with them and if the crystal status bar is not full.
+     * Increases the crystal status bar percentage and refreshes the status bar image.
+     * Plays the pickup crystal sound.
+     * Sets a timeout to remove the collected crystal.
+     */
     collidingCrystal() {
         this.level.crystals.forEach((crystal) => {
             if (this.character.isColliding(crystal) && this.statusBars[2].percentage < 100) {
@@ -241,6 +279,10 @@ class World {
         });
     }
 
+    /**
+     * Deletes the collected crystal from the crystals array.
+     * @param {object} crystal - crystal object to be deleted
+     */
     deleteCrystal(crystal) {
         for (let i = 0; i < this.level.crystals.length; i++) {
             if (this.level.crystals[i].crystalIndex === crystal.crystalIndex) {
@@ -249,6 +291,12 @@ class World {
         }
     }
 
+    /**
+     * Loops through all enemies and checks if the character is jumping on them (excluding the demon).
+     * Plays the wraith hit sound.
+     * Sets the hit enemy's energy to 0.
+     * Triggers the "fly" function to provoke that the character flies.
+     */
     checkJumpingOn() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpingOn(enemy) && !enemy.demon) {
@@ -263,6 +311,13 @@ class World {
         });
     }
     
+    /**
+     * Checks if the percentage of the apple status bar is full and if the percentage of the health status bar is not full.
+     * Increases the character's energy so that it gains back one life.
+     * Refreshes the health status bar image depending on the aktualized character's energy.
+     * Sets the apple status bar percentage to 0 and refreshes the status bar image.
+     * Increases the height and width of the health status bar and sets a timeout to decrease it again in order to animate it.
+     */
     checkBonusLife() {
         if (this.statusBars[1].percentage == 100 && this.statusBars[0].percentage < 100) {
             this.character.energy += 20;

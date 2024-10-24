@@ -32,7 +32,7 @@ class ThrowableObject extends MovableObject {
 
     /**
      * Plays the throwing sound and sets the speedY value of the throwable object to 30.
-     * Triggers the "applyGravity()" function so that the throwable object falls down.
+     * Triggers the "applyGravity" function so that the throwable object falls down.
      * Sets an interval to constantly change the x value of the throwable object so that it makes a curve while falling.
      * Checks the "otherDirection" value so that the throwable object is thrown into the right direction. If the throwing object (character) is headed backwards, the x value is reduced, otherwise it is increased.
      * @param {boolean} otherDirection - value containing information if the throwing object (character) is directed forwards or backwards

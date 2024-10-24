@@ -186,7 +186,7 @@ class Demon extends MovableObject {
 
     /**
      * Checks if the demon is not dead and if the character is so nearby that the demon is seen on the canvas.
-     * Triggers the "moveLeft()" function to move the demon towards the character.
+     * Triggers the "moveLeft" function to move the demon towards the character.
      */
     demonMove() {
         if (!this.isDead() && this.x - world.character.x + world.character.width - world.character.offset.right < 1000) {
@@ -208,7 +208,7 @@ class Demon extends MovableObject {
      * Plays the demon hurt sound.
      * Cycles through hurt animation frames once and then clears the interval to stop the animation.
      * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
-     * Triggers the "demonShrinksFirstTime()" function to reduce the size of the demon.
+     * Triggers the "demonShrinksFirstTime" function to reduce the size of the demon.
      */
     demonHurtFirstTime() {
         const intervalIdDemonHurt1 = setInterval(() => {
@@ -249,7 +249,7 @@ class Demon extends MovableObject {
      * Plays the demon hurt sound.
      * Cycles through hurt animation frames once and then clears the interval to stop the animation.
      * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
-     * Triggers the "demonShrinksSecondTime()" function to reduce the size of the demon again.
+     * Triggers the "demonShrinksSecondTime" function to reduce the size of the demon again.
      */
     demonHurtSecondTime() {
         const intervalIdDemonHurt2 = setInterval(() => {
@@ -290,7 +290,7 @@ class Demon extends MovableObject {
      * Plays the demon hurt sound.
      * Cycles through hurt animation frames once and then clears the interval to stop the animation.
      * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
-     * Triggers the "demonShrinksThirdTime()" function to reduce the size of the demon again.
+     * Triggers the "demonShrinksThirdTime" function to reduce the size of the demon again.
      */
     demonHurtThirdTime() {
         const intervalIdDemonHurt3 = setInterval(() => {
