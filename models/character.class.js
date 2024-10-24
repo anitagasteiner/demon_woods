@@ -128,7 +128,7 @@ class Character extends MovableObject {
         this.setStoppableInterval(this.characterFly, 40);
         this.setStoppableInterval(this.characterHurt, 400);
         this.setStoppableInterval(this.characterMove, 15);
-    }    
+    }
 
     /**
      * Checks if the character is not dead and no key or button to move it is klicked/touched, and cycles through idle animation frames.
