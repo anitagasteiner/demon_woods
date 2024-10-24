@@ -68,7 +68,7 @@ class MovableObject extends DrawableObject {
     /**
      * Checks if the object is above ground by checking if its y value is below 150.
      * If the object is an instance of "ThrowableObject" it always returns true so that the throwable object does not stop at the ground but continues falling when the function "applyGravity()" is being executed.
-     * @returns {boolean} true if the object is an instance of "ThrowableObject" or if its y value is lower than 150
+     * @returns {boolean} - true if the object is an instance of "ThrowableObject" or if its y value is lower than 150, otherwise false
      */
     isAboveGround() {
         if (this instanceof ThrowableObject) {
@@ -78,17 +78,19 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    // isBelowGround() {
+    // isBelowGround() { // TODO - entfernen!?
     //     if (this instanceof ThrowableObject) {
     //         return false;
     //     } else {
     //         return this.y > 150;
     //     }
     // }
-
-
-    // TODO - hier weiter!!!!!
     
+    /**
+     * Checks if this movable object is colliding with another movable object by comparing their positions and dimensions, including offsets to account for precise collision detection.
+     * @param {object} movableObject - the other movable object to check for a collision with
+     * @returns {boolean} - true if this object is colliding with the other object, otherwise false
+     */
     isColliding(movableObject) {
         return this.x + this.width - this.offset.right > movableObject.x + movableObject.offset.left
         && this.x + this.offset.left < movableObject.x + movableObject.width - movableObject.offset.right
@@ -96,6 +98,11 @@ class MovableObject extends DrawableObject {
         && this.y + this.height - this.offset.bottom > movableObject.y + movableObject.offset.top;
     }
 
+    /**
+     * Checks if this movable object is jumping on another movable object (wraith) by comparing their positions and dimensions, including offsets to account for precise collision detection.
+     * @param {object} wraith - the wraith to check for a collision with
+     * @returns {boolean} - true if this object's bottom side is colliding with the top of the other object, otherwise false
+     */
     isJumpingOn(wraith) {
         return this.x + this.width - this.offset.right > wraith.x + wraith.offset.left
         && this.x + this.offset.left < wraith.x + wraith.width - wraith.offset.right
@@ -103,15 +110,22 @@ class MovableObject extends DrawableObject {
         && this.y + this.height - this.offset.bottom < wraith.y + wraith.offset.top + 15;
     }
 
+    /**
+     * Evoces the function "looseEnergy()" to reduce the energy value of a hidden object.
+     * If the energy value goes below 0, this value is set to 0. Otherwise, the timestamp of the last hit is recorded in the variable "lastHit".
+     */
     hit() {
         this.looseEnergy();
         if (this.energy < 0) {
             this.energy = 0;
         } else {
-            this.lastHit = new Date().getTime(); // So kann Zeit in Zahlenform gespeichert werden. -> Millisekunden, die seit dem 1.1.1970 vergangen sind
+            this.lastHit = new Date().getTime();
         }
     }
 
+    /**
+     * Reduces the energy value of an object. If it's a demon, the energy value is reduced by 25, if it's not a demon, the energy value is reduced by 20.
+     */
     looseEnergy() {
         if (this.demon) {
             this.energy -= 25;
@@ -120,16 +134,29 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * The time passed between the last hit (recorded in the variable "lastHit") and the actual time is recorded in the variable "timePassed" (in seconds).
+     * @returns {boolean} - true if the passed time is below 0.5 seconds, otherwise false
+     */
     isHurt() {
-        let timePassed = new Date().getTime() - this.lastHit; // vergangene Zeitspanne in Millisekunden
-        timePassed = timePassed / 1000; // -> in Sekunden
-        return timePassed < 0.5; // Wenn die vergangene Zeit unter 1/2 Sekunde liegt, wir also innerhalb der letzten 1/2 Sekunde getroffen wurden, dann returnt diese Funktion den Wert "true".
+        let timePassed = new Date().getTime() - this.lastHit;
+        timePassed = timePassed / 1000;
+        return timePassed < 0.5;
     }
 
+    /**
+     * Checks if the object's energy is 0.
+     * @returns {boolean} - true if the object's energy is 0, otherwise false
+     */
     isDead() {
-        return this.energy == 0; // Wenn die "energy" "0" ist, dann kommt aus dieser Funktion der Wert "0" raus. (true/false)
+        return this.energy == 0;
     }
 
+    /**
+     * Resets the keyboard variable so that the character cannot be moved any more.
+     * Shows the you win banner.
+     * After 1.3 seconds, this banner is hidden and a container with the game result is shown. The user can decide whether to play again or not.
+     */
     youWinAction() {
         world.keyboard = 0;
         this.showBannerWin();
@@ -137,9 +164,14 @@ class MovableObject extends DrawableObject {
         setTimeout(() => {
             this.handleBannerContainer();
             this.handleRestartContainer();
-        }, 1500);
+        }, 1300);
     }
 
+    /**
+     * Resets the keyboard variable so that the character cannot be moved any more.
+     * Shows the you lose banner.
+     * After 1.3 seconds, this banner is hidden and a container with the game result is shown. The user can decide whether to play again or not.
+     */
     youLoseAction() {
         world.keyboard = 0;
         this.showBannerLose();
