@@ -5,7 +5,7 @@ class Wraith extends MovableObject {
 
     wraithIndex;
     x = 430 + Math.random() * 1000;
-    y = Math.floor(Math.random() * (380 - 330)) + 330; // -> Zufallszahl zwischen 330 (inkl.) und 380 (exkl.)
+    y = Math.floor(Math.random() * (380 - 330)) + 330;
     height = 100;
     width = 200;
     offset = {
@@ -59,7 +59,7 @@ class Wraith extends MovableObject {
      * @param {number} i - index of the current wraith
      */
     constructor(i) {
-        super().loadImage(this.PATHS_MOVING_FORWARD[0]); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
+        super().loadImage(this.PATHS_MOVING_FORWARD[0]);
         this.loadImages(this.PATHS_MOVING_FORWARD);
         this.loadImages(this.PATHS_DYING);
         this.wraithDefeated();
