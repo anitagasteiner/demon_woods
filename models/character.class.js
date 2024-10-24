@@ -78,12 +78,11 @@ class Character extends MovableObject {
     ];
     paths_die_total = this.PATHS_DIE.length;
 
-
     /**
      * Creates a new Character instance.
      * Loads its images for different actions (idle, walk, fly, die, being hurt).
      * Sets up the function to handle the death of the character.
-     * Sets up the function "setStoppableIntervals" to handle the different actions of the character that have to be stoppable when the game is restarted.
+     * Sets up the function "setStoppableIntervals" to handle the different actions of the character that have to be stopped when the game is restarted.
      * Sets up the function to apply gravity.
      */
     constructor() {

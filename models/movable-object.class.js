@@ -77,14 +77,6 @@ class MovableObject extends DrawableObject {
             return this.y < 150;
         }
     }
-
-    // isBelowGround() { // TODO - entfernen!?
-    //     if (this instanceof ThrowableObject) {
-    //         return false;
-    //     } else {
-    //         return this.y > 150;
-    //     }
-    // }
     
     /**
      * Checks if this movable object is colliding with another movable object by comparing their positions and dimensions, including offsets to account for precise collision detection.

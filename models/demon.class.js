@@ -1,3 +1,6 @@
+/**
+ * Represents the demon object.
+ */
 class Demon extends MovableObject {
 
     x = 2600;
@@ -77,10 +80,17 @@ class Demon extends MovableObject {
     death_sound_index = 20;
     hit_sound_index = 1;
 
+    /**
+     * Creates a new Demon instance.
+     * Loads its images for different actions (idle, attack, being hurt, explosion).
+     * Sets up the function to handle the death of the demon.
+     * Sets up the function to handle the actions of the demon being hurt.
+     * Sets up the function "setStoppableIntervals" to handle the different actions of the demon that have to be stopped when the game is restarted.
+     */
     constructor() {
         super().loadImage(this.PATHS_IDLE[0]);
-        this.loadImages(this.PATHS_ATTACK);        
         this.loadImages(this.PATHS_IDLE);
+        this.loadImages(this.PATHS_ATTACK);
         this.loadImages(this.PATHS_HURT);
         this.loadImages(this.PATHS_EXPLOSION);
         this.demonDead();
@@ -88,11 +98,19 @@ class Demon extends MovableObject {
         this.setStoppableIntervals();
     }
 
+    /**
+     * Sets stoppable intervals to handle the different actions of the demon (move, idle).
+     */
     setStoppableIntervals() {
         this.setStoppableInterval(this.demonMove, 20);
         this.setStoppableInterval(this.demonIdle, 500);
     }
 
+    /**
+     * Sets an interval to constantly check if the demon is dead.
+     * If the demon is dead, it plays the corresponding sound.
+     * After 0.5 seconds, an explosion is shown. When this animation is finished, the interval is cleared, the demon is deleted and the you win action is triggered.
+     */
     demonDead() {
         const intervalIdDemonDead = setInterval(() => {
             if (this.isDead()) {
@@ -112,6 +130,9 @@ class Demon extends MovableObject {
         }, 100);
     }
 
+    /**
+     * Plays the sound corresponding to the death of the demon as long as the "death_sound_index" value is above 0.
+     */
     playSoundDemonDead() {
         if (this.death_sound_index > 0) {
             this.sound_demon_dead.play();
@@ -119,6 +140,10 @@ class Demon extends MovableObject {
         }
     }
 
+    /**
+     * Cycles through the explosion animation frames.
+     * Changes the demons values y, x, height, width and offset regarding to the dimensions of the explosion.
+     */
     showExplosion() {
         this.changePictures(this.PATHS_EXPLOSION);
         this.y = 65;
@@ -133,6 +158,9 @@ class Demon extends MovableObject {
         };        
     }
 
+    /**
+     * Cycles through the enemies array to find the demon's position and deletes it.
+     */
     deleteDemon() {
         for (let i = 0; i < world.character.world.level.enemies.length; i++) {
             if (world.character.world.level.enemies[i].demon == true) {
@@ -141,6 +169,10 @@ class Demon extends MovableObject {
         }
     }
 
+    /**
+     * Checks if the demon is not dead and cycles through either attack or idle animation frames.
+     * If the character is near the demon, it cycles through the attack animation frames and plays the attack sound, otherwise it cycles through the idle animation frames.
+     */
     demonIdle() {
         if (!this.isDead()) {
             if (this.x - world.character.x + world.character.width - world.character.offset.right < 600) {
@@ -152,18 +184,28 @@ class Demon extends MovableObject {
         }
     }
 
+    /**
+     * Checks if the demon is not dead and if the character is so nearby that the demon is seen on the canvas.
+     * Triggers the "moveLeft()" function to move the demon towards the character.
+     */
     demonMove() {
         if (!this.isDead() && this.x - world.character.x + world.character.width - world.character.offset.right < 1000) {
             this.moveLeft();
         }
     }
 
+    /**
+     * Triggers the functions to handle the different actions whether the demon is hurt for the first, second or third time.
+     */
     demonHurt() {
         this.demonHurtFirstTime();
         this.demonHurtSecondTime();
         this.demonHurtThirdTime();
     }
 
+    /**
+     * // TODO - hier weiter!!!
+     */
     demonHurtFirstTime() {
         const intervalIdDemonHurt1 = setInterval(() => {
             if (!this.isDead() && this.energy == 75) {
