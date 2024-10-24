@@ -1,3 +1,6 @@
+/**
+ * Represents a wraith object.
+ */
 class Wraith extends MovableObject {
 
     wraithIndex;
@@ -47,6 +50,14 @@ class Wraith extends MovableObject {
     ];
     paths_defeated_total = this.PATHS_DYING.length;
     
+    /**
+     * Creates a new Wraith instance.
+     * Loads its images for different actions (moving forward, dying).
+     * Sets up the function to handle the death of the defeated wraith.
+     * Sets up the function "setStoppableIntervals" to handle the movement and animation of the wraith that have to be stopped when the game is restarted.
+     * Stores the index value to the variable "wraithIndex".
+     * @param {number} i - index of the current wraith
+     */
     constructor(i) {
         super().loadImage(this.PATHS_MOVING_FORWARD[0]); // Funktion "loadImage" wird von der übergeordneten Klasse aufgerufen.
         this.loadImages(this.PATHS_MOVING_FORWARD);
@@ -56,6 +67,12 @@ class Wraith extends MovableObject {
         this.wraithIndex = i;
     }
 
+    /**
+     * Sets an interval to constantly check if the wraith is dead.
+     * Loops throught the image paths for the dying wraith once and then clears the interval and displays the final image.
+     * Triggers the "countDefeatedWraiths" function to add 1 to the number of defeated wraiths.
+     * Sets a timeout to play the sound corresponding to the disappearing wraith and triggers the "deleteWraith" function to delete the defeated wraith.
+     */
     wraithDefeated() {
         const intervalIdWraithDefeated = setInterval(() => {
             if (this.isDead()) {
@@ -75,11 +92,18 @@ class Wraith extends MovableObject {
         }, 80);
     }
 
+    /**
+     * Increases the amout of the defeated wraiths stored in the "wraiths_defeated" variable by adding 1.
+     * Refreshes the HTML text to display the sum of defeated wraiths to the user as soon as the game will be finished.
+     */
     countDefeatedWraiths() {
         world.wraiths_defeated += 1;
         document.getElementById('wraithsDefeated').innerHTML = world.wraiths_defeated;
     }
 
+    /**
+     * Deletes the defeated wraith from the enemies array.
+     */
     deleteWraith() {
         for (let i = 0; i < world.level.enemies.length; i++) {
             if (world.level.enemies[i].wraithIndex === this.wraithIndex) {
@@ -88,17 +112,26 @@ class Wraith extends MovableObject {
         }
     }
 
+    /**
+     * Sets stoppable intervals to move and to animate the wraith.
+     */
     setStoppableIntervals() {
         this.setStoppableInterval(this.wraithMoving, 100);
         this.setStoppableInterval(this.wraithMove, 30);
     }
 
+    /**
+     * Checks if the wraith is not dead and cycles through moving forward animation frames.
+     */
     wraithMoving() {
         if (!this.isDead()) {
             this.changePictures(this.PATHS_MOVING_FORWARD);
         }
     }
 
+    /**
+     * Checks if the wraith is not dead and triggers the "moveLeft" function.
+     */
     wraithMove() {
         if (!this.isDead()) {
             this.moveLeft();
