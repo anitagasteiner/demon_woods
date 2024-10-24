@@ -22,7 +22,7 @@ class DrawableObject {
 
     /**
      * Preloads a set of images from the provided array of paths and stores them in the image cache JSON. This allows efficient access to the images later using the path as a key.
-     * @param {object} paths - array containing paths of the drawable objects
+     * @param {array<string>} paths - array containing paths of the drawable objects
      */
     loadImages(paths) {
         paths.forEach(path => {
@@ -35,7 +35,7 @@ class DrawableObject {
     /**
      * Cycles through the image paths of the drawable objects and updates the current image based on the "currentImage" index.
      * Uses the modulo operator to ensure the index loops back to the beginning when it exceeds the number of available images.
-     * @param {object} paths - array containing paths of the drawable objects 
+     * @param {array<string>} paths - array containing paths of the drawable objects 
      */
     changePictures(paths) {
         let i = this.currentImage % paths.length;
