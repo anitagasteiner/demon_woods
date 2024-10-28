@@ -8,6 +8,7 @@ class World {
     canvas;
     ctx; // Context
     keyboard;
+    throwableObjectsSound = true;
     camera_x = -100;
     statusBars = newStatusBars;
     buttons = newButtons;

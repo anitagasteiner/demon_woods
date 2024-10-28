@@ -3,6 +3,7 @@
  */
 class ThrowableObject extends MovableObject {
 
+    throwableObjectIndex = Math.random();
     speedY = 0;
     speedX = 20;
     acceleration = 2.5;
@@ -31,14 +32,15 @@ class ThrowableObject extends MovableObject {
     }
 
     /**
-     * Plays the throwing sound and sets the speedY value of the throwable object to 30.
+     * Triggers the function to play the throwing sound and sets the speedY value of the throwable object to 30.
      * Triggers the "applyGravity" function so that the throwable object falls down.
      * Sets an interval to constantly change the x value of the throwable object so that it makes a curve while falling.
      * Checks the "otherDirection" value so that the throwable object is thrown into the right direction. If the throwing object (character) is headed backwards, the x value is reduced, otherwise it is increased.
+     * Sets a timeout to trigger a function to delete the thrown object out of its array.
      * @param {boolean} otherDirection - value containing information if the throwing object (character) is directed forwards or backwards
      */
     throw(otherDirection) {
-        this.sound_throwing.play();
+        this.checkPlaySound();        
         this.speedY = 30;
         this.applyGravity();
         const intervalIdThrow = setInterval(() => {
@@ -46,8 +48,31 @@ class ThrowableObject extends MovableObject {
                 this.x -= 6;
             } else {
                 this.x += 6;
-            }
+            }                        
         }, 25);
+        setTimeout(() => {
+            this.deleteThrowableObject();
+        }, 2000);
+    }
+
+    /**
+     * Checks if the sounds are turned on and plays the sound corresponding to throwing an object.
+     */
+    checkPlaySound() {
+        if (world.throwableObjectsSound == true) {
+            this.sound_throwing.play();
+        }
+    }
+
+    /**
+     * Deletes the thrown object out of the "throwableObjects" array.
+     */
+    deleteThrowableObject() {
+        for (let i = 0; i < world.throwableObjects.length; i++) {
+            if (world.throwableObjects[i].throwableObjectIndex === this.throwableObjectIndex) {
+                world.throwableObjects.splice(i, 1);
+            }
+        }
     }
 
 }

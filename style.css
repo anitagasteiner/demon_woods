@@ -143,6 +143,13 @@ canvas {
     font-size: 14px;
 }
 
+.impressum h3 {
+    font-size: 20px;
+    margin: 20px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
 .impressum a {
     text-decoration: none;
     color: white;
