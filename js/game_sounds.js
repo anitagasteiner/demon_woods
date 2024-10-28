@@ -23,6 +23,7 @@ function resetSounds() {
  */
 function resetSoundsCharacter() {
     resetSound(world.character.sound_walking);
+    resetSound(world.character.sound_snoring);
     resetSound(world.character.sound_hurt);
     resetSound(world.character.sound_dying);
 }
@@ -82,6 +83,7 @@ function toggleBackgroundSound() {
  */
 function toggleCharacterSounds() {
     world.character.sound_walking.muted = !world.character.sound_walking.muted;
+    world.character.sound_snoring.muted = !world.character.sound_snoring.muted;
     world.character.sound_dying.muted = !world.character.sound_dying.muted;
     world.character.sound_hurt.muted = !world.character.sound_hurt.muted;
 }

@@ -14,6 +14,7 @@ class World {
     buttons = newButtons;
     throwableObjects = [];
     intervalIds = [];
+    last_action;
     wraiths_defeated = 0;
     apples_collected = 0;
     sound_pickup_apple = new Audio('audio/apple-pickup.flac');
@@ -23,6 +24,7 @@ class World {
 
     /**
      * Creates a new World instance, initializing canvas, keyboard controls, and various game elements.
+     * Sets a time stamp to record when the game was started.
      * @param {HTMLCanvasElement} canvas - the canvas element where the game will be drawn
      * @param {object} keyboard - the keyboard input handler for controlling the character
      */
@@ -33,6 +35,7 @@ class World {
         this.draw();
         this.setWorld();
         this.setStoppableIntervals();
+        this.last_action = new Date().getTime();
     }
 
     /**
@@ -98,13 +101,15 @@ class World {
     }
 
     /**
-     * Initiates the main game loop by playing background sound and checking various game states (detecting collisions, handling thrown objects, checking for bonus life conditions).
+     * Initiates the main game loop by playing background sound and checking various game states (detecting collisions, handling thrown objects, checking for bonus life conditions, recording last action, and checking time since last action).
      */
     run() {
         this.sound_background.play();
         this.checkCollisions();
         this.checkThrowObjects();
-        this.checkBonusLife();      
+        this.checkBonusLife();
+        this.recordAction();
+        this.checkCharacterWaiting();        
     }
 
     /**
@@ -152,6 +157,25 @@ class World {
     flipImageBack(movableObject) {
         movableObject.x = movableObject.x * -1;
         this.ctx.restore();
+    }
+
+    /**
+     * Sets a time stamp to record the last action to the variable "last_action".
+     */
+    recordAction() {
+        if (!this.character.isDead() && this.keyboard.LEFT || !this.character.isDead() && this.keyboard.RIGHT || !this.character.isDead() && this.keyboard.UP || !this.character.isDead() && this.keyboard.SPACE ) {
+            this.last_action = new Date().getTime();
+        }
+    }
+
+    /**
+     * The time passed between the last action (recorded in the variable "last_action") and the actual time is recorded in the variable "timePassed" (in seconds).
+     * @returns {boolean} - true if the passed time is over 5 seconds, otherwise false
+     */
+    checkCharacterWaiting() {
+        let timePassed = new Date().getTime() - this.last_action;
+        timePassed = timePassed / 1000;
+        return timePassed > 10;
     }
 
     /**

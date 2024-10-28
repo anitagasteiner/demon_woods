@@ -19,6 +19,7 @@ class Character extends MovableObject {
     sound_walking = new Audio('audio/character_walking.mp4');
     sound_dying = new Audio('audio/character_dying.wav');
     sound_hurt = new Audio('audio/character_hurt.wav');
+    sound_snoring = new Audio('audio/character_snore.wav');
     PATHS_IDLE = [
         'img/character/Fairy_03__IDLE_000.png',
         'img/character/Fairy_03__IDLE_001.png',
@@ -31,6 +32,7 @@ class Character extends MovableObject {
         'img/character/Fairy_03__IDLE_008.png',
         'img/character/Fairy_03__IDLE_009.png'
     ];
+    PATH_WAIT = 'img/character/Fairy_03__HURT_005.png';
     PATHS_WALK = [
         'img/character/Fairy_03__WALK_000.png',
         'img/character/Fairy_03__WALK_001.png',
@@ -132,10 +134,15 @@ class Character extends MovableObject {
 
     /**
      * Checks if the character is not dead and no key or button to move it is klicked/touched, and cycles through idle animation frames.
+     * If the character is waiting for action since more than 10 seconds, it shows the waiting image at plays the snoring sound.
      */
     characterIdle() {
-        if (!this.isDead() && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
+        this.sound_snoring.pause();
+        if (!this.isDead() && !this.world.checkCharacterWaiting() && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
             this.changePictures(this.PATHS_IDLE);
+        } else if (!this.isDead() && this.world.checkCharacterWaiting()) {
+            this.sound_snoring.play();
+            this.loadImage(this.PATH_WAIT);
         }
     }
 
