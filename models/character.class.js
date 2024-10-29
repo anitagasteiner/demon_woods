@@ -122,12 +122,15 @@ class Character extends MovableObject {
     }
 
     /**
-     * Cycles through hurt animation frames.
+     * Cycles through character's hurt animation frames.
+     * Cycles through corresponding wraith's attacking animation frames.
      * Resets the variable "hurt_sound_index" to its default value.
      */
     characterHurt(enemy) {
         this.changePictures(this.PATHS_HURT);
-        enemy.changePictures(enemy.PATHS_ATTACKING);
+        if (enemy.demon == false) {
+            enemy.changePictures(enemy.PATHS_ATTACKING);
+        }
         setTimeout(() => {
             this.hurt_sound_index = 1;
         }, 1500);

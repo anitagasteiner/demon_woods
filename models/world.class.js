@@ -233,7 +233,7 @@ class World {
      * Loops through all enemies and checks if the character is colliding with them but not jumping on them and not dead or already hurt.
      * Triggers the "hit" function so that the character looses his energy step by step.
      * Triggers the function to play the character hurt sound once.
-     * Triggers the function to animate the hurt character.
+     * Triggers the function to animate the character when being hurt and the corresponding enemy.
      * Refreshes the health status bar image depending on the aktualized character's energy.
      */
     collidingEnemy() {
