@@ -48,11 +48,21 @@ class Wraith extends MovableObject {
         'img/wraith/png/Dying/Wraith_02_Dying_013.png',
         'img/wraith/png/Dying/Wraith_02_Dying_014.png'
     ];
+    PATHS_ATTACKING = [
+        'img/wraith/png/Attacking/Wraith_02_Attack_001.png',
+        'img/wraith/png/Attacking/Wraith_02_Attack_002.png',
+        'img/wraith/png/Attacking/Wraith_02_Attack_003.png',
+        'img/wraith/png/Attacking/Wraith_02_Attack_004.png',
+        'img/wraith/png/Attacking/Wraith_02_Attack_005.png',
+        'img/wraith/png/Attacking/Wraith_02_Attack_006.png',
+        'img/wraith/png/Attacking/Wraith_02_Attack_007.png',
+        'img/wraith/png/Attacking/Wraith_02_Attack_008.png'
+    ];
     paths_defeated_total = this.PATHS_DYING.length;
     
     /**
      * Creates a new Wraith instance.
-     * Loads its images for different actions (moving forward, dying).
+     * Loads its images for different actions (moving forward, attacking, dying).
      * Sets up the function to handle the death of the defeated wraith.
      * Sets up the function "setStoppableIntervals" to handle the movement and animation of the wraith that have to be stopped when the game is restarted.
      * Stores the index value to the variable "wraithIndex".
@@ -61,6 +71,7 @@ class Wraith extends MovableObject {
     constructor(i) {
         super().loadImage(this.PATHS_MOVING_FORWARD[0]);
         this.loadImages(this.PATHS_MOVING_FORWARD);
+        this.loadImages(this.PATHS_ATTACKING);
         this.loadImages(this.PATHS_DYING);
         this.wraithDefeated();
         this.setStoppableIntervals();

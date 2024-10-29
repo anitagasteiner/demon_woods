@@ -241,7 +241,7 @@ class World {
             if (this.character.isColliding(enemy) && !this.character.isJumpingOn(enemy) && !this.character.isDead() && !this.character.isHurt()) {
                 this.character.hit();
                 this.character.playSoundCharacterHurt();
-                this.character.characterHurt();
+                this.character.characterHurt(enemy);
                 this.statusBars[0].setPercentage(this.statusBars[0].paths, this.character.energy);                
             };
         });

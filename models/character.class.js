@@ -125,8 +125,9 @@ class Character extends MovableObject {
      * Cycles through hurt animation frames.
      * Resets the variable "hurt_sound_index" to its default value.
      */
-    characterHurt() {
+    characterHurt(enemy) {
         this.changePictures(this.PATHS_HURT);
+        enemy.changePictures(enemy.PATHS_ATTACKING);
         setTimeout(() => {
             this.hurt_sound_index = 1;
         }, 1500);
