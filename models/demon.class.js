@@ -108,7 +108,7 @@ class Demon extends MovableObject {
     /**
      * Sets an interval to constantly check if the demon is dead.
      * If the demon is dead, it plays the corresponding sound.
-     * After 0.5 seconds, an explosion is shown. When this animation is finished, the interval is cleared, the demon is deleted and the you win action is triggered.
+     * After 0.5 seconds, an explosion is shown. When this animation is finished, the interval is cleared, the demon is deleted, and if the character is not dead himself, the you win action is triggered.
      */
     demonDead() {
         const intervalIdDemonDead = setInterval(() => {
@@ -122,7 +122,9 @@ class Demon extends MovableObject {
                         clearInterval(intervalIdDemonDead);
                         this.deleteDemon();
                         this.paths_index = 0;
-                        this.youWinAction();
+                        if (!world.character.isDead()) {
+                            this.youWinAction();
+                        }
                     }
                 }, 500);                
             }

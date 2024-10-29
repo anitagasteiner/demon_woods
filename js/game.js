@@ -26,7 +26,17 @@ function resetGame() {
     resetSounds();
     resetCanvasEventListener();
     resetIntervals();
+    resetDisplayingCollectedItems();
     world = null;    
+}
+
+
+/**
+ * Resets the displaying of wraiths that were defeated and apples that were collected to its default values (0).
+ */
+function resetDisplayingCollectedItems() {
+    document.getElementById('wraithsDefeated').innerHTML = '0';
+    document.getElementById('applesCollected').innerHTML = '0';
 }
 
 /**
