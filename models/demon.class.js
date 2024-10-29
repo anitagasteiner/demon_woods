@@ -108,7 +108,8 @@ class Demon extends MovableObject {
     /**
      * Sets an interval to constantly check if the demon is dead.
      * If the demon is dead, it plays the corresponding sound.
-     * After 0.5 seconds, an explosion is shown. When this animation is finished, the interval is cleared, the demon is deleted, and if the character is not dead himself, the you win action is triggered.
+     * After 0.5 seconds, an explosion is shown. When this animation is finished, the interval is cleared, the demon is deleted and the function to refresh the demon's healt status bar is triggered.
+     * If the character is not dead himself, the you win action is triggered.
      */
     demonDead() {
         const intervalIdDemonDead = setInterval(() => {
@@ -120,6 +121,7 @@ class Demon extends MovableObject {
                         this.paths_index++;
                     } else {
                         clearInterval(intervalIdDemonDead);
+                        this.reduceDemonHealthStatus();
                         this.deleteDemon();
                         this.paths_index = 0;
                         if (!world.character.isDead()) {
@@ -209,6 +211,7 @@ class Demon extends MovableObject {
      * Plays the demon hurt sound.
      * Cycles through hurt animation frames once and then clears the interval to stop the animation.
      * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
+     * Triggers the function to refresh the demon's healt status bar.
      * Triggers the "demonShrinksFirstTime" function to reduce the size of the demon.
      */
     demonHurtFirstTime() {
@@ -222,6 +225,7 @@ class Demon extends MovableObject {
                     clearInterval(intervalIdDemonHurt1);
                     this.paths_index = 0;
                     this.hurt_sound_index = 1;
+                    this.reduceDemonHealthStatus();
                     this.demonShrinksFirstTime();
                 }                
             }
@@ -246,10 +250,19 @@ class Demon extends MovableObject {
     }
 
     /**
+     * Refreshes the demon health status bar image depending on the demon's aktualised energy.
+     */
+    reduceDemonHealthStatus() {
+        world.demonStatusBar.percentage -= 25;
+        world.demonStatusBar.setPercentage(world.demonStatusBar.paths, world.demonStatusBar.percentage);
+    }
+
+    /**
      * Sets an interval to constantly check if the demon is not dead and his energy value is 50.
      * Plays the demon hurt sound.
      * Cycles through hurt animation frames once and then clears the interval to stop the animation.
      * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
+     * Triggers the function to refresh the demon's healt status bar.
      * Triggers the "demonShrinksSecondTime" function to reduce the size of the demon again.
      */
     demonHurtSecondTime() {
@@ -263,6 +276,7 @@ class Demon extends MovableObject {
                     clearInterval(intervalIdDemonHurt2);
                     this.paths_index = 0;
                     this.hurt_sound_index = 1;
+                    this.reduceDemonHealthStatus();
                     this.demonShrinksSecondTime();
                 }                
             }
@@ -291,6 +305,7 @@ class Demon extends MovableObject {
      * Plays the demon hurt sound.
      * Cycles through hurt animation frames once and then clears the interval to stop the animation.
      * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
+     * Triggers the function to refresh the demon's healt status bar.
      * Triggers the "demonShrinksThirdTime" function to reduce the size of the demon again.
      */
     demonHurtThirdTime() {
@@ -304,6 +319,7 @@ class Demon extends MovableObject {
                     clearInterval(intervalIdDemonHurt3);
                     this.paths_index = 0;
                     this.hurt_sound_index = 1;
+                    this.reduceDemonHealthStatus();
                     this.demonShrinksThirdTime();
                 }                
             }

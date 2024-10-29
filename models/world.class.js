@@ -53,6 +53,7 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben. -> SPACE FOR FIXED OBJECTS:
         this.addObjectsToMap(this.statusBars);
+        this.addToMap(this.demonStatusBar);
         this.addObjectsToMap(this.buttons);
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
 
@@ -64,8 +65,6 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.plants);
-
-        this.addToMap(this.demonStatusBar);
 
         this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben.
 
@@ -216,7 +215,9 @@ class World {
                         this.sound_wraith_hit.play();
                         enemy.energy = 0;
                     } else if (enemy.demon) {
-                        enemy.hit();
+                        setTimeout(() => {
+                            enemy.hit();   
+                        }, 500);
                     }                    
                 };
             });
@@ -237,7 +238,7 @@ class World {
      * Triggers the "hit" function so that the character looses his energy step by step.
      * Triggers the function to play the character hurt sound once.
      * Triggers the function to animate the character when being hurt and the corresponding enemy.
-     * Refreshes the health status bar image depending on the aktualized character's energy.
+     * Refreshes the health status bar image depending on the character's aktualised energy.
      */
     collidingEnemy() {
         this.level.enemies.forEach((enemy) => {
@@ -265,7 +266,7 @@ class World {
                 this.sound_pickup_apple.play();
                 this.countCollectedApples();                
                 setTimeout(() => {
-                    this.deleteApple(apple);                    
+                    this.deleteApple(apple); 
                 }, 100);
             };
         });

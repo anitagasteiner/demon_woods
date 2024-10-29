@@ -24,17 +24,18 @@ const PATHS_STATUS_CRYSTALS = [
 ];
 const PATHS_STATUS_DEMON_HEALTH = [
     'img/statusbars/demon_health/0.png',
-    'img/statusbars/demon_health/20.png',
-    'img/statusbars/demon_health/40.png',
-    'img/statusbars/demon_health/60.png',
-    'img/statusbars/demon_health/80.png',
+    'img/statusbars/demon_health/0.png',
+    'img/statusbars/demon_health/25.png',
+    'img/statusbars/demon_health/50.png',
+    'img/statusbars/demon_health/75.png',
     'img/statusbars/demon_health/100.png'
 ];
 let newStatusBars;
 let newDemonStatusBar;
 
 /**
- * Creates the status bars placed on the canvas. Each status bar passes the parameters for its paths, its x and y values and its percentage.
+ * Creates the status bars placed on the canvas.
+ * Each status bar passes the parameters for its paths, its x and y values and its percentage.
  */
 function initStatusBars() {
     newStatusBars = [
@@ -44,6 +45,10 @@ function initStatusBars() {
     ];
 }
 
+/**
+ * Creates the demon health status bar placed on the canvas.
+ * Passes the parameters for its paths, its x and y values and its percentage.
+ */
 function initDemonStatusBar() {
-    newDemonStatusBar = new StatusBar(PATHS_STATUS_DEMON_HEALTH, 2820, 410, 100);
+    newDemonStatusBar = new StatusBar(PATHS_STATUS_DEMON_HEALTH, 500, 410, 100);
 }
