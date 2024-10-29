@@ -79,11 +79,12 @@ class Character extends MovableObject {
         'img/character/Fairy_03__HURT_009.png'        
     ];
     paths_die_total = this.PATHS_DIE.length;
+    paths_hurt_total = this.PATHS_HURT.length;
 
     /**
      * Creates a new Character instance.
      * Loads its images for different actions (idle, walk, fly, die, being hurt).
-     * Sets up the function to handle the death of the character.
+     * Sets up the functions to handle the death of the character and to handle the action of the character being hurt.
      * Sets up the function "setStoppableIntervals" to handle the different actions of the character that have to be stopped when the game is restarted.
      * Sets up the function to apply gravity.
      */
@@ -95,6 +96,7 @@ class Character extends MovableObject {
         this.loadImages(this.PATHS_DIE);
         this.loadImages(this.PATHS_HURT);
         this.characterDies();
+        this.characterHurt();
         this.setStoppableIntervals();
         this.applyGravity();
     }
@@ -122,25 +124,54 @@ class Character extends MovableObject {
     }
 
     /**
-     * Sets stoppable intervals to handle the different actions of the character (idle, walking, fly, hurt, move).
+     * Sets an interval to check if the character is not dead but hurt and toggles the function to play the hurt sound once.
+     * Cycles through hurt animation frames once.
+     * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
+     */
+    characterHurt() {
+        const intervalIdHurt = setInterval(() => {
+            if (!this.isDead() && this.isHurt()) {
+                this.playSoundCharacterHurt();
+                if (this.paths_index < this.paths_hurt_total) {
+                    this.loadImage(this.PATHS_HURT[this.paths_index]);
+                    this.paths_index++;
+                } else {
+                    this.paths_index = 0;
+                    this.hurt_sound_index = 1;
+                }
+            }
+        }, 200);
+    }
+
+    /**
+     * Plays the sound corresponding to the situation that the character is hurt once.
+     */
+    playSoundCharacterHurt() {
+        if (this.hurt_sound_index > 0) {
+            this.sound_hurt.play();
+            this.hurt_sound_index--;
+        }
+    }
+
+    /**
+     * Sets stoppable intervals to handle the different actions of the character (idle, walking, fly, move).
      */
     setStoppableIntervals() {
         this.setStoppableInterval(this.characterIdle, 170);
         this.setStoppableInterval(this.characterWalking, 50);
         this.setStoppableInterval(this.characterFly, 40);
-        this.setStoppableInterval(this.characterHurt, 400);
         this.setStoppableInterval(this.characterMove, 15);
     }
 
     /**
-     * Checks if the character is not dead and no key or button to move it is klicked/touched, and cycles through idle animation frames.
-     * If the character is waiting for action since more than 10 seconds, it shows the waiting image at plays the snoring sound.
+     * Checks if the character is not dead, not waiting and not hurt, and if no key or button to move is klicked/touched, and cycles through idle animation frames.
+     * If the character is waiting for action since more than 10 seconds, it shows the waiting image and plays the snoring sound.
      */
     characterIdle() {
         this.sound_snoring.pause();
-        if (!this.isDead() && !this.world.checkCharacterWaiting() && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
+        if (!this.isDead() && !this.world.checkCharacterWaiting() && !this.isHurt() && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
             this.changePictures(this.PATHS_IDLE);
-        } else if (!this.isDead() && this.world.checkCharacterWaiting()) {
+        } else if (!this.isDead() && !this.isHurt() && this.world.checkCharacterWaiting()) {
             this.sound_snoring.play();
             this.loadImage(this.PATH_WAIT);
         }
@@ -164,17 +195,6 @@ class Character extends MovableObject {
         } else if (!this.isDead() && this.isAboveGround()) {
             this.changePictures(this.PATHS_FLY);
         }    
-    }
-
-    /**
-     * Checks if the character is not dead and if the character is hurt, plays the hurt sound, and cycles through hurt animation frames.
-     */
-    characterHurt() {
-        this.sound_hurt.pause();
-        if (!this.isDead() && this.isHurt()) {
-            this.sound_hurt.play();
-            this.changePictures(this.PATHS_HURT);
-        }
     }
 
     /**

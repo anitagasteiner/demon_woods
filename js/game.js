@@ -26,7 +26,7 @@ function resetGame() {
     resetSounds();
     resetCanvasEventListener();
     resetIntervals();
-    world = null;
+    world = null;    
 }
 
 /**
@@ -47,6 +47,7 @@ function resetIntervals() {
 function resetIntervalsCharacter() {
     world.character.intervalIds.forEach(clearInterval);
     clearInterval(world.character.intervalIdDie);
+    clearInterval(world.character.intervalIdHurt);
 }
 
 /**

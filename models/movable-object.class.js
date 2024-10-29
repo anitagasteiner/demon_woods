@@ -11,6 +11,7 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     intervalIds = [];
     paths_index = 0; // Zähler für die Bildfolge
+    hurt_sound_index = 1;
 
     /**
      * Sets an interval that can be stopped later by storing its ID. 

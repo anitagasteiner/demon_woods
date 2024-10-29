@@ -78,7 +78,6 @@ class Demon extends MovableObject {
     paths_hurt_total = this.PATHS_HURT.length;
     paths_explosion_total = this.PATHS_EXPLOSION.length * 4;
     death_sound_index = 20;
-    hurt_sound_index = 1;
 
     /**
      * Creates a new Demon instance.
