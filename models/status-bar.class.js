@@ -10,16 +10,18 @@ class StatusBar extends DrawableObject {
 
     /**
      * Creates a new StatusBar instance.
-     * Loads its images and assigns its paths and its y value.
+     * Loads its images and assigns its paths and its x and y values.
      * Triggers the function "setPercentage()" to set the percentage to show the right image depending on this percentage.
      * @param {array<string>} paths - array of image paths representing different percentage states
+     * @param {number} x - x value of the status bar
      * @param {number} y - y value of the status bar
      * @param {number} percentage - percentage of the status bar
      */
-    constructor(paths, y, percentage) {
+    constructor(paths, x, y, percentage) {
         super();
         this.loadImages(paths);
         this.paths = paths;
+        this.x = x;
         this.y = y;
         this.setPercentage(paths, percentage);
     }

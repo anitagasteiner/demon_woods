@@ -11,6 +11,7 @@ class World {
     throwableObjectsSound = true;
     camera_x = -100;
     statusBars = newStatusBars;
+    demonStatusBar = newDemonStatusBar;
     buttons = newButtons;
     throwableObjects = [];
     intervalIds = [];
@@ -62,7 +63,9 @@ class World {
 
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
-        this.addObjectsToMap(this.level.plants);        
+        this.addObjectsToMap(this.level.plants);
+
+        this.addToMap(this.demonStatusBar);
 
         this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben.
 

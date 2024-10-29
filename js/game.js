@@ -11,6 +11,7 @@ function init() {
     hideStartScreen();
     initLevel();
     initStatusBars();
+    initDemonStatusBar();
     initButtons();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
