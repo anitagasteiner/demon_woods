@@ -79,12 +79,11 @@ class Character extends MovableObject {
         'img/character/Fairy_03__HURT_009.png'        
     ];
     paths_die_total = this.PATHS_DIE.length;
-    paths_hurt_total = this.PATHS_HURT.length;
 
     /**
      * Creates a new Character instance.
      * Loads its images for different actions (idle, walk, fly, die, being hurt).
-     * Sets up the functions to handle the death of the character and to handle the action of the character being hurt.
+     * Sets up the functions to handle the death of the character.
      * Sets up the function "setStoppableIntervals" to handle the different actions of the character that have to be stopped when the game is restarted.
      * Sets up the function to apply gravity.
      */
@@ -96,7 +95,6 @@ class Character extends MovableObject {
         this.loadImages(this.PATHS_DIE);
         this.loadImages(this.PATHS_HURT);
         this.characterDies();
-        this.characterHurt();
         this.setStoppableIntervals();
         this.applyGravity();
     }
@@ -124,23 +122,14 @@ class Character extends MovableObject {
     }
 
     /**
-     * Sets an interval to check if the character is not dead but hurt and toggles the function to play the hurt sound once.
-     * Cycles through hurt animation frames once.
-     * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
+     * Cycles through hurt animation frames.
+     * Resets the variable "hurt_sound_index" to its default value.
      */
     characterHurt() {
-        const intervalIdHurt = setInterval(() => {
-            if (!this.isDead() && this.isHurt()) {
-                this.playSoundCharacterHurt();
-                if (this.paths_index < this.paths_hurt_total) {
-                    this.loadImage(this.PATHS_HURT[this.paths_index]);
-                    this.paths_index++;
-                } else {
-                    this.paths_index = 0;
-                    this.hurt_sound_index = 1;
-                }
-            }
-        }, 200);
+        this.changePictures(this.PATHS_HURT);
+        setTimeout(() => {
+            this.hurt_sound_index = 1;
+        }, 1500);
     }
 
     /**

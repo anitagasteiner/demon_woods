@@ -230,15 +230,19 @@ class World {
     }
 
     /**
-     * Loops through all enemies and checks if the character is colliding with them but not jumping on them and not already hurt.
-     * The "hit" function is triggered so that the character looses his energy step by step.
+     * Loops through all enemies and checks if the character is colliding with them but not jumping on them and not dead or already hurt.
+     * Triggers the "hit" function so that the character looses his energy step by step.
+     * Triggers the function to play the character hurt sound once.
+     * Triggers the function to animate the hurt character.
      * Refreshes the health status bar image depending on the aktualized character's energy.
      */
     collidingEnemy() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !this.character.isJumpingOn(enemy) && !this.character.isHurt()) {
+            if (this.character.isColliding(enemy) && !this.character.isJumpingOn(enemy) && !this.character.isDead() && !this.character.isHurt()) {
                 this.character.hit();
-                this.statusBars[0].setPercentage(this.statusBars[0].paths, this.character.energy);
+                this.character.playSoundCharacterHurt();
+                this.character.characterHurt();
+                this.statusBars[0].setPercentage(this.statusBars[0].paths, this.character.energy);                
             };
         });
     }

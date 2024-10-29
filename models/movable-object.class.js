@@ -129,12 +129,12 @@ class MovableObject extends DrawableObject {
 
     /**
      * The time passed between the last hit (recorded in the variable "lastHit") and the actual time is recorded in the variable "timePassed" (in seconds).
-     * @returns {boolean} - true if the passed time is below 0.5 seconds, otherwise false
+     * @returns {boolean} - true if the passed time is below 2 seconds, otherwise false
      */
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;
-        return timePassed < 0.5;
+        return timePassed < 2;
     }
 
     /**
