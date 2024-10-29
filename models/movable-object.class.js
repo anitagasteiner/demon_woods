@@ -146,12 +146,12 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Resets the keyboard variable so that the character cannot be moved any more.
+     * Toggles the function stop the Game.
      * Shows the you win banner.
      * After 1.3 seconds, this banner is hidden and a container with the game result is shown. The user can decide whether to play again or not.
      */
     youWinAction() {
-        world.keyboard = 0;
+        this.stopGame();
         this.showBannerWin();
         this.handleBannerContainer();
         setTimeout(() => {
@@ -161,18 +161,40 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Resets the keyboard variable so that the character cannot be moved any more.
+     * Toggles the function stop the Game.
      * Shows the you lose banner.
      * After 1.3 seconds, this banner is hidden and a container with the game result is shown. The user can decide whether to play again or not.
      */
     youLoseAction() {
-        world.keyboard = 0;
+        this.stopGame();
         this.showBannerLose();
         this.handleBannerContainer();
         setTimeout(() => {
             this.handleBannerContainer();
             this.handleRestartContainer();
-        }, 1500);
+        }, 1300);
+    }
+
+    /**
+     * Toggles the function to reset the demon attack sound.
+     * Resets the keyboard variable so that the character cannot be moved any more.
+     * Empties the enemies array.
+     */
+    stopGame() {
+        this.resetDemonAttackSound();
+        world.keyboard = 0;
+        world.level.enemies = [];
+    }
+
+    /**
+     * Resets the demon attack sound.
+     */
+    resetDemonAttackSound() {
+        for (let i = 0; i < world.level.enemies.length; i++) {
+            if (world.level.enemies[i].sound_demon_attack) {
+                resetSound(world.level.enemies[i].sound_demon_attack);
+            }
+        }
     }
 
 }

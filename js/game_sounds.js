@@ -45,6 +45,8 @@ function resetSoundsEnemies() {
     for (let i = 0; i < world.level.enemies.length; i++) {
         if (world.level.enemies[i].sound_demon_dead) {
             resetSound(world.level.enemies[i].sound_demon_dead);
+        } else if (world.level.enemies[i].sound_demon_attack) {
+            resetSound(world.level.enemies[i].sound_demon_attack);
         } else if (world.level.enemies[i].sound_demon_hit) {
             resetSound(world.level.enemies[i].sound_demon_hit);
         } else if (world.level.enemies[i].sound_disappearing) {
