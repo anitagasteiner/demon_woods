@@ -121,7 +121,6 @@ class Demon extends MovableObject {
                         this.paths_index++;
                     } else {
                         clearInterval(intervalIdDemonDead);
-                        this.reduceDemonHealthStatus();
                         this.deleteDemon();
                         this.paths_index = 0;
                         if (!world.character.isDead()) {
@@ -198,148 +197,43 @@ class Demon extends MovableObject {
     }
 
     /**
-     * Triggers the functions to handle the different actions whether the demon is hurt for the first, second or third time.
+     * Sets an interval to constantly check if the demon is not dead and if its energy value is 75, 50 or 25.
+     * Plays the demon hurt sound.
+     * Cycles through hurt animation frames once and then clears the interval to stop the animation.
+     * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
+     * Triggers the "demonShrink" function to reduce the size of the demon.
      */
     demonHurt() {
-        this.demonHurtFirstTime();
-        this.demonHurtSecondTime();
-        this.demonHurtThirdTime();
-    }
-
-    /**
-     * Sets an interval to constantly check if the demon is not dead and his energy value is 75.
-     * Plays the demon hurt sound.
-     * Cycles through hurt animation frames once and then clears the interval to stop the animation.
-     * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
-     * Triggers the function to refresh the demon's healt status bar.
-     * Triggers the "demonShrinksFirstTime" function to reduce the size of the demon.
-     */
-    demonHurtFirstTime() {
-        const intervalIdDemonHurt1 = setInterval(() => {
-            if (!this.isDead() && this.energy == 75) {
+        const intervalIdDemonHurt = setInterval(() => {
+            if (!this.isDead() && this.energy == 75 || !this.isDead() && this.energy == 50 || !this.isDead() && this.energy == 25) {
                 this.playSoundDemonHurt();
                 if (this.paths_index < this.paths_hurt_total) {
                     this.loadImage(this.PATHS_HURT[this.paths_index]);
                     this.paths_index++;
                 } else {
-                    clearInterval(intervalIdDemonHurt1);
+                    clearInterval(intervalIdDemonHurt);
                     this.paths_index = 0;
                     this.hurt_sound_index = 1;
-                    this.reduceDemonHealthStatus();
-                    this.demonShrinksFirstTime();
+                    this.demonShrink();
                 }                
             }
         }, this.interval_hurt);
     }
 
     /**
-     * Reduces the initial size of the demon by changing his height and width values (multiplier 0.9).
-     * Increases its y value to not make it jump upwards.
-     * Reduces its offset values to continue precise collision detection.
+     * Reduces the size of the demon by reducing his height and width values (multiplier 0.9).
+     * Increases its y value to not make it jump upwards too much.
+     * Reduces its offset values to continue precise collision detection (multiplier 0.9).
      */
-    demonShrinksFirstTime() {
-        this.y = 60;
-        this.height = 540;
-        this.width = 603;
+    demonShrink() {
+        this.y = this.y + 20;
+        this.height = this.height * 0.9;
+        this.width = this.width * 0.9;
         this.offset = {
-            top: 81,
-            bottom: 171,
-            left: 189,
-            right: 252
-        };
-    }
-
-    /**
-     * Refreshes the demon health status bar image depending on the demon's aktualised energy.
-     */
-    reduceDemonHealthStatus() {
-        world.demonStatusBar.percentage -= 25;
-        world.demonStatusBar.setPercentage(world.demonStatusBar.paths, world.demonStatusBar.percentage);
-    }
-
-    /**
-     * Sets an interval to constantly check if the demon is not dead and his energy value is 50.
-     * Plays the demon hurt sound.
-     * Cycles through hurt animation frames once and then clears the interval to stop the animation.
-     * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
-     * Triggers the function to refresh the demon's healt status bar.
-     * Triggers the "demonShrinksSecondTime" function to reduce the size of the demon again.
-     */
-    demonHurtSecondTime() {
-        const intervalIdDemonHurt2 = setInterval(() => {
-            if (!this.isDead() && this.energy == 50) {
-                this.playSoundDemonHurt();
-                if (this.paths_index < this.paths_hurt_total) {
-                    this.loadImage(this.PATHS_HURT[this.paths_index]);
-                    this.paths_index++;
-                } else {
-                    clearInterval(intervalIdDemonHurt2);
-                    this.paths_index = 0;
-                    this.hurt_sound_index = 1;
-                    this.reduceDemonHealthStatus();
-                    this.demonShrinksSecondTime();
-                }                
-            }
-        }, this.interval_hurt);
-    }
-
-    /**
-     * Reduces the current size of the demon by changing his height and width values (multiplier 0.9).
-     * Increases its y value to not make it jump upwards.
-     * Reduces its offset values to continue precise collision detection.
-     */
-    demonShrinksSecondTime() {
-        this.y = 80;
-        this.height = 486;
-        this.width = 542.7;
-        this.offset = {
-            top: 72.9,
-            bottom: 153.9,
-            left: 170.1,
-            right: 226.8
-        };
-    }
-
-    /**
-     * Sets an interval to constantly check if the demon is not dead and his energy value is 25.
-     * Plays the demon hurt sound.
-     * Cycles through hurt animation frames once and then clears the interval to stop the animation.
-     * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
-     * Triggers the function to refresh the demon's healt status bar.
-     * Triggers the "demonShrinksThirdTime" function to reduce the size of the demon again.
-     */
-    demonHurtThirdTime() {
-        const intervalIdDemonHurt3 = setInterval(() => {
-            if (!this.isDead() && this.energy == 25) {
-                this.playSoundDemonHurt();
-                if (this.paths_index < this.paths_hurt_total) {
-                    this.loadImage(this.PATHS_HURT[this.paths_index]);
-                    this.paths_index++;
-                } else {
-                    clearInterval(intervalIdDemonHurt3);
-                    this.paths_index = 0;
-                    this.hurt_sound_index = 1;
-                    this.reduceDemonHealthStatus();
-                    this.demonShrinksThirdTime();
-                }                
-            }
-        }, this.interval_hurt);
-    }
-
-    /**
-     * Reduces the current size of the demon by changing his height and width values (multiplier 0.9).
-     * Increases its y value to not make it jump upwards.
-     * Reduces its offset values to continue precise collision detection.
-     */
-    demonShrinksThirdTime() {
-        this.y = 100;
-        this.height = 437.4;
-        this.width = 488.4;
-        this.offset = {
-            top: 65.6,
-            bottom: 138.5,
-            left: 153.1,
-            right: 204.1
+            top: this.offset.top * 0.9,
+            bottom: this.offset.bottom * 0.9,
+            left: this.offset.left * 0.9,
+            right: this.offset.right * 0.9
         };
     }
 

@@ -125,6 +125,7 @@ class MovableObject extends DrawableObject {
         } else if (!this.demon) {
             this.energy -= 20;
         }
+        console.log('looseEnergy output: ', this.energy);
     }
 
     /**

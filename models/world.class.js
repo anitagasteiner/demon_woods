@@ -204,7 +204,7 @@ class World {
     /**
      * Sets an interval to constantly check if the thrown crystal is colliding with an enemy.
      * If the hit enemy is not the demon, the corresponding sound is played and the enemy's energy is set to 0.
-     * If the hit enemy is the demon, the "hit" function is triggered so that the demon looses his energy step by step.
+     * If the hit enemy is the demon, the "hit" function is triggered so that the demon looses his energy and its health status bar image is refreshed depending on its aktualised energy.
      * @param {object} crystal - crystal that was thrown
      */
     checkHitEnemy(crystal) {
@@ -216,9 +216,11 @@ class World {
                         enemy.energy = 0;
                     } else if (enemy.demon) {
                         setTimeout(() => {
-                            enemy.hit();   
-                        }, 500);
-                    }                    
+                            enemy.hit();
+                            this.demonStatusBar.setPercentage(this.demonStatusBar.paths, enemy.energy);
+                            console.log('enemy (demon) energy: ', enemy.energy);
+                        }, 1000);
+                    }
                 };
             });
         }, 500);
