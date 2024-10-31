@@ -197,43 +197,100 @@ class Demon extends MovableObject {
     }
 
     /**
-     * Sets an interval to constantly check if the demon is not dead and if its energy value is 75, 50 or 25.
+     * Triggers the functions to start the right sound and animation if the demon is hurt for the first, second and third time.
+     */
+    demonHurt() {
+        this.demonHurt1();
+        this.demonHurt2();
+        this.demonHurt3();
+    }
+
+    /**
+     * Sets an interval to constantly check if the demon is not dead and if its energy value is 75.
      * Plays the demon hurt sound.
      * Cycles through hurt animation frames once and then clears the interval to stop the animation.
      * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
      * Triggers the "demonShrink" function to reduce the size of the demon.
      */
-    demonHurt() {
-        const intervalIdDemonHurt = setInterval(() => {
+    demonHurt1() {
+        const intervalIdDemonHurt1 = setInterval(() => {
             if (!this.isDead() && this.energy == 75 || !this.isDead() && this.energy == 50 || !this.isDead() && this.energy == 25) {
                 this.playSoundDemonHurt();
                 if (this.paths_index < this.paths_hurt_total) {
                     this.loadImage(this.PATHS_HURT[this.paths_index]);
                     this.paths_index++;
                 } else {
-                    clearInterval(intervalIdDemonHurt);
+                    clearInterval(intervalIdDemonHurt1);
                     this.paths_index = 0;
                     this.hurt_sound_index = 1;
                     this.demonShrink();
-                }                
+                }
             }
         }, this.interval_hurt);
     }
 
     /**
-     * Reduces the size of the demon by reducing his height and width values (multiplier 0.9).
+     * Sets an interval to constantly check if the demon is not dead and if its energy value is 50.
+     * Plays the demon hurt sound.
+     * Cycles through hurt animation frames once and then clears the interval to stop the animation.
+     * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
+     * Triggers the "demonShrink" function to reduce the size of the demon.
+     */
+    demonHurt2() {
+        const intervalIdDemonHurt2 = setInterval(() => {
+            if (!this.isDead() && this.energy == 50) {
+                this.playSoundDemonHurt();
+                if (this.paths_index < this.paths_hurt_total) {
+                    this.loadImage(this.PATHS_HURT[this.paths_index]);
+                    this.paths_index++;
+                } else {
+                    clearInterval(intervalIdDemonHurt2);
+                    this.paths_index = 0;
+                    this.hurt_sound_index = 1;
+                    this.demonShrink();
+                }
+            }
+        }, this.interval_hurt);
+    }
+
+    /**
+     * Sets an interval to constantly check if the demon is not dead and if its energy value is 25.
+     * Plays the demon hurt sound.
+     * Cycles through hurt animation frames once and then clears the interval to stop the animation.
+     * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
+     * Triggers the "demonShrink" function to reduce the size of the demon.
+     */
+    demonHurt3() {
+        const intervalIdDemonHurt3 = setInterval(() => {
+            if (!this.isDead() && this.energy == 25) {
+                this.playSoundDemonHurt();
+                if (this.paths_index < this.paths_hurt_total) {
+                    this.loadImage(this.PATHS_HURT[this.paths_index]);
+                    this.paths_index++;
+                } else {
+                    clearInterval(intervalIdDemonHurt3);
+                    this.paths_index = 0;
+                    this.hurt_sound_index = 1;
+                    this.demonShrink();
+                }
+            }
+        }, this.interval_hurt);
+    }
+
+    /**
+     * Reduces the size of the demon by reducing his height and width values (multiplier 0.85).
      * Increases its y value to not make it jump upwards too much.
-     * Reduces its offset values to continue precise collision detection (multiplier 0.9).
+     * Reduces its offset values to continue precise collision detection (multiplier 0.85).
      */
     demonShrink() {
-        this.y = this.y + 20;
-        this.height = this.height * 0.9;
-        this.width = this.width * 0.9;
+        this.y = this.y + 30;
+        this.height = this.height * 0.85;
+        this.width = this.width * 0.85;
         this.offset = {
-            top: this.offset.top * 0.9,
-            bottom: this.offset.bottom * 0.9,
-            left: this.offset.left * 0.9,
-            right: this.offset.right * 0.9
+            top: this.offset.top * 0.85,
+            bottom: this.offset.bottom * 0.85,
+            left: this.offset.left * 0.85,
+            right: this.offset.right * 0.85
         };
     }
 

@@ -69,7 +69,9 @@ function resetIntervalsEnemies() {
         world.level.enemies[i].intervalIds.forEach(clearInterval);
     }
     clearInterval(world.level.enemies.intervalIdDemonDead);
-    clearInterval(world.level.enemies.intervalIdDemonHurt);
+    clearInterval(world.level.enemies.intervalIdDemonHurt1);
+    clearInterval(world.level.enemies.intervalIdDemonHurt2);
+    clearInterval(world.level.enemies.intervalIdDemonHurt3);
     clearInterval(world.level.enemies.intervalIdWraithDefeated);
 }
 
