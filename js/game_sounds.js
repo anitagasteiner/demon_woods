@@ -55,8 +55,9 @@ function resetSoundsEnemies() {
     }
 }
 
-/**
+/** TODO
  * Toggles the sounds on or off and updates the button image to reflect the current sound state.
+ * Stores the current sound stage in the local storage.
  * @param {object} button - the button object that was interacted with
  */
 function handleSounds(button) {
@@ -66,9 +67,11 @@ function handleSounds(button) {
     togglePickupSounds();
     world.throwableObjectsSound = false;
     if (world.sound_background.muted) {
-        button.loadImage('img/symbols/sound_off_orange.png');
+        // button.loadImage('img/symbols/sound_off_orange.png');
+        localStorage.setItem('soundStatus', 'off');
     } else {
-        button.loadImage('img/symbols/sound_on_orange.png');
+        // button.loadImage('img/symbols/sound_on_orange.png');
+        localStorage.setItem('soundStatus', 'on');
         world.throwableObjectsSound = true;
     }
 }
