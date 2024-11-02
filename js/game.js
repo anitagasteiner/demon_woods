@@ -18,6 +18,16 @@ function init() {
     addCanvasEventListener();
     mobileButtonsPressEvents();
     cursorPointing();
+    corrSoundStatus();
+}
+
+/**
+ * If the sound status in the local storage is off, the sounds are turned off.
+ */
+function corrSoundStatus() {
+    if (localStorage.getItem('soundStatus') == 'off') {
+        handleSounds();
+    }
 }
 
 /**
