@@ -185,6 +185,7 @@ class MovableObject extends DrawableObject {
         this.resetDemonAttackSound();
         world.keyboard = 0;
         world.level.enemies = [];
+        world.character.intervalIds.forEach(clearInterval);
     }
 
     /**
