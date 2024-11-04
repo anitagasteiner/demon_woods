@@ -216,9 +216,11 @@ class World {
                         enemy.energy = 0;
                     } else if (enemy.demon) {
                         setTimeout(() => {
-                            enemy.hit();
-                            this.demonStatusBar.setPercentage(this.demonStatusBar.paths, enemy.energy);
-                            console.log('enemy (demon) energy: ', enemy.energy);
+                            if (!enemy.isHurt()) {
+                                enemy.hit();
+                                this.demonStatusBar.setPercentage(this.demonStatusBar.paths, enemy.energy);
+                                console.log('enemy (demon) energy: ', enemy.energy);
+                            }                            
                         }, 1000);
                     }
                 };
