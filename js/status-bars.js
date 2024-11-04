@@ -39,9 +39,9 @@ let newDemonStatusBar;
  */
 function initStatusBars() {
     newStatusBars = [
-        new StatusBar(PATHS_STATUS_HEALTH, 15, 10, 100),
-        new StatusBar(PATHS_STATUS_APPLES, 15, 60, 0),    
-        new StatusBar(PATHS_STATUS_CRYSTALS, 15, 105, 60)
+        new StatusBar(PATHS_STATUS_HEALTH, 15, 10, 50, 190, 100),
+        new StatusBar(PATHS_STATUS_APPLES, 15, 60, 50, 190, 0),    
+        new StatusBar(PATHS_STATUS_CRYSTALS, 15, 105, 50, 190, 60)
     ];
 }
 
@@ -49,6 +49,6 @@ function initStatusBars() {
  * Creates the demon health status bar placed on the canvas.
  * Passes the parameters for its paths, its x and y values and its percentage.
  */
-function initDemonStatusBar() {
-    newDemonStatusBar = new StatusBar(PATHS_STATUS_DEMON_HEALTH, 500, 410, 100);
+function initDemonStatusBar() {    
+    newDemonStatusBar = new StatusBar(PATHS_STATUS_DEMON_HEALTH, 2800, 420, 40, 150, 100);
 }

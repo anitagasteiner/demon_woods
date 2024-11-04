@@ -3,8 +3,8 @@
  */
 class StatusBar extends DrawableObject {
 
-    height = 50;
-    width = 190;
+    height;
+    width;
     percentage;
     paths;
 
@@ -15,14 +15,18 @@ class StatusBar extends DrawableObject {
      * @param {array<string>} paths - array of image paths representing different percentage states
      * @param {number} x - x value of the status bar
      * @param {number} y - y value of the status bar
+     * @param {number} height - height of the status bar
+     * @param {number} width - width of the status bar
      * @param {number} percentage - percentage of the status bar
      */
-    constructor(paths, x, y, percentage) {
+    constructor(paths, x, y, height, width, percentage) {
         super();
         this.loadImages(paths);
         this.paths = paths;
         this.x = x;
         this.y = y;
+        this.height = height;
+        this.width = width;
         this.setPercentage(paths, percentage);
     }
 

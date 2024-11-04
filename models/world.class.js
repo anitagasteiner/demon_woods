@@ -53,7 +53,6 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben. -> SPACE FOR FIXED OBJECTS:
         this.addObjectsToMap(this.statusBars);
-        this.addToMap(this.demonStatusBar);
         this.addObjectsToMap(this.buttons);
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
 
@@ -63,6 +62,7 @@ class World {
         this.addToMap(this.character);
 
         this.addObjectsToMap(this.level.enemies);
+        this.addToMap(this.demonStatusBar);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.plants);
 

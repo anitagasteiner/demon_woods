@@ -189,10 +189,12 @@ class Demon extends MovableObject {
     /**
      * Checks if the demon is not dead and if the character is so nearby that the demon is seen on the canvas.
      * Triggers the "moveLeft" function to move the demon towards the character.
+     * Triggers the function to change the demon status bar position depending on the demon's position.
      */
     demonMove() {
         if (!this.isDead() && this.x - world.character.x + world.character.width - world.character.offset.right < 1000) {
             this.moveLeft();
+            this.changeDemonStatusBarPosition();
         }
     }
 
@@ -302,6 +304,13 @@ class Demon extends MovableObject {
             this.sound_demon_hit.play();
             this.hurt_sound_index--;
         }
+    }
+
+    /**
+     * Changes the demon's status bar position depending on the position of the demon.
+     */
+    changeDemonStatusBarPosition() {
+        world.demonStatusBar.x = this.x + 200;
     }
     
 }
