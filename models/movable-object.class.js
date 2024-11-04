@@ -96,10 +96,10 @@ class MovableObject extends DrawableObject {
      * @param {object} wraith - the wraith to check for a collision with
      * @returns {boolean} - true if this object's bottom side is colliding with the top of the other object, otherwise false
      */
-    isJumpingOn(wraith) {
+    isJumpingOn(wraith) { // TODO - klappt noch nicht einwandfrei
         return this.x + this.width - this.offset.right > wraith.x + wraith.offset.left
         && this.x + this.offset.left < wraith.x + wraith.width - wraith.offset.right
-        && this.y + this.height - this.offset.bottom > wraith.y + wraith.offset.top - 10
+        && this.y + this.height - this.offset.bottom > wraith.y + wraith.offset.top + 10
         && this.y + this.height - this.offset.bottom < wraith.y + wraith.offset.top + 20;
     }
 

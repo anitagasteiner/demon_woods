@@ -99,7 +99,7 @@ class Wraith extends MovableObject {
                         this.deleteWraith();
                     }, 500);
                 }
-            }            
+            }
         }, 80);
     }
 

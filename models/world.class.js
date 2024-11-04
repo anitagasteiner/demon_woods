@@ -9,6 +9,7 @@ class World {
     ctx; // Context
     keyboard;
     throwableObjectsSound = true;
+    throw_possible = true;
     camera_x = -100;
     statusBars = newStatusBars;
     demonStatusBar = newDemonStatusBar;
@@ -98,7 +99,7 @@ class World {
      * Sets stoppable intervals to run the game and to check if the character is jumping on a wraith.
      */
     setStoppableIntervals() {
-        this.setStoppableInterval(this.run, 20); //
+        this.setStoppableInterval(this.run, 200);
         this.setStoppableInterval(this.checkJumpingOn, 20);
     }
 
@@ -179,23 +180,27 @@ class World {
     }
 
     /**
-     * Proofs if the character is not dead, if the space key is pressed/button to throw is klicked/touched, and if there are crystals left to be thrown.
+     * Proofs if the "throw_possible" variable is true, if the character is not dead, if the space key is pressed/button to throw is klicked/touched, and if there are crystals left to be thrown.
      * Creates a new throwable object (crystal). Its x value depends on the characters direction.
      * Reduces the crystal status bar percentage and refreshes the status bar image.
      * Triggers the "checkHitEnemy" function to check if the throwable object hit an enemy.
+     * Sets the "throw_possible" variable to "false" to disable throwing again immediately.
+     * Sets a timeout to set the "throw_possible" variable to "true" to enable throwing again after 1.5 seconds.
      */
-    checkThrowObjects() { // TODO - direkt hintereinander gleich wieder werfen soll nicht möglich sein!
+    checkThrowObjects() { // TODO - wraiths sterben nicht mehr, wenn crystal sie trifft -> checkHitEnemy-Funktion überprüfen! (bei Demon klappt's)
         let positionX = this.character.x + 300;
         let positionY = this.character.y + 200;
         if (this.character.otherDirection == true) {
             positionX -= 100;
         }
-        if (!this.character.isDead() && this.keyboard.SPACE && this.statusBars[2].percentage > 0) {
-            let crystal = new ThrowableObject(positionX, positionY, this.character.otherDirection);
+        if (this.throw_possible && !this.character.isDead() && this.keyboard.SPACE && this.statusBars[2].percentage > 0) {
+            let crystal = new ThrowableObject(positionX, positionY, this.character.otherDirection);            
             this.throwableObjects.push(crystal);
             this.statusBars[2].percentage -= 20;
             this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
             this.checkHitEnemy(crystal);
+            this.throw_possible = false;            
+            setTimeout(() => this.throw_possible = true, 1500);
         }
     }
 
