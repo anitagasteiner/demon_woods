@@ -23,21 +23,6 @@ function init() {
 }
 
 /**
- * Checks if the sound status in the local storage is "off".
- * Cycles through the buttons to change the sound button image to the one corresponding to sounds off.
- * Triggers the "handleSounds" function to also turn off the sounds.
- */
-function corrSoundStatus() {
-    if (localStorage.getItem('soundStatus') == 'off') {
-        world.buttons.forEach((button) => {
-            if (button.content == 'sound') {
-                handleSounds(button);
-            }
-        });
-    }
-}
-
-/**
  * Checks if fullscreen mode is activated and shows the corresponding fullscreen button image.
  */
 function corrFullscreenButton() {

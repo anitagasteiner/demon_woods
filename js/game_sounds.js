@@ -56,6 +56,21 @@ function resetSoundsEnemies() {
 }
 
 /**
+ * Checks if the sound status in the local storage is "off".
+ * Cycles through the buttons to change the sound button image to the one corresponding to sounds off.
+ * Triggers the "handleSounds" function to also turn off the sounds.
+ */
+function corrSoundStatus() {
+    if (localStorage.getItem('soundStatus') == 'off') {
+        world.buttons.forEach((button) => {
+            if (button.content == 'sound') {
+                handleSounds(button);
+            }
+        });
+    }
+}
+
+/**
  * Toggles the sounds on or off and stores the current sound stage in the local storage.
  * Shows the right sound button corresponding to the sound status.
  */
