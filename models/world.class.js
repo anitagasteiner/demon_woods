@@ -165,7 +165,7 @@ class World {
      * Sets a time stamp to record the last action to the variable "last_action".
      */
     recordAction() {
-        if (!this.character.isDead() && this.keyboard.LEFT || !this.character.isDead() && this.keyboard.RIGHT || !this.character.isDead() && this.keyboard.UP || !this.character.isDead() && this.keyboard.SPACE ) {
+        if (!this.character.isDead() && this.keyboard.LEFT || !this.character.isDead() && this.keyboard.RIGHT || !this.character.isDead() && this.keyboard.UP || !this.character.isDead() && this.keyboard.SPACE) {
             this.last_action = new Date().getTime();
         }
     }
@@ -239,6 +239,7 @@ class World {
     /**
      * Loops through all enemies and checks if the character is colliding with them but not jumping on them and not dead or already hurt.
      * Triggers the "hit" function so that the character looses his energy step by step.
+     * Sets a time stamp to record the collision time to the variable "last_action".
      * Triggers the function to play the character hurt sound once.
      * Triggers the function to animate the character when being hurt and the corresponding enemy.
      * Refreshes the health status bar image depending on the character's aktualised energy.
@@ -247,6 +248,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.isJumpingOn(enemy) && !this.character.isDead() && !this.character.isHurt()) {
                 this.character.hit();
+                this.last_action = new Date().getTime();
                 this.character.playSoundCharacterHurt();
                 this.character.characterHurt(enemy);
                 this.statusBars[0].setPercentage(this.statusBars[0].paths, this.character.energy);                

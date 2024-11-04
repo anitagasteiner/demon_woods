@@ -106,7 +106,6 @@ class Character extends MovableObject {
      */
     characterDies() { 
         const intervalIdDie = setInterval(() => {
-            this.sound_dying.pause();
             if (this.isDead()) {
                 this.sound_dying.play();
                 if (this.paths_index < this.paths_die_total) {
@@ -137,9 +136,11 @@ class Character extends MovableObject {
     }
 
     /**
+     * Pauses the character's snoring sound.
      * Plays the sound corresponding to the situation that the character is hurt once.
      */
     playSoundCharacterHurt() {
+        this.sound_snoring.pause();
         if (this.hurt_sound_index > 0) {
             this.sound_hurt.play();
             this.hurt_sound_index--;
@@ -161,7 +162,6 @@ class Character extends MovableObject {
      * If the character is waiting for action since more than 10 seconds, it shows the waiting image and plays the snoring sound.
      */
     characterIdle() {
-        this.sound_snoring.pause();
         if (!this.isDead() && !this.world.checkCharacterWaiting() && !this.isHurt() && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
             this.changePictures(this.PATHS_IDLE);
         } else if (!this.isDead() && !this.isHurt() && this.world.checkCharacterWaiting()) {
