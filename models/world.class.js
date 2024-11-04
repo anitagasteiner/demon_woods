@@ -119,9 +119,7 @@ class World {
      * @param {array<object>} objects - array of objects to be added to the map
      */
     addObjectsToMap(objects) {
-        objects.forEach(object => {
-            this.addToMap(object);
-        });
+        objects.forEach(object => this.addToMap(object));
     }
 
     /**
@@ -270,9 +268,7 @@ class World {
                 this.statusBars[1].setPercentage(this.statusBars[1].paths, this.statusBars[1].percentage);
                 this.sound_pickup_apple.play();
                 this.countCollectedApples();                
-                setTimeout(() => {
-                    this.deleteApple(apple); 
-                }, 100);
+                setTimeout(() => this.deleteApple(apple), 100);
             };
         });
     }
@@ -310,9 +306,7 @@ class World {
                 this.statusBars[2].percentage += 20;
                 this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
                 this.sound_pickup_crystal.play();
-                setTimeout(() => {
-                    this.deleteCrystal(crystal);
-                }, 100);
+                setTimeout(() => this.deleteCrystal(crystal), 100);
             };
         });
     }

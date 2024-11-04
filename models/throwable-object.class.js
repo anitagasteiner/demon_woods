@@ -50,9 +50,7 @@ class ThrowableObject extends MovableObject {
                 this.x += 6;
             }                        
         }, 25);
-        setTimeout(() => {
-            this.deleteThrowableObject();
-        }, 2000);
+        setTimeout(() => this.deleteThrowableObject(), 2000);
     }
 
     /**

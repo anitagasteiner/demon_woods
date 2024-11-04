@@ -23,9 +23,7 @@ class Clouds extends MovableObject {
      * Animates the clouds by moving them to the left at a constant speed. Sets an interval to update the clouds' position 60 times per second.
      */
     animate() {        
-        const intervalIdClouds = setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
+        const intervalIdClouds = setInterval(() => this.moveLeft(), 1000 / 60);
     }
 
 }

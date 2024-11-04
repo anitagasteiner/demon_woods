@@ -130,9 +130,7 @@ class Character extends MovableObject {
         if (enemy.demon == false) {
             enemy.changePictures(enemy.PATHS_ATTACKING);
         }
-        setTimeout(() => {
-            this.hurt_sound_index = 1;
-        }, 1500);
+        setTimeout(() => this.hurt_sound_index = 1, 1500);
     }
 
     /**
