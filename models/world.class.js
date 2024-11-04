@@ -135,7 +135,7 @@ class World {
             this.flipImage(movableObject);
         }
         movableObject.draw(this.ctx);
-        movableObject.drawRectangle(this.ctx);
+        // movableObject.drawRectangle(this.ctx);
         if (movableObject.otherDirection) {
             this.flipImageBack(movableObject);
         }

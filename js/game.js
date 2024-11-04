@@ -19,6 +19,7 @@ function init() {
     mobileButtonsPressEvents();
     cursorPointing();
     corrSoundStatus();
+    corrFullscreenButton();
 }
 
 /**
@@ -37,6 +38,20 @@ function corrSoundStatus() {
 }
 
 /**
+ * Checks if fullscreen mode is activated and shows the corresponding fullscreen button image.
+ */
+function corrFullscreenButton() {
+    if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+        fullscreen = true;
+        world.buttons.forEach((button) => {
+            if (button.content == 'fullscreen') {
+                button.loadImage('img/symbols/arrow_down_orange.png');
+            }
+        });
+    }
+}
+
+/**
  * Resets the game to play it again.
  */
 function resetGame() {
@@ -44,9 +59,8 @@ function resetGame() {
     resetCanvasEventListener();
     resetIntervals();
     resetDisplayingCollectedItems();
-    world = null;    
+    world = null;
 }
-
 
 /**
  * Resets the displaying of wraiths that were defeated and apples that were collected to its default values (0).
