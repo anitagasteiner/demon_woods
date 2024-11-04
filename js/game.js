@@ -398,7 +398,7 @@ function closeFullscreen(button) {
  * Detects if the user is on a mobile device and displays the mobile bar if true.
  * Uses the user agent string to identify mobile devices based on common keywords.
  */
-function handleMobileBar() {
+function handleMobileBar() { // TODO - muss auch am Tablet funktionieren!!!
     let details = navigator.userAgent;
     let regexp = /android|iphone|kindle|ipad/i;
     let isMobileDevice = regexp.test(details);

@@ -159,7 +159,7 @@ class Character extends MovableObject {
      * Checks if the character is not dead, not waiting and not hurt, and if no key or button to move is klicked/touched, and cycles through idle animation frames.
      * If the character is waiting for action since more than 10 seconds, it shows the waiting image and plays the snoring sound.
      */
-    characterIdle() {
+    characterIdle() { // TODO - Schnarchen ist manchmal noch an, wenn es nicht mehr sein sollte -> checken!
         if (!this.isDead() && !this.world.checkCharacterWaiting() && !this.isHurt() && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
             this.changePictures(this.PATHS_IDLE);
         } else if (!this.isDead() && !this.isHurt() && this.world.checkCharacterWaiting()) {

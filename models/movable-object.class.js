@@ -46,7 +46,7 @@ class MovableObject extends DrawableObject {
     /**
      * Sets the object's speedY value to 30.
      */
-    fly() {
+    fly() { // TODO - manchmal stoppt Character beim Fliegen, gravity nicht bis auf ground -> checken!
         this.speedY = 30;
     }
 
@@ -63,7 +63,7 @@ class MovableObject extends DrawableObject {
             } else {
                 this.y = 150;
             }
-        }, 1000 / 25);
+        }, 1000 / 30);
     }
 
     /**
@@ -99,8 +99,8 @@ class MovableObject extends DrawableObject {
     isJumpingOn(wraith) {
         return this.x + this.width - this.offset.right > wraith.x + wraith.offset.left
         && this.x + this.offset.left < wraith.x + wraith.width - wraith.offset.right
-        && this.y + this.height - this.offset.bottom > wraith.y + wraith.offset.top
-        && this.y + this.height - this.offset.bottom < wraith.y + wraith.offset.top + 15;
+        && this.y + this.height - this.offset.bottom > wraith.y + wraith.offset.top - 10
+        && this.y + this.height - this.offset.bottom < wraith.y + wraith.offset.top + 20;
     }
 
     /**

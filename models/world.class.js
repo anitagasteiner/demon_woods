@@ -43,7 +43,7 @@ class World {
      * Draws the entire game world onto the canvas, including background objects, the character, enemies, and various interactive elements.
      * Handles camera movement by translating the canvas context and ensures that objects are rendered in the correct order.
      */
-    draw() {
+    draw() { // TODO - kürzen!
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Dadurch wird das Bild gelöscht, bevor ein neues gezeichnet wird.
 
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
@@ -98,7 +98,7 @@ class World {
      * Sets stoppable intervals to run the game and to check if the character is jumping on a wraith.
      */
     setStoppableIntervals() {
-        this.setStoppableInterval(this.run, 200);
+        this.setStoppableInterval(this.run, 20); //
         this.setStoppableInterval(this.checkJumpingOn, 20);
     }
 
@@ -184,7 +184,7 @@ class World {
      * Reduces the crystal status bar percentage and refreshes the status bar image.
      * Triggers the "checkHitEnemy" function to check if the throwable object hit an enemy.
      */
-    checkThrowObjects() {
+    checkThrowObjects() { // TODO - direkt hintereinander gleich wieder werfen soll nicht möglich sein!
         let positionX = this.character.x + 300;
         let positionY = this.character.y + 200;
         if (this.character.otherDirection == true) {
@@ -236,6 +236,7 @@ class World {
 
     /**
      * Loops through all enemies and checks if the character is colliding with them but not jumping on them and not dead or already hurt.
+     * Sets the character's y value to default (150).
      * Triggers the "hit" function so that the character looses his energy step by step.
      * Sets a time stamp to record the collision time to the variable "last_action".
      * Triggers the function to play the character hurt sound once.
@@ -245,6 +246,7 @@ class World {
     collidingEnemy() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.isJumpingOn(enemy) && !this.character.isDead() && !this.character.isHurt()) {
+                this.character.y = 150;
                 this.character.hit();
                 this.last_action = new Date().getTime();
                 this.character.playSoundCharacterHurt();
@@ -325,20 +327,20 @@ class World {
 
     /**
      * Loops through all enemies and checks if the character is jumping on them (excluding the demon).
+     * Triggers the "fly" function to provoke that the character flies.
      * Plays the wraith hit sound.
      * Sets the hit enemy's energy to 0.
-     * Triggers the "fly" function to provoke that the character flies.
      */
     checkJumpingOn() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpingOn(enemy) && !enemy.demon) {
+                this.character.fly();
                 this.sound_wraith_hit.play();
                 for (let i = 0; i < this.level.enemies.length; i++) {
                     if (this.level.enemies[i].wraithIndex === enemy.wraithIndex) {                        
                         enemy.energy = 0;
                     }
-                }
-                this.character.fly();
+                }                
             };
         });
     }

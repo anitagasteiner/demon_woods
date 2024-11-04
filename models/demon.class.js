@@ -201,7 +201,7 @@ class Demon extends MovableObject {
     /**
      * Triggers the functions to start the right sound and animation if the demon is hurt for the first, second and third time.
      */
-    demonHurt() {
+    demonHurt() { // TODO - hurt-Funktionen: Animation flüssiger; zuerst Statusbar aktualisieren, dann animieren, damit Änderung gleich sichtbar ist!
         this.demonHurt1();
         this.demonHurt2();
         this.demonHurt3();
