@@ -219,7 +219,6 @@ class World {
                             if (!enemy.isHurt()) {
                                 enemy.hit();
                                 this.demonStatusBar.setPercentage(this.demonStatusBar.paths, enemy.energy);
-                                console.log('enemy (demon) energy: ', enemy.energy);
                             }                            
                         }, 1000);
                     }

@@ -125,7 +125,6 @@ class MovableObject extends DrawableObject {
         } else if (!this.demon) {
             this.energy -= 20;
         }
-        console.log('looseEnergy output: ', this.energy);
     }
 
     /**
@@ -177,26 +176,16 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Toggles the function to reset the demon attack sound.
+     * Toggles the function to reset the sounds.
+     * Toggles the function to reset the intervals.
      * Resets the keyboard variable so that the character cannot be moved any more.
      * Empties the enemies array.
      */
     stopGame() {
-        this.resetDemonAttackSound();
+        resetSounds();
+        resetIntervals();
         world.keyboard = 0;
-        world.level.enemies = [];
-        world.character.intervalIds.forEach(clearInterval);
-    }
-
-    /**
-     * Resets the demon attack sound.
-     */
-    resetDemonAttackSound() {
-        for (let i = 0; i < world.level.enemies.length; i++) {
-            if (world.level.enemies[i].sound_demon_attack) {
-                resetSound(world.level.enemies[i].sound_demon_attack);
-            }
-        }
+        world.level.enemies = [];        
     }
 
 }
