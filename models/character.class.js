@@ -121,11 +121,13 @@ class Character extends MovableObject {
     }
 
     /**
+     * Pauses the character's snoring sound.
      * Cycles through character's hurt animation frames.
      * Cycles through corresponding wraith's attacking animation frames.
      * Resets the variable "hurt_sound_index" to its default value.
      */
     characterHurt(enemy) {
+        this.sound_snoring.pause();
         this.changePictures(this.PATHS_HURT);
         if (enemy.demon == false) {
             enemy.changePictures(enemy.PATHS_ATTACKING);
@@ -134,11 +136,9 @@ class Character extends MovableObject {
     }
 
     /**
-     * Pauses the character's snoring sound.
      * Plays the sound corresponding to the situation that the character is hurt once.
      */
-    playSoundCharacterHurt() {
-        this.sound_snoring.pause();
+    playSoundCharacterHurt() {        
         if (this.hurt_sound_index > 0) {
             this.sound_hurt.play();
             this.hurt_sound_index--;
@@ -157,10 +157,12 @@ class Character extends MovableObject {
 
     /**
      * Checks if the character is not dead, not waiting and not hurt, and if no key or button to move is klicked/touched, and cycles through idle animation frames.
+     * Pauses the snoring sound.
      * If the character is waiting for action since more than 10 seconds, it shows the waiting image and plays the snoring sound.
      */
-    characterIdle() { // TODO - Schnarchen ist manchmal noch an, wenn es nicht mehr sein sollte -> checken!
+    characterIdle() {
         if (!this.isDead() && !this.world.checkCharacterWaiting() && !this.isHurt() && this.world.keyboard.UP == false && this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
+            this.sound_snoring.pause();
             this.changePictures(this.PATHS_IDLE);
         } else if (!this.isDead() && !this.isHurt() && this.world.checkCharacterWaiting()) {
             this.sound_snoring.play();
@@ -170,18 +172,23 @@ class Character extends MovableObject {
 
     /**
      * Checks if the character is not dead and if either the button/key to move right or the button/key to move left is klicked/touched and if the character is not above ground, and cycles through walk animation frames.
+     * Pauses the snoring sound.
      */
     characterWalking() {
         if (!this.isDead() && this.world.keyboard.RIGHT && !this.isAboveGround() || !this.isDead() && this.world.keyboard.LEFT && !this.isAboveGround()) {
+            this.sound_snoring.pause();
             this.changePictures(this.PATHS_WALK);
         }
     }
 
     /**
-     * Checks if the character is not dead and if the button/key to move up is klicked/touched and if the character is not above ground, and triggers the fly action. If the caracter is above ground, it cycles through fly animation frames.
+     * Checks if the character is not dead and if the button/key to move up is klicked/touched and if the character is not above ground, and triggers the fly action.
+     * Pauses the snoring sound.
+     * When the caracter is above ground, it cycles through fly animation frames.
      */
     characterFly() {
         if (!this.isDead() && this.world.keyboard.UP && !this.isAboveGround()) {
+            this.sound_snoring.pause();
             this.fly();
         } else if (!this.isDead() && this.isAboveGround()) {
             this.changePictures(this.PATHS_FLY);

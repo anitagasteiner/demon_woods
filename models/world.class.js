@@ -74,7 +74,7 @@ class World {
      * Draws the character's status bars and the buttons shown on the canvas. All these object's positions are fixed.
      */
     drawFixedObjects() {
-        this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben. -> SPACE FOR FIXED OBJECTS:
+        this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben.
         this.addObjectsToMap(this.statusBars);
         this.addObjectsToMap(this.buttons);
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
@@ -122,6 +122,7 @@ class World {
     setStoppableIntervals() {
         this.setStoppableInterval(this.run, 200);
         this.setStoppableInterval(this.checkJumpingOn, 10);
+        this.setStoppableInterval(this.checkCharacterWaiting, 50);
     }
 
     /**
@@ -133,7 +134,6 @@ class World {
         this.checkThrowObjects();
         this.checkBonusLife();
         this.recordAction();
-        this.checkCharacterWaiting();        
     }
 
     /**
@@ -351,6 +351,7 @@ class World {
 
     /**
      * Loops through all enemies and checks if the character is jumping on them (excluding the demon).
+     * Sets a time stamp to record the jumping time to the variable "last_action".
      * Triggers the "fly" function to provoke that the character flies.
      * Plays the wraith hit sound.
      * Sets the hit enemy's energy to 0.
@@ -358,6 +359,7 @@ class World {
     checkJumpingOn() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpingOn(enemy) && !enemy.demon) {
+                this.last_action = new Date().getTime();
                 this.character.fly();
                 this.sound_wraith_hit.play();
                 for (let i = 0; i < this.level.enemies.length; i++) {

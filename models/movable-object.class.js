@@ -46,7 +46,7 @@ class MovableObject extends DrawableObject {
     /**
      * Sets the object's speedY value to 30.
      */
-    fly() { // TODO - manchmal stoppt Character beim Fliegen, gravity nicht bis auf ground -> checken!
+    fly() {
         this.speedY = 30;
     }
 
