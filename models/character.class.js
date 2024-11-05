@@ -151,7 +151,7 @@ class Character extends MovableObject {
     setStoppableIntervals() {
         this.setStoppableInterval(this.characterIdle, 170);
         this.setStoppableInterval(this.characterWalking, 50);
-        this.setStoppableInterval(this.characterFly, 40);
+        this.setStoppableInterval(this.characterFly, 80);
         this.setStoppableInterval(this.characterMove, 15);
     }
 

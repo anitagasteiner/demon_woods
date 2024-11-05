@@ -61,9 +61,9 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             } 
-            // else { // TODO - verursacht das Fehler, wenn ich das rausnehme?
-            //     this.y = 150;
-            // }
+            else {
+                this.y = 150;
+            }
         }, 1000 / 30);
     }
 
@@ -97,11 +97,11 @@ class MovableObject extends DrawableObject {
      * @param {object} wraith - the wraith to check for a collision with
      * @returns {boolean} - true if this object's bottom side is colliding with the top of the other object, otherwise false
      */
-    isJumpingOn(wraith) { // TODO - klappt noch nicht einwandfrei
+    isJumpingOn(wraith) {
         return this.x + this.width - this.offset.right > wraith.x + wraith.offset.left
         && this.x + this.offset.left < wraith.x + wraith.width - wraith.offset.right
-        && this.y + this.height - this.offset.bottom > wraith.y + wraith.offset.top + 10
-        && this.y + this.height - this.offset.bottom < wraith.y + wraith.offset.top + 20;
+        && this.y + this.height - this.offset.bottom > wraith.y + wraith.offset.top
+        && this.y + this.height - this.offset.bottom < wraith.y + wraith.offset.top + 30;
     }
 
     /**
