@@ -121,7 +121,7 @@ class World {
      */
     setStoppableIntervals() {
         this.setStoppableInterval(this.run, 200);
-        this.setStoppableInterval(this.checkJumpingOn, 20);
+        this.setStoppableInterval(this.checkJumpingOn, 10);
     }
 
     /**
@@ -208,7 +208,7 @@ class World {
      * Sets the "throw_possible" variable to "false" to disable throwing again immediately.
      * Sets a timeout to set the "throw_possible" variable to "true" to enable throwing again after 1.5 seconds.
      */
-    checkThrowObjects() { // TODO - wraiths sterben nicht mehr, wenn crystal sie trifft -> checkHitEnemy-Funktion überprüfen! (bei Demon klappt's)
+    checkThrowObjects() {
         let positionX = this.character.x + 300;
         let positionY = this.character.y + 200;
         if (this.character.otherDirection == true) {
@@ -235,14 +235,11 @@ class World {
         const intervalIdHitEnemy = setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (crystal.isColliding(enemy)) {
-                    console.log('enemy: ', enemy);
                     if (enemy.demon) {
-                        setTimeout(() => {
-                            if (!enemy.isHurt()) {
-                                enemy.hit();
-                                this.demonStatusBar.setPercentage(this.demonStatusBar.paths, enemy.energy);
-                            }                            
-                        }, 1000);
+                        if (!enemy.isHurt()) {
+                            enemy.hit();
+                            this.demonStatusBar.setPercentage(this.demonStatusBar.paths, enemy.energy);
+                        }
                     } else {
                         this.sound_wraith_hit.play();
                         enemy.energy = 0;

@@ -397,12 +397,14 @@ function closeFullscreen(button) {
 /**
  * Detects if the user is on a mobile device and displays the mobile bar if true.
  * Uses the user agent string to identify mobile devices based on common keywords.
+ * In addition, uses the screen width to identify smaller screens.
  */
-function handleMobileBar() { // TODO - muss auch am Tablet funktionieren!!!
+function handleMobileBar() {
     let details = navigator.userAgent;
-    let regexp = /android|iphone|kindle|ipad/i;
+    let regexp = /android|iphone|ipad|tablet|playbook|kindle|silk/i;
     let isMobileDevice = regexp.test(details);
-    if (isMobileDevice) { 
+    let isSmallScreen = window.innerWidth <= 1024;
+    if (isMobileDevice || isSmallScreen) { 
         document.getElementById('mobile-bar-container-left').classList.remove('hide');
         document.getElementById('mobile-bar-container-right').classList.remove('hide');
     }      

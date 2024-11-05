@@ -100,7 +100,7 @@ class Wraith extends MovableObject {
                     }, 500);
                 }
             }
-        }, 80);
+        }, 10);
     }
 
     /**
