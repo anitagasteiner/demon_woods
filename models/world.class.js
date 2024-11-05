@@ -44,35 +44,56 @@ class World {
      * Draws the entire game world onto the canvas, including background objects, the character, enemies, and various interactive elements.
      * Handles camera movement by translating the canvas context and ensures that objects are rendered in the correct order.
      */
-    draw() { // TODO - kürzen!
+    draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Dadurch wird das Bild gelöscht, bevor ein neues gezeichnet wird.
-
         this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
-        this.addObjectsToMap(this.level.bgObjects);
-        this.addObjectsToMap(this.level.grounds);
-        this.addObjectsToMap(this.level.clouds);
-
-        this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben. -> SPACE FOR FIXED OBJECTS:
-        this.addObjectsToMap(this.statusBars);
-        this.addObjectsToMap(this.buttons);
-        this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
-
-        this.addObjectsToMap(this.level.crystals);
-        this.addObjectsToMap(this.level.apples);
-
+        this.drawBackgroundObjects();        
+        this.drawFixedObjects();        
+        this.drawCollectableObjects();
         this.addToMap(this.character);
-
-        this.addObjectsToMap(this.level.enemies);
-        this.addToMap(this.demonStatusBar);
+        this.drawEnemies();
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.plants);
-
         this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben.
-
         let self = this;
         requestAnimationFrame(function() {
             self.draw();
         }); // -> In dieser Methode wird die "draw"-Methode so oft aufgerufen, wie es die Grafikkarte hergibt. Die Funktion in "requestAnimationFrame" wird ausgeführt, sobald das darüber alles fertig gezeichnet wurde, also asynchron, ein wenig später. Das Wort "this" ist innerhalb dieser Funktion nicht mehr bekannt, daher brauchen wir eine Variable (hier: "self").
+    }
+
+    /**
+     * Draws the background objects: sky, rocks, grounds, clouds.
+     */
+    drawBackgroundObjects() {
+        this.addObjectsToMap(this.level.bgObjects);
+        this.addObjectsToMap(this.level.grounds);
+        this.addObjectsToMap(this.level.clouds);
+    }
+
+    /**
+     * Draws the character's status bars and the buttons shown on the canvas. All these object's positions are fixed.
+     */
+    drawFixedObjects() {
+        this.ctx.translate(-this.camera_x, 0); // Bildausschnitt wird wieder nach rechts verschoben. -> SPACE FOR FIXED OBJECTS:
+        this.addObjectsToMap(this.statusBars);
+        this.addObjectsToMap(this.buttons);
+        this.ctx.translate(this.camera_x, 0); // Bildausschnitt wird nach links verschoben.
+    }
+
+    /**
+     * Draws the collectable objects: crystals, apples.
+     */
+    drawCollectableObjects() {
+        this.addObjectsToMap(this.level.crystals);
+        this.addObjectsToMap(this.level.apples);
+    }
+
+    /**
+     * Draws the enemies (wraiths, demon) and the demon's status bar.
+     */
+    drawEnemies() {
+        this.addObjectsToMap(this.level.enemies);
+        this.addToMap(this.demonStatusBar);
     }
 
     /**
@@ -199,35 +220,36 @@ class World {
             this.statusBars[2].percentage -= 20;
             this.statusBars[2].setPercentage(this.statusBars[2].paths, this.statusBars[2].percentage);
             this.checkHitEnemy(crystal);
-            this.throw_possible = false;            
+            this.throw_possible = false;
             setTimeout(() => this.throw_possible = true, 1500);
         }
     }
 
     /**
      * Sets an interval to constantly check if the thrown crystal is colliding with an enemy.
-     * If the hit enemy is not the demon, the corresponding sound is played and the enemy's energy is set to 0.
      * If the hit enemy is the demon, the "hit" function is triggered so that the demon looses his energy and its health status bar image is refreshed depending on its aktualised energy.
+     * If the hit enemy is not the demon, the corresponding sound is played and the enemy's energy is set to 0.
      * @param {object} crystal - crystal that was thrown
      */
     checkHitEnemy(crystal) {
         const intervalIdHitEnemy = setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (crystal.isColliding(enemy)) {
-                    if (!enemy.demon) {
-                        this.sound_wraith_hit.play();
-                        enemy.energy = 0;
-                    } else if (enemy.demon) {
+                    console.log('enemy: ', enemy);
+                    if (enemy.demon) {
                         setTimeout(() => {
                             if (!enemy.isHurt()) {
                                 enemy.hit();
                                 this.demonStatusBar.setPercentage(this.demonStatusBar.paths, enemy.energy);
                             }                            
                         }, 1000);
+                    } else {
+                        this.sound_wraith_hit.play();
+                        enemy.energy = 0;
                     }
-                };
+                }
             });
-        }, 500);
+        }, 100);
     }
 
     /**
