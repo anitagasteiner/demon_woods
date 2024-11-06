@@ -355,11 +355,8 @@ class World {
             if (this.character.isJumpingOn(enemy) && !enemy.demon) {
                 this.last_action = new Date().getTime();
                 this.character.fly();
-                this.sound_wraith_hit.play();
-                // for (let i = 0; i < this.level.enemies.length; i++) {
-                //     if (this.level.enemies[i].wraithIndex === enemy.wraithIndex)         // TODO              
-                        enemy.energy = 0;
-                // }
+                this.sound_wraith_hit.play();        
+                enemy.energy = 0;
             };
         });
     }

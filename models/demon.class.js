@@ -13,7 +13,7 @@ class Demon extends MovableObject {
         left: 210,
         right: 280
     };
-    interval_hurt = 200;
+    interval_hurt = 100;
     speed = 0.7;
     demon = true;
     sound_demon_dead = new Audio('audio/demon_dead.wav');
@@ -78,6 +78,7 @@ class Demon extends MovableObject {
     paths_hurt_total = this.PATHS_HURT.length;
     paths_explosion_total = this.PATHS_EXPLOSION.length * 4;
     death_sound_index = 20;
+    demon_hurt = false;
 
     /**
      * Creates a new Demon instance.
@@ -102,7 +103,7 @@ class Demon extends MovableObject {
      */
     setStoppableIntervals() {
         this.setStoppableInterval(this.demonMove, 20);
-        this.setStoppableInterval(this.demonIdle, 500);
+        this.setStoppableInterval(this.demonIdle, 100);
     }
 
     /**
@@ -174,12 +175,12 @@ class Demon extends MovableObject {
      * If the character is near the demon, it cycles through the attack animation frames and plays the attack sound, otherwise it cycles through the idle animation frames.
      */
     demonIdle() {
-        if (!this.isDead()) {
+        if (!this.isDead() && !this.demon_hurt) {
             if (this.x - world.character.x + world.character.width - world.character.offset.right < 600) {
                 this.changePictures(this.PATHS_ATTACK);
                 this.sound_demon_attack.play();
             } else
-                this.changePictures(this.PATHS_IDLE);         
+                this.changePictures(this.PATHS_IDLE);
         }
     }
 
@@ -206,22 +207,23 @@ class Demon extends MovableObject {
 
     /**
      * Sets an interval to constantly check if the demon is not dead and if its energy value is 75.
+     * Sets the variable "demon_hurt" to "true".
      * Plays the demon hurt sound.
      * Cycles through hurt animation frames once and then clears the interval to stop the animation.
-     * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
+     * Triggers a function to reset the variables "demon_hurt", "paths_index" and "hurt_sound_index" to their default values.  .
      * Triggers the "demonShrink" function to reduce the size of the demon.
      */
     demonHurt1() {
         const intervalIdDemonHurt1 = setInterval(() => {
-            if (!this.isDead() && this.energy == 75 || !this.isDead() && this.energy == 50 || !this.isDead() && this.energy == 25) {
+            if (!this.isDead() && this.energy == 75) {
+                this.demon_hurt = true;
                 this.playSoundDemonHurt();
                 if (this.paths_index < this.paths_hurt_total) {
                     this.loadImage(this.PATHS_HURT[this.paths_index]);
                     this.paths_index++;
                 } else {
                     clearInterval(intervalIdDemonHurt1);
-                    this.paths_index = 0;
-                    this.hurt_sound_index = 1;
+                    this.resetVariables();
                     this.demonShrink();
                 }
             }
@@ -230,22 +232,23 @@ class Demon extends MovableObject {
 
     /**
      * Sets an interval to constantly check if the demon is not dead and if its energy value is 50.
+     * Sets the variable "demon_hurt" to "true".
      * Plays the demon hurt sound.
      * Cycles through hurt animation frames once and then clears the interval to stop the animation.
-     * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
+     * Triggers a function to reset the variables "demon_hurt", "paths_index" and "hurt_sound_index" to their default values.
      * Triggers the "demonShrink" function to reduce the size of the demon.
      */
     demonHurt2() {
         const intervalIdDemonHurt2 = setInterval(() => {
             if (!this.isDead() && this.energy == 50) {
+                this.demon_hurt = true;
                 this.playSoundDemonHurt();
                 if (this.paths_index < this.paths_hurt_total) {
                     this.loadImage(this.PATHS_HURT[this.paths_index]);
                     this.paths_index++;
                 } else {
                     clearInterval(intervalIdDemonHurt2);
-                    this.paths_index = 0;
-                    this.hurt_sound_index = 1;
+                    this.resetVariables();
                     this.demonShrink();
                 }
             }
@@ -254,26 +257,36 @@ class Demon extends MovableObject {
 
     /**
      * Sets an interval to constantly check if the demon is not dead and if its energy value is 25.
+     * Sets the variable "demon_hurt" to "true".
      * Plays the demon hurt sound.
      * Cycles through hurt animation frames once and then clears the interval to stop the animation.
-     * Resets the variables "paths_index" and "hurt_sound_index" to their default values.
+     * Triggers a function to reset the variables "demon_hurt", "paths_index" and "hurt_sound_index" to their default values.
      * Triggers the "demonShrink" function to reduce the size of the demon.
      */
     demonHurt3() {
         const intervalIdDemonHurt3 = setInterval(() => {
             if (!this.isDead() && this.energy == 25) {
+                this.demon_hurt = true;
                 this.playSoundDemonHurt();
                 if (this.paths_index < this.paths_hurt_total) {
                     this.loadImage(this.PATHS_HURT[this.paths_index]);
                     this.paths_index++;
                 } else {
                     clearInterval(intervalIdDemonHurt3);
-                    this.paths_index = 0;
-                    this.hurt_sound_index = 1;
+                    this.resetVariables();
                     this.demonShrink();
                 }
             }
         }, this.interval_hurt);
+    }
+
+    /**
+     * Resets the variables "demon_hurt", "paths_index" and "hurt_sound_index" to their default values.
+     */
+    resetVariables() {
+        this.demon_hurt = false;
+        this.paths_index = 0;
+        this.hurt_sound_index = 1;
     }
 
     /**
