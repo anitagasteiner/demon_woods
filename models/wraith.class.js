@@ -117,9 +117,8 @@ class Wraith extends MovableObject {
      */
     deleteWraith() {
         for (let i = 0; i < world.level.enemies.length; i++) {
-            if (world.level.enemies[i].wraithIndex === this.wraithIndex) {
+            if (world.level.enemies[i].wraithIndex === this.wraithIndex)
                 world.level.enemies.splice(i, 1);
-            }
         }
     }
 
@@ -135,18 +134,16 @@ class Wraith extends MovableObject {
      * Checks if the wraith is not dead and cycles through moving forward animation frames.
      */
     wraithMoving() {
-        if (!this.isDead()) {
+        if (!this.isDead())
             this.changePictures(this.PATHS_MOVING_FORWARD);
-        }
     }
 
     /**
      * Checks if the wraith is not dead and triggers the "moveLeft" function.
      */
     wraithMove() {
-        if (!this.isDead()) {
+        if (!this.isDead())
             this.moveLeft();
-        }
     }
 
 }

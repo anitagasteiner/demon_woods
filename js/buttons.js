@@ -22,9 +22,8 @@ function initButtons() {
  * Checks if the sound status stored in the local storage is on or off and adds the corresponding image path to the variable "sound_on_off" so that the correct sound button image is shown.
  */
 function corrSoundButton() {
-    if (localStorage.getItem('soundStatus') == 'off') {
+    if (localStorage.getItem('soundStatus') == 'off')
         sound_on_off = 'img/symbols/sound_off_orange.png';
-    } else {
+    else
         sound_on_off = 'img/symbols/sound_on_orange.png';
-    }
 }

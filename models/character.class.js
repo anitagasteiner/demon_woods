@@ -128,10 +128,9 @@ class Character extends MovableObject {
      */
     characterHurt(enemy) {
         this.sound_snoring.pause();
-        this.changePictures(this.PATHS_HURT);
-        if (enemy.demon == false) {
+        if (enemy.demon == false)
             enemy.changePictures(enemy.PATHS_ATTACKING);
-        }
+        this.changePictures(this.PATHS_HURT);        
         setTimeout(() => this.hurt_sound_index = 1, 1500);
     }
 
@@ -190,9 +189,8 @@ class Character extends MovableObject {
         if (!this.isDead() && this.world.keyboard.UP && !this.isAboveGround()) {
             this.sound_snoring.pause();
             this.fly();
-        } else if (!this.isDead() && this.isAboveGround()) {
+        } else if (!this.isDead() && this.isAboveGround())
             this.changePictures(this.PATHS_FLY);
-        }    
     }
 
     /**
@@ -211,9 +209,8 @@ class Character extends MovableObject {
             this.moveLeft();                
             this.sound_walking.play();
         }
-        if (this.isAboveGround()) {
+        if (this.isAboveGround())
             this.sound_walking.pause();
-        }
         this.world.camera_x = -this.x -100;
     }
 

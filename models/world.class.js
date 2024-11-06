@@ -151,14 +151,12 @@ class World {
      * @param {object} movableObject - object to be added to the map
      */
     addToMap(movableObject) {
-        if (movableObject.otherDirection) {
+        if (movableObject.otherDirection)
             this.flipImage(movableObject);
-        }
         movableObject.draw(this.ctx);
         // movableObject.drawRectangle(this.ctx);
-        if (movableObject.otherDirection) {
+        if (movableObject.otherDirection)
             this.flipImageBack(movableObject);
-        }
     }
 
     /**
@@ -185,9 +183,8 @@ class World {
      * Sets a time stamp to record the last action to the variable "last_action".
      */
     recordAction() {
-        if (!this.character.isDead() && this.keyboard.LEFT || !this.character.isDead() && this.keyboard.RIGHT || !this.character.isDead() && this.keyboard.UP || !this.character.isDead() && this.keyboard.SPACE) {
+        if (!this.character.isDead() && this.keyboard.LEFT || !this.character.isDead() && this.keyboard.RIGHT || !this.character.isDead() && this.keyboard.UP || !this.character.isDead() && this.keyboard.SPACE)
             this.last_action = new Date().getTime();
-        }
     }
 
     /**
@@ -211,9 +208,8 @@ class World {
     checkThrowObjects() {
         let positionX = this.character.x + 300;
         let positionY = this.character.y + 200;
-        if (this.character.otherDirection == true) {
+        if (this.character.otherDirection == true)
             positionX -= 100;
-        }
         if (this.throw_possible && !this.character.isDead() && this.keyboard.SPACE && this.statusBars[2].percentage > 0) {
             let crystal = new ThrowableObject(positionX, positionY, this.character.otherDirection);            
             this.throwableObjects.push(crystal);
@@ -314,9 +310,8 @@ class World {
      */
     deleteApple(apple) {
         for (let i = 0; i < this.level.apples.length; i++) {
-            if (this.level.apples[i].appleIndex === apple.appleIndex) {
+            if (this.level.apples[i].appleIndex === apple.appleIndex)
                 this.level.apples.splice(i, 1);
-            }
         }
     }
 
@@ -343,9 +338,8 @@ class World {
      */
     deleteCrystal(crystal) {
         for (let i = 0; i < this.level.crystals.length; i++) {
-            if (this.level.crystals[i].crystalIndex === crystal.crystalIndex) {
+            if (this.level.crystals[i].crystalIndex === crystal.crystalIndex)
                 this.level.crystals.splice(i, 1);
-            }
         }
     }
 
@@ -362,11 +356,10 @@ class World {
                 this.last_action = new Date().getTime();
                 this.character.fly();
                 this.sound_wraith_hit.play();
-                for (let i = 0; i < this.level.enemies.length; i++) {
-                    if (this.level.enemies[i].wraithIndex === enemy.wraithIndex) {                        
+                // for (let i = 0; i < this.level.enemies.length; i++) {
+                //     if (this.level.enemies[i].wraithIndex === enemy.wraithIndex)         // TODO              
                         enemy.energy = 0;
-                    }
-                }                
+                // }
             };
         });
     }

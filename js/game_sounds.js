@@ -43,15 +43,14 @@ function resetSoundsThrowableObjects() {
 function resetSoundsEnemies() {
     resetSound(world.sound_wraith_hit);
     for (let i = 0; i < world.level.enemies.length; i++) {
-        if (world.level.enemies[i].sound_demon_dead) {
+        if (world.level.enemies[i].sound_demon_dead)
             resetSound(world.level.enemies[i].sound_demon_dead);
-        } else if (world.level.enemies[i].sound_demon_attack) {
+        else if (world.level.enemies[i].sound_demon_attack)
             resetSound(world.level.enemies[i].sound_demon_attack);
-        } else if (world.level.enemies[i].sound_demon_hit) {
+        else if (world.level.enemies[i].sound_demon_hit)
             resetSound(world.level.enemies[i].sound_demon_hit);
-        } else if (world.level.enemies[i].sound_disappearing) {
+        else if (world.level.enemies[i].sound_disappearing)
             resetSound(world.level.enemies[i].sound_disappearing);
-        }        
     }
 }
 
@@ -63,9 +62,8 @@ function resetSoundsEnemies() {
 function corrSoundStatus() {
     if (localStorage.getItem('soundStatus') == 'off') {
         world.buttons.forEach((button) => {
-            if (button.content == 'sound') {
+            if (button.content == 'sound')
                 handleSounds(button);
-            }
         });
     }
 }
@@ -117,9 +115,8 @@ function toggleEnemiesSounds() {
             world.level.enemies[i].sound_demon_dead.muted = !world.level.enemies[i].sound_demon_dead.muted;
             world.level.enemies[i].sound_demon_hit.muted = !world.level.enemies[i].sound_demon_hit.muted;
             world.level.enemies[i].sound_demon_attack.muted = !world.level.enemies[i].sound_demon_attack.muted;
-        } else {
+        } else
             world.level.enemies[i].sound_disappearing.muted = !world.level.enemies[i].sound_disappearing.muted;
-        }
     }
 }
 

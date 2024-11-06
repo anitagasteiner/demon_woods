@@ -61,9 +61,8 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             } 
-            else {
+            else
                 this.y = 150;
-            }
         }, 1000 / 30);
     }
 
@@ -73,11 +72,10 @@ class MovableObject extends DrawableObject {
      * @returns {boolean} - true if the object is an instance of "ThrowableObject" or if its y value is lower than 150, otherwise false
      */
     isAboveGround() {
-        if (this instanceof ThrowableObject) {
+        if (this instanceof ThrowableObject)
             return true;
-        } else {
+        else
             return this.y < 150;
-        }
     }
     
     /**
@@ -110,22 +108,20 @@ class MovableObject extends DrawableObject {
      */
     hit() {
         this.looseEnergy();
-        if (this.energy < 0) {
+        if (this.energy < 0)
             this.energy = 0;
-        } else {
+        else
             this.lastHit = new Date().getTime();
-        }
     }
 
     /**
      * Reduces the energy value of an object. If it's a demon, the energy value is reduced by 25, if it's not a demon, the energy value is reduced by 20.
      */
     looseEnergy() {
-        if (this.demon) {
+        if (this.demon)
             this.energy -= 25;
-        } else if (!this.demon) {
+        else if (!this.demon)
             this.energy -= 20;
-        }
     }
 
     /**

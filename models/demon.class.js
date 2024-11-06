@@ -123,9 +123,8 @@ class Demon extends MovableObject {
                         clearInterval(intervalIdDemonDead);
                         this.deleteDemon();
                         this.paths_index = 0;
-                        if (!world.character.isDead()) {
+                        if (!world.character.isDead())
                             this.youWinAction();
-                        }
                     }
                 }, 500);                
             }
@@ -165,9 +164,8 @@ class Demon extends MovableObject {
      */
     deleteDemon() {
         for (let i = 0; i < world.character.world.level.enemies.length; i++) {
-            if (world.character.world.level.enemies[i].demon == true) {
+            if (world.character.world.level.enemies[i].demon == true)
                 world.character.world.level.enemies.splice(i, 1);
-            }
         }
     }
 
@@ -180,9 +178,8 @@ class Demon extends MovableObject {
             if (this.x - world.character.x + world.character.width - world.character.offset.right < 600) {
                 this.changePictures(this.PATHS_ATTACK);
                 this.sound_demon_attack.play();
-            } else {
-                this.changePictures(this.PATHS_IDLE);
-            }            
+            } else
+                this.changePictures(this.PATHS_IDLE);         
         }
     }
 

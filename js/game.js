@@ -29,9 +29,8 @@ function corrFullscreenButton() {
     if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
         fullscreen = true;
         world.buttons.forEach((button) => {
-            if (button.content == 'fullscreen') {
+            if (button.content == 'fullscreen')
                 button.loadImage('img/symbols/arrow_down_orange.png');
-            }
         });
     }
 }
@@ -166,36 +165,28 @@ function handleImpressum() {
  * Adds Event Listener to register if user presses the keys space, up, left or right.
  */
 window.addEventListener('keydown', (e) => {
-    if (e.keyCode == 32) {
+    if (e.keyCode == 32)
         keyboard.SPACE = true;
-    }
-    if (e.keyCode == 38) {
+    if (e.keyCode == 38)
         keyboard.UP = true;
-    }
-    if (e.keyCode == 37) {
+    if (e.keyCode == 37)
         keyboard.LEFT = true;
-    }
-    if (e.keyCode == 39) {
+    if (e.keyCode == 39)
         keyboard.RIGHT = true;
-    }
 });
 
 /**
  * Adds Event Listener to register if user stops pressing the keys space, up, left or right.
  */
 window.addEventListener('keyup', (e) => {
-    if (e.keyCode == 32) {
+    if (e.keyCode == 32)
         keyboard.SPACE = false;
-    }
-    if (e.keyCode == 38) {
+    if (e.keyCode == 38)
         keyboard.UP = false;
-    }
-    if (e.keyCode == 37) {
+    if (e.keyCode == 37)
         keyboard.LEFT = false;
-    }
-    if (e.keyCode == 39) {
+    if (e.keyCode == 39)
         keyboard.RIGHT = false;
-    }
 });
 
 /**
@@ -301,18 +292,17 @@ function handleCanvasInteraction(pageX, pageY) {
     let {x, y} = calculateCanvasXY(pageX, pageY);
     world.buttons.forEach((button) => {
         if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
-            if (button.content == 'info') {
+            if (button.content == 'info')
                 handleInfoboxContainer();
-            } else if (button.content == 'sound') {
+            else if (button.content == 'sound')
                 handleSounds(button);
-            } else if (button.content == 'restart') {
+            else if (button.content == 'restart') {
                 resetGame();
                 init();
-            } else if (button.content == 'fullscreen' && !fullscreen) {
+            } else if (button.content == 'fullscreen' && !fullscreen)
                 openFullscreen(button);
-            } else if (button.content == 'fullscreen' && fullscreen) {
+            else if (button.content == 'fullscreen' && fullscreen)
                 closeFullscreen(button);
-            }
         }
     });
 }
@@ -347,15 +337,13 @@ function cursorPointing() {
         let {x, y} = calculateCanvasXY(event.pageX, event.pageY);
         let pointerOnButton = false;
         world.buttons.forEach((button) => {
-            if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width) {
+            if (y > button.y && y < button.y + button.height && x > button.x && x < button.x + button.width)
                 pointerOnButton = true;
-            }
         });
-        if (pointerOnButton) {
+        if (pointerOnButton)
             canvas.style.cursor = 'pointer';
-        } else {
+        else
             canvas.style.cursor = 'default';
-        }
     });    
 }
 
@@ -366,13 +354,12 @@ function cursorPointing() {
  */
 function openFullscreen(button) {
     let fullscreenContainer = document.getElementById('fullscreen');
-    if (fullscreenContainer.requestFullscreen) {
+    if (fullscreenContainer.requestFullscreen)
         fullscreenContainer.requestFullscreen();
-    } else if (fullscreenContainer.webkitRequestFullscreen) { // Safari
+    else if (fullscreenContainer.webkitRequestFullscreen) // Safari
         fullscreenContainer.webkitRequestFullscreen();
-    } else if (fullscreenContainer.msRequestFullscreen) { // IE11
+    else if (fullscreenContainer.msRequestFullscreen) // IE11
         fullscreenContainer.msRequestFullscreen();
-    }
     button.loadImage('img/symbols/arrow_down_orange.png');
     fullscreen = true;
 }
@@ -383,13 +370,12 @@ function openFullscreen(button) {
  * @param {object} button - the button object used to trigger the exit from fullscreen mode
  */
 function closeFullscreen(button) {
-    if (document.exitFullscreen) {
+    if (document.exitFullscreen)
       document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { // Safari
+    else if (document.webkitExitFullscreen) // Safari
       document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { // IE11
+    else if (document.msExitFullscreen) // IE11
       document.msExitFullscreen();
-    }
     button.loadImage('img/symbols/arrow_up_orange.png');
     fullscreen = false;
 }

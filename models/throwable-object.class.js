@@ -44,11 +44,10 @@ class ThrowableObject extends MovableObject {
         this.speedY = 30;
         this.applyGravity();
         const intervalIdThrow = setInterval(() => {
-            if (otherDirection == true) {
+            if (otherDirection == true)
                 this.x -= 6;
-            } else {
+            else
                 this.x += 6;
-            }                        
         }, 25);
         setTimeout(() => this.deleteThrowableObject(), 2000);
     }
@@ -57,9 +56,8 @@ class ThrowableObject extends MovableObject {
      * Checks if the sounds are turned on and plays the sound corresponding to throwing an object.
      */
     checkPlaySound() {
-        if (world.throwableObjectsSound == true) {
+        if (world.throwableObjectsSound == true)
             this.sound_throwing.play();
-        }
     }
 
     /**
@@ -67,9 +65,8 @@ class ThrowableObject extends MovableObject {
      */
     deleteThrowableObject() {
         for (let i = 0; i < world.throwableObjects.length; i++) {
-            if (world.throwableObjects[i].throwableObjectIndex === this.throwableObjectIndex) {
+            if (world.throwableObjects[i].throwableObjectIndex === this.throwableObjectIndex)
                 world.throwableObjects.splice(i, 1);
-            }
         }
     }
 
